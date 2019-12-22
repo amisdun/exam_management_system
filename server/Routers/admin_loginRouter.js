@@ -3,5 +3,6 @@ const router = express.Router();
 require("../../index");
 
 var signin = require("../API/loginAPI");
+var token = require("../middlewares/webtoken_auth")
 
-router.get("/signin",signin.login);
+router.get("/signin",token.authenticate,signin.login);

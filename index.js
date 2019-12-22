@@ -25,7 +25,10 @@ var port = process.env.PORT || 3000;
 
 //serving the homepage to the client
 app.get("/",(req,res) => {
-    res.sendFile(path.join(__dirname + "/patient.html"));
+    //res.sendFile(path.join(__dirname + ""));
+    res.json({
+        message: "this is a new message"
+    })
 })
 
 // server port listening

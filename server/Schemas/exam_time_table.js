@@ -13,7 +13,7 @@ var timeTable_schema = mongoose.Schema({
         type: String,
         required: true
     },
-    course_name: {
+    program_name: {
         type: String,
         required: true
     },

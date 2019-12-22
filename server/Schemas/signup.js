@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 var signup_schema = mongoose.Schema({
+    _id: mongoose.Schema.Types.ObjectId,
     staffName: {
         type: String,
         required: true

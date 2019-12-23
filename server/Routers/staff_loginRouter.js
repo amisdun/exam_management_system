@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 require("../../index");
 
-var staff_signin = require("../API/staff_loginAPI");
+var staff_login = require("../API/staff_loginAPI");
 
-router.get("/signin",staff_signin.login);
+router.post("/signin",staff_login.staff_login);
+
+module.exports = router;

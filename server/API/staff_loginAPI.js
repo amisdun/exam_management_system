@@ -1,9 +1,9 @@
 require("../../index");
 const db = require("../db_connection/mongodb");
-var staff = require("../Schemas/signup");
+var staff = require("../Schemas/staff_signup");
 
 
-var supervisor = (req,res,next) => {
+var staff_login = (req,res,next) => {
     staff.find({staff_name: req.body.staff_name})
     .exec()
     .then(results => {
@@ -50,5 +50,5 @@ var supervisor = (req,res,next) => {
 }
 
 module.exports = {
-    supervisor: supervisor
+    staff_login: staff_login
 }

@@ -16,6 +16,6 @@ var supervisor_schema = mongoose.Schema({
     },
 })
 
-var supervisor = mongoose.model("supervisor",supervisor_schema);
+var admin = mongoose.model("supervisor",supervisor_schema);
 
-module.exports = supervisor;
+module.exports = admin;

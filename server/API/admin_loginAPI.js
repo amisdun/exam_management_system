@@ -1,8 +1,9 @@
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken")
 require("../../index");
 const db = require("../db_connection/mongodb")
 
-var admin = require("../Schemas/admin");
+var admin = require("../Schemas/admin_signup");
 
 var login = (req,res,next) => {
     admin.find({admin_name: req.body.admin_name})

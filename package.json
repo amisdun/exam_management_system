@@ -18,6 +18,8 @@
     "mongoose": "^5.7.5",
     "nodemon": "^1.19.4",
     "path": "^0.12.7",
+    "qr-code-scanner": "^1.0.7",
+    "qrcode": "^1.4.4",
     "session": "^0.1.0"
   }
 }

@@ -20,6 +20,6 @@ var signup_schema = mongoose.Schema({
     }
 })
 
-var signup = mongoose.model("signup",signup_schema);
+var staff = mongoose.model("signup",signup_schema);
 
-module.exports = signup;
+module.exports = staff;

@@ -2,7 +2,8 @@ const express = require("express");
 const router = express.Router();
 require("../../index");
 
-var signin = require("../API/loginAPI");
-var token = require("../middlewares/webtoken_auth")
+var login = require("../API/admin_loginAPI");
 
-router.get("/signin",token.authenticate,signin.login);
+router.post("/signin",login.login);
+
+module.exports = router;

@@ -6,7 +6,6 @@ var authenticate = (req,res,next) =>{
             res.json({
                 message: "an error has occured",
                 error: err
-                
             })
         }
         req.user = decode;

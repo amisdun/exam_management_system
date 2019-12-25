@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-var signup_schema = mongoose.Schema({
+var staff_signup = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     staffName: {
         type: String,
@@ -20,6 +20,6 @@ var signup_schema = mongoose.Schema({
     }
 })
 
-var staff = mongoose.model("signup",signup_schema);
+var staff = mongoose.model("staff",staff_signup);
 
 module.exports = staff;

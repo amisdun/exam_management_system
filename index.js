@@ -19,17 +19,20 @@ app.use(bodyParser.json())
 app.use(express.static("exam_management_sys"));
 
 // requiring routers
-//require("./server/Routers/QRcode_generatorRouter");
+var data = require("./server/Routers/QRcode_generatorRouter");
 var admin_login = require("./server/Routers/admin_loginRouter");
 var admin_signup = require("./server/Routers/admin_signupRouter");
 var staff_login = require("./server/Routers/staff_loginRouter");
 var staff_signup = require("./server/Routers/staff_signupRouter");
+var attendance = require("./server/Routers/student_attendanceRouter")
 
 // using the routers available
 app.use("/admin",admin_login)
 app.use("/admin",admin_signup)
 app.use("/staff",staff_login)
 app.use("/staff",staff_signup)
+app.use("/student",data)
+app.use("/student_attendance",attendance)
 
 // specifing the development and production port
 var port = process.env.PORT || 3000;

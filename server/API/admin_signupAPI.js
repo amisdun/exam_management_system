@@ -10,9 +10,7 @@ var register = (req,res,next) => {
     .then(admins => {
         console.log(admins)
         if(admins.length >= 1){
-            var ad_email = admins[0].email;
             var req_email = req.body.email;
-            var ad_name = admins[0].admin_name;
             var req_name = req.body.admin_name;
         admins.forEach(function(nodes){
             if(nodes.admin_name === req_name || nodes.email === req_email){

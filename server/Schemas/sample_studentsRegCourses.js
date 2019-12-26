@@ -27,7 +27,7 @@ var student_registered_courses = mongoose.Schema({
     },
     registered_courses: {
         type: Array,
-        required: true,
+        required: false,
     }
 })
 

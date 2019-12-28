@@ -7,14 +7,32 @@ var QRcode_info = mongoose.Schema({
         required: true
     },
     qrcode_info: {
-            qrcode_value: {
-                type: String,
-                required: true
-            },
-            qrcodeImage: {
-                type: String,
-                required: true
-            }
+            qrcode_value: [
+                {index_number: {
+                    type: String,
+                    required: true
+                },
+                student_name: {
+                    type: String,
+                    required: true
+                },
+                program_name: {
+                    type: String,
+                    required: true
+                },
+                level: {
+                    type: String,
+                    required: true
+                },
+                semester: {
+                    type: String,
+                    required: true
+                },
+                qrcodeImage: {
+                    type: String,
+                    required: true
+                }}
+            ]
     }
 })
 

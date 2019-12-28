@@ -1,5 +1,5 @@
 require("../../index");
-var bcrypt = require("bcrypt");
+const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
 const db = require("../db_connection/mongodb");
 

@@ -50,8 +50,6 @@ var generateQRcode = (req,res) => {
         }
     }
     let data = JSON.stringify({
-        level: level,
-        academic_year: academic_year,
         student_name: student_name,
         index_number: index_number,
         program_name: program_name,
@@ -73,8 +71,6 @@ var generateQRcode = (req,res) => {
                             student_qrcode_info.update({academic_year: academic_year},{"$push": {
                                 qrcode_value: {
                                     "$each": [{
-                                        level: level,
-                                        semester: semester,
                                         student_name: student_name,
                                         index_number: index_number,
                                         program_name: program_name,
@@ -99,9 +95,7 @@ var generateQRcode = (req,res) => {
                             qrcode_value: [
                                 {index_number: index_number,
                                 program_name: program_name,
-                                level: level,
                                 student_name: student_name,
-                                semester: semester,
                                 qrcodeImage: url
                             }
                             ]

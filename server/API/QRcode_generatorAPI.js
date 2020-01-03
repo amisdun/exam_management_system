@@ -97,7 +97,7 @@ var generateQRcode = (req,res) => {
                                 program_name: program_name,
                                 student_name: student_name,
                                 qrcodeImage: url
-                            }
+                                }
                             ]
                         }
                     })
@@ -155,7 +155,7 @@ var searchByDate = (req,res,next) => {
 
 // API TO MAKE QUERRY SEARCH BY INDEX NUMBER
 var searchByIndexNum = (req,res,next) => {
-    let index_number = req.body.index_number.toUpperCase();
+    let index_number = (req.body.index_number).toUpperCase();
     student_qrcode_info.find({"qrcode_info.qrcode_value.index_number": index_number})
     .exec()
     .then(result => {

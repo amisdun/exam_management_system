@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 // seriving static files
-app.use(express.static("exam_management_sys"));
+app.use(express.static("client"));
 
 // requiring routers
 var data = require("./server/Routers/QRcode_generatorRouter");
@@ -39,10 +39,7 @@ var port = process.env.PORT || 3000;
 
 //serving the homepage to the client
 app.get("/",(req,res) => {
-    //res.sendFile(path.join(__dirname + ""));
-    res.json({
-        message: "this is a new message"
-    })
+    res.sendFile(path.join(__dirname + "/client/index.html"));
 })
 
 // server port listening

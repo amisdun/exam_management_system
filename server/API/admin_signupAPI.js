@@ -12,47 +12,52 @@ var register = (req,res,next) => {
         if(admins.length >= 1){
             var req_email = req.body.email;
             var req_name = req.body.admin_name;
+            var new_email;
         admins.forEach(function(nodes){
-            if(nodes.admin_name === req_name || nodes.email === req_email){
-                res.status(409).json({
-                    message: "admin name or email is already in use",
-                    res: admins
-                })
+            if(nodes.email == req_email){
+                new_email = req_email
             }
-            else{
-                bcrypt.hash(req.body.password, 10, (err,hash) =>{
-                    if(err){
+            return new_email
+        })
+        if(new_email === req_email){
+            res.status(409).json({
+                message: "admin email is already in use",
+                res: admins
+            })
+        }
+        else{
+            bcrypt.hash(req.body.password, 10, (err,hash) =>{
+                if(err){
+                    console.log(err)
+                    res.status(500).json({
+                        error: "could not hash password"
+                    })
+                }
+                else{
+                     new admin({
+                        _id: new mongoose.Types.ObjectId,
+                        admin_name: req.body.admin_name,
+                        password: hash,
+                        email: req.body.email
+                    })
+                    .save()
+                    .then(result => {
+                        if(result){
+                            res.status(200).json({
+                                result: "admin account created successfuly",
+                                res: result
+                            })
+                        }
+                    })
+                    .catch(err =>{
                         console.log(err)
                         res.status(500).json({
-                            error: "could not hash password"
+                            error: "account has not been created, an error has occured"
                         })
-                    }
-                    else{
-                         new admin({
-                            _id: new mongoose.Types.ObjectId,
-                            admin_name: req.body.admin_name,
-                            password: hash,
-                            email: req.body.email
-                        })
-                        .save()
-                        .then(result => {
-                            if(result){
-                                res.status(200).json({
-                                    result: "admin account created successfuly",
-                                    res: result
-                                })
-                            }
-                        })
-                        .catch(err =>{
-                            console.log(err)
-                            res.status(500).json({
-                                error: "account has not been created, an error has occured"
-                            })
-                        })
-                    }
-                })
-            }
-        })
+                    })
+                }
+            })
+        }
         }
         else{
              bcrypt.hash(req.body.password, 10, (err,hash) =>{

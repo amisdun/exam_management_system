@@ -6,7 +6,6 @@ var QRcode_info = mongoose.Schema({
         type: String,
         required: true
     },
-    qrcode_info: {
             qrcode_value: [
                 {index_number: {
                     type: String,
@@ -25,7 +24,6 @@ var QRcode_info = mongoose.Schema({
                     required: true
                 }}
             ]
-    }
 })
 
 var students_qrcode_info = mongoose.model("students_qrcode_info",QRcode_info);

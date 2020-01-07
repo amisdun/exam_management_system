@@ -11,13 +11,12 @@ var generateQRcode = (req,res) => {
     //Getting academic year date
     var academic_year,i_length,i_slice,l_year,t_year,temp_year;
     let year = new Date().getUTCFullYear();
-    let program_name = req.body.program_name;
-
+    let program_name = (req.body.program_name).toUpperCase();
     // Getting the semester and level from the index number
     var index_number = (req.body.index_number).toUpperCase();
     var level,semester;
     const defualt_month = 6;
-    var month = new Date().toLocaleDateString().slice(0,2);
+    var month = new Date().getMonth() + 1;
 
     if(defualt_month > month){
         semester = "second semester";
@@ -49,6 +48,9 @@ var generateQRcode = (req,res) => {
             level = (l_year - i_slice) + "00";
         }
     }
+    console.log(semester);
+    console.log(academic_year);
+    console.log(level)
     let data = JSON.stringify({
         student_name: student_name,
         index_number: index_number,
@@ -56,42 +58,44 @@ var generateQRcode = (req,res) => {
     })
     qrcode.toDataURL(data, function (err, url) {
         if(url){
-            console.log(url)
-            student_qrcode_info.find({academic_year: academic_year})
+            student_qrcode_info.findOne({academic_year: academic_year})
             .exec()
             .then(data => {
-                if(data.length >= 1){
-                    data.qrcode_info.qrcode_value.forEach(function(node){
-                        if(node.index_number.length >= 1){
-                            res.json({
-                                res: "QR code image for this index number had already been created"
-                            })
+                if(data){
+                    var qr_data = data.qrcode_value;
+                    var new_index;
+                    qr_data.forEach(function(node){
+                        if(node.index_number == index_number){
+                            new_index = index_number
                         }
-                        else{
-                            student_qrcode_info.update({academic_year: academic_year},{"$push": {
-                                qrcode_value: {
-                                    "$each": [{
+                        return new_index;
+                    })
+                    if(new_index == index_number){
+                        res.json({
+                            qr_res: "QR code image for this index number had already been created"
+                        })
+                    }
+                    else{
+                        student_qrcode_info.updateOne({academic_year: academic_year},{"$push": {
+                            qrcode_value : {
                                         student_name: student_name,
                                         index_number: index_number,
                                         program_name: program_name,
                                         qrcodeImage: url
-                                    }]
                                 }
-                            }},(err,data) => {
-                                if(err) throw err
-                                res.json({
-                                    res: `New student data with QRcode image saved succesfully for ${academic_year}`,
-                                    data: data
-                                })
+                        }},(err,val) => {
+                            if(err) console.log(err)
+                            res.json({
+                                new_qr_res: `New student data with QRcode image saved succesfully for ${academic_year}`,
+                                data: val
                             })
-                        }
-                    })
+                        })
+                    }
                 }
                 else{
                     new student_qrcode_info({
                         _id: new mongoose.Types.ObjectId,
                         academic_year: academic_year,
-                        qrcode_info: {
                             qrcode_value: [
                                 {index_number: index_number,
                                 program_name: program_name,
@@ -99,18 +103,17 @@ var generateQRcode = (req,res) => {
                                 qrcodeImage: url
                                 }
                             ]
-                        }
                     })
                     .save()
                     .then(data => {
                         res.json({
-                            res: `New data formed with academic year ${academic_year}`,
+                            new_res: `New data formed with academic year ${academic_year}`,
                             data: data
                         })
                     })
                     .catch(err => {
                         res.json({
-                            res: "An error occured",
+                            err_res: "An error occured",
                             err: err
                         })
                     })
@@ -136,12 +139,12 @@ var searchByDate = (req,res,next) => {
     .then(result => {
         if(result.length >= 1){
             res.status(200).json({
-                res: result
+                result_res: result
             })
         }
         else{
             res.json({
-                res: `no records found for the academic year ${academic_year}`
+                record_res: `no records found for the academic year ${academic_year}`
             })
         }
     })

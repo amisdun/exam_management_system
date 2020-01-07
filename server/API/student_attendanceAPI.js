@@ -15,7 +15,7 @@ var attendance = (req,res,next) => {
     var index_number = (req.body.index_number).toUpperCase();
     var level,semester;
     const defualt_month = 6;
-    var month = new Date().toLocaleDateString().slice(0,2);
+    var month = new Date().getMonth() + 1;
 
     if(defualt_month > month){
         semester = "second semester";
@@ -53,20 +53,25 @@ var attendance = (req,res,next) => {
         if(data.length >= 1){
             data.forEach(function(node){
                 var student_sig = node.student_signature;
+                var new_index;
                 if(node.semester === semester &&
                     node.program_name === program_name &&
                     node.level === level &&
                     node.index_number === index_number && 
-                    student_sig.length >= 1
-                    ){
-                        res.json({
-                            res: `Attendance for this index number has been recorded for ${academic_year} academic year`
-                        })
-                }
-                else{
-                    take_new_attendance();
-                }
+                    student_sig.length >= 1){
+                        new_index = index_number;
+                    }
+                    return new_index;
+                
             })
+            if(new_index == index_number){
+                    res.json({
+                        res: `Attendance for this index number has been recorded for ${academic_year} academic year`
+                    })
+            }
+            else{
+                take_new_attendance();
+            }
         }
         else{
             take_new_attendance();
@@ -92,7 +97,7 @@ var take_new_attendance = (req,res,next) => {
     var index_number = (req.body.index_number).toUpperCase();
     var level,semester;
     const defualt_month = 6;
-    var month = new Date().toLocaleDateString().slice(0,2);
+    var month = new Date().getMonth() + 1;
 
     if(defualt_month > month){
         semester = "second semester";
@@ -126,50 +131,51 @@ var take_new_attendance = (req,res,next) => {
     }
     var course_name = req.body.course_name;
     var index_number = req.body.index_number;
-            fetch_registered_courses.find({index_number: index_number})
+    fetch_registered_courses.find({index_number: index_number})
             .exec()
             .then(data => {
                 if(data.length >= 1){
                     data.forEach(function(x){
                         if(x.academic_year === academic_year && x.semester_type === semester){
-                            var registered_course = x.registered_courses;
-                            registered_course.forEach(function(courses){
-                                if(courses === course_name){
-                                    var course = course_name;
-                                    var student_name = x.student_name;
-                                    var first_char = student_name.charAt(0);
-                                    var last_char = student_name.charAt(indexOf(" ") + 1);
-                                    var student_initials = `${first_char}.${last_char}`;
-                                    student_initials.toUpperCase();
-
-                                    new student_attendance({
-                                        _id: new mongoose.Types.ObjectId,
-                                        program_name: program_name,
-                                        course_name: course,
-                                        semester: semester,
-                                        index_number: index_number,
-                                        level: level,
-                                        exam_year: academic_year,
-                                        student_name: student_name,
-                                        student_signature: student_initials
-                                    })
-                                    .save()
-                                    .then(attendce => {
-                                        res.status(200).json({
-                                            res: "Attendance recorded successfully",
-                                            attendce: attendce
-                                        })
-                                    })
-                                    .catch(err => {
-                                        res.status(500).json({
-                                            res: "An error occured",
-                                            err: err
-                                        })
-                                    })
-                                }
-                            })
+                            return x;
                         }
                     })
+                        var registered_course = x.registered_courses;
+                        registered_course.forEach(function(courses){
+                            if(courses === course_name){
+                                var course = course_name;
+                                var student_name = x.student_name;
+                                var first_char = student_name.charAt(0);
+                                var last_char = student_name.charAt(indexOf(" ") + 1);
+                                var student_initials = `${first_char}.${last_char}`;
+                                student_initials.toUpperCase();
+
+                                new student_attendance({
+                                    _id: new mongoose.Types.ObjectId,
+                                    program_name: program_name,
+                                    course_name: course,
+                                    semester: semester,
+                                    index_number: index_number,
+                                    level: level,
+                                    exam_year: academic_year,
+                                    student_name: student_name,
+                                    student_signature: student_initials
+                                })
+                                .save()
+                                .then(attendce => {
+                                    res.status(200).json({
+                                        res: "Attendance recorded successfully",
+                                        attendce: attendce
+                                    })
+                                })
+                                .catch(err => {
+                                    res.status(500).json({
+                                        res: "An error occured",
+                                        err: err
+                                    })
+                                })
+                            }
+                        })
                 }
             })
             .catch(err => {

@@ -20,6 +20,10 @@ var timeTable_schema = mongoose.Schema({
     examiner: {
         type: String,
         required: true
+    },
+    course_name: {
+        type: String,
+        required: true
     }
 })
 

@@ -6,7 +6,7 @@ const db = require("../db_connection/mongodb")
 var admin = require("../Schemas/admin_signup");
 
 var login = (req,res,next) => {
-    admin.find({admin_name: req.body.admin_name})
+    admin.find({email: req.body.email})
     .exec()
     .then(results => {
         if(results.length < 1){

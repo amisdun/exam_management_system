@@ -2,10 +2,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 const cors = require("cors");
-var jwt = require("jsonwebtoken");
-var bcrypt = require("bcrypt");
+let jwt = require("jsonwebtoken");
+let bcrypt = require("bcrypt");
 
-var app = express();
+let app = express();
 
 // setting up the cross origin resource sharing
 app.use(cors());
@@ -19,12 +19,13 @@ app.use(bodyParser.json())
 app.use(express.static("client"));
 
 // requiring routers
-var data = require("./server/Routers/QRcode_generatorRouter");
-var admin_login = require("./server/Routers/admin_loginRouter");
-var admin_signup = require("./server/Routers/admin_signupRouter");
-var staff_login = require("./server/Routers/staff_loginRouter");
-var staff_signup = require("./server/Routers/staff_signupRouter");
-var attendance = require("./server/Routers/student_attendanceRouter")
+let data = require("./server/Routers/QRcode_generatorRouter");
+let admin_login = require("./server/Routers/admin_loginRouter");
+let admin_signup = require("./server/Routers/admin_signupRouter");
+let staff_login = require("./server/Routers/staff_loginRouter");
+let staff_signup = require("./server/Routers/staff_signupRouter");
+let attendance = require("./server/Routers/student_attendanceRouter")
+let lecturer_details = require("./server/Routers/lecturer_detailRouter")
 
 // using the routers available
 app.use("/admin",admin_login)
@@ -33,9 +34,10 @@ app.use("/staff",staff_login)
 app.use("/staff",staff_signup)
 app.use("/student",data)
 app.use("/student_attendance",attendance)
+app.use("/lecturer_detail",lecturer_details)
 
 // specifing the development and production port
-var port = process.env.PORT || 3000;
+let port = process.env.PORT || 3000;
 
 //serving the homepage to the client
 app.get("/",(req,res) => {

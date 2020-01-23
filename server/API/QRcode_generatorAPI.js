@@ -58,7 +58,7 @@ var generateQRcode = (req,res) => {
     })
     qrcode.toDataURL(data, function (err, url) {
         if(url){
-            student_qrcode_info.findOne({academic_year: academic_year})
+            student_qrcode_info.find({academic_year: academic_year})
             .exec()
             .then(data => {
                 if(data){

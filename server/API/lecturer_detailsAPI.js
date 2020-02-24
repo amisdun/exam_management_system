@@ -10,7 +10,6 @@ let create_lecturer = async (req,res,next) => {
     try {
         let name = req.body.name;
         let lecturer = await lecturer_detail.findOne({name: name}).exec()
-        console.log(lecturer)
         if(lecturer) res.status(200).json({res: "lecture already exist"})
         
         else {
@@ -33,7 +32,9 @@ let read_lecturer_detail = async (req,res,next) => {
         let lecturer = await lecturer_detail.find({}).exec();
 
         if(lecturer.length >= 1) res.status(200).json({res: lecturer})
-        res.json({res: "No data found"})
+        else {
+            res.json({res: "No data found"})
+        }
 
     } catch (error) {
         console.log(error)
@@ -46,7 +47,7 @@ let read_single = async (req,res,next) => {
     try {
         let single = await lecturer_detail.findById({_id: req.params.id}).exec()
 
-        if(single) res.status(200).json({data: single,res: "found"})
+        if(single) res.status(200).json({data: single, res: "found"})
         
         else {
             res.json({res: "not found"})
@@ -76,9 +77,8 @@ let update = async (req,res,next) => {
         let data = {
             name: req.body.name
         }
-        let new_update = await (await lecturer_detail.findByIdAndUpdate(req.params.id,data)).save()
-        console.log(new_update)
-        if(new_update.isModified) res.json({res: "updated"})
+        await lecturer_detail.findByIdAndUpdate(req.params.id,data).exec()
+        res.json({res: "updated"})
     } catch (error) {
         res.json({err:"An error occured"})
         console.log(error)

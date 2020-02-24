@@ -18,11 +18,11 @@ var register = (req,res,next) => {
                 new_name = req_name
             }
             return {
-                req_email,req_email
+                new_name,new_email
             }
         })
         if(new_email === req_email || new_name === req_name){
-            res.status(409).json({
+           return res.status(409).json({
                 message: "admin email or name is already in use",
                 res: admins
             })
@@ -37,7 +37,7 @@ var register = (req,res,next) => {
     })
     .catch(err => {
         console.log(err)
-        res.status(500).json({
+       return res.status(500).json({
             error: "an error occured, try again",
         })
     })
@@ -46,7 +46,7 @@ var register = (req,res,next) => {
         bcrypt.hash(req.body.password, 10, (err,hash) =>{
             if(err){
                 console.log(err)
-                res.status(500).json({
+               return res.status(500).json({
                     error: "could not hash password"
                 })
             }
@@ -60,7 +60,7 @@ var register = (req,res,next) => {
                 .save()
                 .then(result => {
                     if(result){
-                        res.status(200).json({
+                       return res.status(200).json({
                             result: "admin account created successfuly",
                             res: result
                         })
@@ -68,7 +68,7 @@ var register = (req,res,next) => {
                 })
                 .catch(err =>{
                     console.log(err)
-                    res.status(500).json({
+                   return res.status(500).json({
                         error: "account has not been created, an error has occured"
                     })
                 })

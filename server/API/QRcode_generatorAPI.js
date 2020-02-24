@@ -48,9 +48,6 @@ var generateQRcode = (req,res) => {
             level = (l_year - i_slice) + "00";
         }
     }
-    console.log(semester);
-    console.log(academic_year);
-    console.log(level)
     let data = JSON.stringify({
         student_name: student_name,
         index_number: index_number,
@@ -62,8 +59,8 @@ var generateQRcode = (req,res) => {
             .exec()
             .then(data => {
                 if(data){
-                    var qr_data = data.qrcode_value;
-                    var new_index;
+                    let qr_data = data.qrcode_value;
+                    let new_index;
                     qr_data.forEach(function(node){
                         if(node.index_number == index_number){
                             new_index = index_number

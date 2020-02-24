@@ -45,8 +45,10 @@ var login = (req,res,next) => {
     })
     .catch(err =>{
         res.json({
-            error: "an error occured"
+            error: "an error occured",
+            err: err
         })
+        console.log(err)
     })
 }
 

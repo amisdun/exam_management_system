@@ -13,10 +13,6 @@ var timeTable_schema = mongoose.Schema({
         type: String,
         required: true
     },
-    exam_venue: {
-        type: String,
-        required: true
-    },
     program_name: {
         type: String,
         required: true
@@ -37,13 +33,10 @@ var timeTable_schema = mongoose.Schema({
         type: Number,
         required: true
     },
-    lecture_halls: [{
-        hall_name : {
-            type: String,
-            required: true
-        }
+    lecture_halls: {
+        type: Array,
+        required: true
     }
-    ]
 })
 
 var time_table = mongoose.model("time_table",timeTable_schema);

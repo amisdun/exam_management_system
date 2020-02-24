@@ -57,7 +57,7 @@ var time_table_generator = async (req,res,next) => {
 
         let flex_day = n_val - val;
 
-        if(halls.length < 1 && day_and_time === true && flex_day > 1){
+        if(halls.length < 1 && day_and_time !== true && flex_day > 1){
             new time_table({
                 _id: new mongoose.Types.ObjectId,
                 exam_date: req.body.exam_date,
@@ -76,7 +76,7 @@ var time_table_generator = async (req,res,next) => {
         if(halls.length > 0){
             return res.json({res: "lecturer unavailable"})
         }
-        if(day_and_time === false){
+        if(day_and_time === true){
             return res.json({res: "time slot unavailable"})
         }
 

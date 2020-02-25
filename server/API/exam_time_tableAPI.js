@@ -15,7 +15,7 @@ var time_table_generator = async (req,res,next) => {
                    {day: "thursday", value: 4},
                    {day: "friday", value: 5}
                   ]
-        // checking for the hard constraints
+        //checking for the hard constraints
         let all_schedules = await time_table.find({exam_date: req.body.exam_date, exam_day: req.body.exam_day, exam_time: req.body.exam_time}).exec()
         let schedules = await time_table.find({exam_day: req.body.exam_day, exam_time: req.body.exam_time}).exec()
         all_schedules.forEach(function(hall){
@@ -37,27 +37,9 @@ var time_table_generator = async (req,res,next) => {
             }
         })
 
-        // checking for soft constraint conditions
-        let program_course = await time_table.findOne({exam_date: req.body.exam_date,program_name: req.body.program_name, level: req.body.level}).exec()
-        days.forEach(function(day){
-            if(day.day === program_course.exam_day){
-                let val = day.value
+        
 
-                return val
-            }
-        })
-
-        days.forEach(function(y){
-            if(y.day === req.body.exam_day){
-                let n_val = y.value
-
-                return n_val
-            }
-        })
-
-        let flex_day = n_val - val;
-
-        if(halls.length < 1 && day_and_time !== true && flex_day > 1){
+        if(halls.length < 1 && day_and_time !== true){
             new time_table({
                 _id: new mongoose.Types.ObjectId,
                 exam_date: req.body.exam_date,
@@ -74,17 +56,55 @@ var time_table_generator = async (req,res,next) => {
             return res.json({res: "Saved successfully"})
         }
         if(halls.length > 0){
-            return res.json({res: "lecturer unavailable"})
+            return res.json({res: "hall unavailable"})
         }
         if(day_and_time === true){
             return res.json({res: "time slot unavailable"})
         }
-
-        
+        if(halls.length > 0 && day_and_time === true){
+            return res.json({res: "hall and time slot unavailable"})
+        }
    }
 
 }
 
+let check_slot_flexibility = async (req,res,next) => {
+    let flexibilty = req.body.flexibilty
+
+    // checking for soft constraint conditions
+    let program_course = await time_table.findOne({exam_date: req.body.exam_date,program_name: req.body.program_name, level: req.body.level}).exec()
+    days.forEach(function(day){
+        if(day.day === program_course.exam_day){
+            let val = day.value
+
+            return val
+        }
+    })
+    days.forEach(function(y){
+        if(y.day === req.body.exam_day){
+            n_val = y.value
+
+            return n_val
+        }
+    })
+
+    let flex_day = n_val - val;
+
+    if(flex_day <= 1){
+        if(flexibilty == null){
+            return res.json({res: "No flexibility", msg: "No flexibility for this program, do you want to continue?"})
+        }
+        else{
+            
+            next()
+        }
+    }
+    else{
+        next()
+    }
+}
+
 module.exports = {
-    time_table: time_table_generator
+    time_table: time_table_generator,
+    check_slot_flexibility: check_slot_flexibility
 }

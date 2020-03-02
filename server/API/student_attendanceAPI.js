@@ -1,21 +1,21 @@
 const db = require("../db_connection/mongodb");
 require("../../index");
-var fetch_registered_courses = require("../Schemas/sample_studentsRegCourses");
+let fetch_registered_courses = require("../Schemas/sample_studentsRegCourses");
 
-var student_attendance = require("../Schemas/student_attendance");
+let student_attendance = require("../Schemas/student_attendance");
 
-var attendance = (req,res,next) => {
+let attendance = (req,res,next) => {
     let student_name = req.body.student_name;
     //Getting academic year date
-    var academic_year,i_length,i_slice,l_year,t_year,temp_year;
+    let academic_year,i_length,i_slice,l_year,t_year,temp_year;
     let year = new Date().getUTCFullYear();
     let program_name = req.body.program_name;
 
     // Getting the semester and level from the index number
-    var index_number = (req.body.index_number).toUpperCase();
-    var level,semester;
+    let index_number = (req.body.index_number).toUpperCase();
+    let level,semester;
     const defualt_month = 6;
-    var month = new Date().getMonth() + 1;
+    let month = new Date().getMonth() + 1;
 
     if(defualt_month > month){
         semester = "second semester";
@@ -52,8 +52,8 @@ var attendance = (req,res,next) => {
     .then(data => {
         if(data.length >= 1){
             data.forEach(function(node){
-                var student_sig = node.student_signature;
-                var new_index;
+                let student_sig = node.student_signature;
+                let new_index;
                 if(node.semester === semester &&
                     node.program_name === program_name &&
                     node.level === level &&
@@ -86,18 +86,18 @@ var attendance = (req,res,next) => {
    
 }
 
-var take_new_attendance = (req,res,next) => {
+let take_new_attendance = (req,res,next) => {
     let student_name = req.body.student_name;
     //Getting academic year date
-    var academic_year,i_length,i_slice,l_year,t_year,temp_year;
+    let academic_year,i_length,i_slice,l_year,t_year,temp_year;
     let year = new Date().getUTCFullYear();
     let program_name = req.body.program_name;
 
     // Getting the semester and level from the index number
-    var index_number = (req.body.index_number).toUpperCase();
-    var level,semester;
+    let index_number = (req.body.index_number).toUpperCase();
+    let level,semester;
     const defualt_month = 6;
-    var month = new Date().getMonth() + 1;
+    let month = new Date().getMonth() + 1;
 
     if(defualt_month > month){
         semester = "second semester";
@@ -129,8 +129,7 @@ var take_new_attendance = (req,res,next) => {
             level = (l_year - i_slice) + "00";
         }
     }
-    var course_name = req.body.course_name;
-    var index_number = req.body.index_number;
+    let course_name = req.body.course_name;
     fetch_registered_courses.find({index_number: index_number})
             .exec()
             .then(data => {
@@ -140,14 +139,14 @@ var take_new_attendance = (req,res,next) => {
                             return x;
                         }
                     })
-                        var registered_course = x.registered_courses;
+                        let registered_course = x.registered_courses;
                         registered_course.forEach(function(courses){
                             if(courses === course_name){
-                                var course = course_name;
-                                var student_name = x.student_name;
-                                var first_char = student_name.charAt(0);
-                                var last_char = student_name.charAt(indexOf(" ") + 1);
-                                var student_initials = `${first_char}.${last_char}`;
+                                let course = course_name;
+                                let student_name = x.student_name;
+                                let first_char = student_name.charAt(0);
+                                let last_char = student_name.charAt(indexOf(" ") + 1);
+                                let student_initials = `${first_char}.${last_char}`;
                                 student_initials.toUpperCase();
 
                                 new student_attendance({

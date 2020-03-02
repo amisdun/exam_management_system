@@ -36,6 +36,10 @@ var timeTable_schema = mongoose.Schema({
     lecture_halls: {
         type: Array,
         required: true
+    },
+    course_code: {
+        type: String,
+        required: true
     }
 })
 

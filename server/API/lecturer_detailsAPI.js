@@ -10,19 +10,20 @@ let create_lecturer = async (req,res,next) => {
     try {
         let name = req.body.name;
         let lecturer = await lecturer_detail.findOne({name: name}).exec()
-        if(lecturer) res.status(200).json({res: "lecture already exist"})
+        if(lecturer) return res.status(200).json({res: "lecture already exist"})
         
         else {
             await new lecturer_detail({
                 _id: new mongoose.Types.ObjectId,
-                name: name
+                name: name,
+                course: req.body.course
             }).save()
-            res.status(201).json({res: "created"})
+            return res.status(201).json({res: "created"})
         }
 
     } catch (error) {
         console.log(error)
-        res.status(500).json({err: "An error Ocurred"})
+        return res.status(500).json({err: "An error Ocurred"})
     }
 }
 
@@ -33,12 +34,12 @@ let read_lecturer_detail = async (req,res,next) => {
 
         if(lecturer.length >= 1) res.status(200).json({res: lecturer})
         else {
-            res.json({res: "No data found"})
+            return res.json({res: "No data found"})
         }
 
     } catch (error) {
         console.log(error)
-        res.status(500).json({err: "An error has occured"})
+        return res.status(500).json({err: "An error has occured"})
     }
 }
 
@@ -50,11 +51,11 @@ let read_single = async (req,res,next) => {
         if(single) res.status(200).json({data: single, res: "found"})
         
         else {
-            res.json({res: "not found"})
+            return res.json({res: "not found"})
         }
     } catch (error) {
         console.log(error)
-        res.status(500).json({err: "An error has ocured"})
+        return res.status(500).json({err: "An error has ocured"})
     }
 }
 
@@ -62,11 +63,10 @@ let read_single = async (req,res,next) => {
 let delete_one = async (req,res,next) => {
     try {
         await lecturer_detail.findByIdAndDelete(req.params.id).exec()
-        res.json({res: "deleted"})
+        return res.json({res: "deleted"})
 
     } catch (error) {
-        res.json({error: "An error ocurred"})
-        console.log(error)
+        return res.json({error: "An error ocurred"})
     }
     
 }
@@ -78,10 +78,9 @@ let update = async (req,res,next) => {
             name: req.body.name
         }
         await lecturer_detail.findByIdAndUpdate(req.params.id,data).exec()
-        res.json({res: "updated"})
+        return res.json({res: "updated"})
     } catch (error) {
-        res.json({err:"An error occured"})
-        console.log(error)
+        return res.json({err:"An error occured"})
     }
 }
 

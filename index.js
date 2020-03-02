@@ -26,6 +26,7 @@ let staff_login = require("./server/Routers/staff_loginRouter");
 let staff_signup = require("./server/Routers/staff_signupRouter");
 let attendance = require("./server/Routers/student_attendanceRouter")
 let lecturer_details = require("./server/Routers/lecturer_detailRouter")
+let time_table = require("./server/Routers/time_tableRouter")
 
 // using the routers available
 app.use("/admin",admin_login)
@@ -35,6 +36,7 @@ app.use("/staff",staff_signup)
 app.use("/student",data)
 app.use("/student_attendance",attendance)
 app.use("/lecturer_detail",lecturer_details)
+app.use("/student", time_table)
 
 // specifing the development and production port
 let port = process.env.PORT || 3000;

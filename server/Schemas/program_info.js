@@ -6,20 +6,19 @@ var program_info = mongoose.Schema({
         type: String,
         required: true
     },
-    program: [{
-        program_name: {
-            type: String,
-            required: true
-        },
-        level: {
-            type: Number,
-            required: true
-        },
-        number_of_student:{
-            type: String,
-            required: true
-        },
-        courses_offered: [{
+    level: {
+        type: Number,
+        required: true
+    },
+    program_name: {
+        type: String,
+        required: true
+    },
+    number_of_student:{
+        type: String,
+        required: true
+    },  
+    courses_offered: [{
             course_name: {
                 type: String,
                 required: true
@@ -27,9 +26,12 @@ var program_info = mongoose.Schema({
             examinar: {
                 type: String,
                 required: true
+            },
+            course_code: {
+                type: String,
+                required: true
             }
-        }]
-    }],
+    }]
 });
 
 var programs = mongoose.model("program_info",program_info);

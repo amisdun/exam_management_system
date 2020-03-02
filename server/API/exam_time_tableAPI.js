@@ -1,8 +1,9 @@
 const db = require("../db_connection/mongodb");
 const time_table = require("../Schemas/exam_time_table")
+const courses = require("../Schemas/courses")
 require("../../index");
 
-var time_table_generator = async (req,res,next) => {
+let time_table_generator = async (req,res,next) => {
    // meeting the hard and soft constraints conditions
    let schedule = await time_table.find({course_name: req.body.course_name}).exec()
    if(schedule){
@@ -16,44 +17,57 @@ var time_table_generator = async (req,res,next) => {
                    {day: "friday", value: 5}
                   ]
         //checking for the hard constraints
-        let all_schedules = await time_table.find({exam_date: req.body.exam_date, exam_day: req.body.exam_day, exam_time: req.body.exam_time}).exec()
-        let schedules = await time_table.find({exam_day: req.body.exam_day, exam_time: req.body.exam_time}).exec()
+        let halls = [];
+        let all_schedules = await time_table.find({
+            exam_date: req.body.exam_date, 
+            exam_day: req.body.exam_day, 
+            exam_time: req.body.exam_time}).exec()
+        let schedules = await time_table.find({
+            exam_day: req.body.exam_day, 
+            exam_time: req.body.exam_time}).exec()
         all_schedules.forEach(function(hall){
             hall.lecturer_hall.forEach(function(hall_name){
                 if(hall_name === req.body.lecturer_hall){
-                    halls = []
                     halls.push(hall_name)
 
                     return halls
                 }
             })
         })
-        let day_and_time = false
+        let day_and_time;
         schedules.forEach(function(day_time){
-            if(day_time.exam_day === req.body.exam_day && day_time.exam_time === req.body.exam_time){
+            if(day_time.exam_day === req.body.exam_day && day_time.exam_time === req.body.exam_time && day_time.exam_date === req.body.exam_date){
                 day_and_time = true
-
-                return day_and_time
             }
+            else{
+                day_and_time = false
+            }
+            return day_and_time
         })
 
         
 
-        if(halls.length < 1 && day_and_time !== true){
-            new time_table({
-                _id: new mongoose.Types.ObjectId,
-                exam_date: req.body.exam_date,
-                exam_day: req.body.exam_day,
-                exam_time: req.body.exam_time,
-                program_name: req.body.program_name,
-                course_name: req.body.course_name,
-                level: req.body.level,
-                lecturer_hall: req.body.lecturer_hall,
-                examiner: req.body.examiner,
-                number_of_student: req.body.number_of_student
-            }).save()
+        if(halls.length < 1 && day_and_time === false){
+            let course = await courses.findOne({course_name: req.body.course_name, program_name: req.body.program_name}).exec()
+            if(course){
+                new time_table({
+                    _id: new mongoose.Types.ObjectId,
+                    exam_date: req.body.exam_date,
+                    exam_day: req.body.exam_day,
+                    exam_time: req.body.exam_time,
+                    program_name: course.program_name,
+                    course_name: course.course_name,
+                    level: course.level,
+                    lecturer_hall: req.body.lecturer_hall,
+                    examiner: course.examiner,
+                    number_of_student: course.number_of_students,
+                    course_code: course.course_code
+                }).save()
 
-            return res.json({res: "Saved successfully"})
+                await courses.findOneAndDelete({course_name: req.body.course_name, program_name: req.body.course_name}).exec()
+                return res.json({res: "Saved successfully"})
+            }
+            else return res.json({res: "Course already have a slot"});
         }
         if(halls.length > 0){
             return res.json({res: "hall unavailable"})
@@ -72,10 +86,13 @@ let check_slot_flexibility = async (req,res,next) => {
     let flexibilty = req.body.flexibilty
 
     // checking for soft constraint conditions
-    let program_course = await time_table.findOne({exam_date: req.body.exam_date,program_name: req.body.program_name, level: req.body.level}).exec()
+    let program_course = await time_table.findOne({
+        exam_date: req.body.exam_date,
+        program_name: req.body.program_name, 
+        level: req.body.level}).exec()
     days.forEach(function(day){
         if(day.day === program_course.exam_day){
-            let val = day.value
+            val = day.value
 
             return val
         }
@@ -91,15 +108,16 @@ let check_slot_flexibility = async (req,res,next) => {
     let flex_day = n_val - val;
 
     if(flex_day <= 1){
-        if(flexibilty == null){
+        if(flexibilty == null || flexibilty == "" || flexibilty == undefined){
             return res.json({res: "No flexibility", msg: "No flexibility for this program, do you want to continue?"})
         }
         else{
-            
+
             next()
         }
     }
     else{
+
         next()
     }
 }

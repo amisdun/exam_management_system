@@ -21,15 +21,15 @@ var program_info = mongoose.Schema({
     courses_offered: [{
             course_name: {
                 type: String,
-                required: true
+                required: false
             },
             examinar: {
                 type: String,
-                required: true
+                required: false
             },
             course_code: {
                 type: String,
-                required: true
+                required: false
             }
     }]
 });

@@ -1,6 +1,6 @@
 const db = require("../db_connection/mongodb");
 const time_table = require("../Schemas/exam_time_table")
-const courses = require("../Schemas/courses")
+const courses = require("../Schemas/time_table_courses")
 require("../../index");
 
 let time_table_generator = async (req,res,next) => {

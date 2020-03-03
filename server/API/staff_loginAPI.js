@@ -1,9 +1,9 @@
 require("../../index");
 const db = require("../db_connection/mongodb");
-var staff = require("../Schemas/staff_signup");
+const staff =  ("../Schemas/staff_signup");
 
 
-var staff_login = (req,res,next) => {
+let staff_login = (req,res,next) => {
     staff.find({staff_name: req.body.staff_name})
     .exec()
     .then(results => {
@@ -21,7 +21,7 @@ var staff_login = (req,res,next) => {
                     })
                 }
                 else if(valid === true){
-                    var token =jwt.sign({
+                    let token =jwt.sign({
                         staff_name: results.staff_name,
                         userId: results._id
                     },
@@ -43,9 +43,7 @@ var staff_login = (req,res,next) => {
         }
     })
     .catch(err =>{
-        res.json({
-            error: "an error occured"
-        })
+        res.json({error: "an error occured"})
     })
 }
 

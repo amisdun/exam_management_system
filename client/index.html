@@ -13,6 +13,7 @@
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/imagehover.min.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
+  <script src="js/vue.js"></script>
   <!-- =======================================================
     Theme Name: Mentor
     Theme URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/
@@ -23,163 +24,275 @@
 
 <body>
   <!--Navigation bar-->
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="index.html">UENR EXAM<span> MANAGER </span></a>
-      </div>
-      <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav navbar-right">
-          <li class="btn-trial"><a href="#courses">View Time-Table</a></li>
-          <li class="btn-trial"><a href="#" data-target="#stafflogin" data-toggle="modal">Staff Sign in</a></li>
-          <li class="btn-trial"><a href="#" data-target="#adminlogin" data-toggle="modal">Admin Sign in</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <!--/ Navigation bar-->
-  <!--Modal box-->
-  <div class="modal fade" id="stafflogin" role="dialog">
-    <div class="modal-dialog modal-sm">
-
-      <!-- Modal content no 1-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title text-center form-title">Staff Login</h4>
-        </div>
-        <div class="modal-body padtrbl">
-
-          <div class="login-box-body">
-            <p class="login-box-msg">Sign in to start your session</p>
-            <div class="form-group">
-              <form name="" id="loginForm">
-                <div class="form-group has-feedback">
-                  <!----- username -------------->
-                  <input class="form-control" placeholder="Username" id="loginid" type="text" autocomplete="off" />
-                  <span style="display:none;font-weight:bold; position:absolute;color: red;position: absolute;padding:4px;font-size: 11px;background-color:rgba(128, 128, 128, 0.26);z-index: 17;  right: 27px; top: 5px;" id="span_loginid"></span>
-                  <!---Alredy exists  ! -->
-                  <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                </div>
-                <div class="form-group has-feedback">
-                  <!----- password -------------->
-                  <input class="form-control" placeholder="Password" id="loginpsw" type="password" autocomplete="off" />
-                  <span style="display:none;font-weight:bold; position:absolute;color: grey;position: absolute;padding:4px;font-size: 11px;background-color:rgba(128, 128, 128, 0.26);z-index: 17;  right: 27px; top: 5px;" id="span_loginpsw"></span>
-                  <!---Alredy exists  ! -->
-                  <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                </div>
-                <div class="row">
-                  <div class="col-xs-12">
-                    <div class="checkbox icheck">
-                      <label>
-                                <input type="checkbox" id="loginrem" > Remember Me
-                              </label>
-                    </div>
-                  </div>
-                  <div class="col-xs-12">
-                    <button type="button" class="btn btn-green btn-block btn-flat" onclick="userlogin()">Sign In</button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="modal fade" id="adminlogin" role="dialog">
-    <div class="modal-dialog modal-sm">
-
-      <!-- Modal content no 1-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title text-center form-title">Admin Login</h4>
-        </div>
-        <div class="modal-body padtrbl">
-
-          <div class="login-box-body">
-            <p class="login-box-msg">Sign in to start your session</p>
-            <div class="form-group">
-              <form name="" id="loginForm">
-                <div class="form-group has-feedback">
-                  <!----- username -------------->
-                  <input class="form-control" placeholder="Username" id="loginid" type="text" autocomplete="off" />
-                  <span style="display:none;font-weight:bold; position:absolute;color: red;position: absolute;padding:4px;font-size: 11px;background-color:rgba(128, 128, 128, 0.26);z-index: 17;  right: 27px; top: 5px;" id="span_loginid"></span>
-                  <!---Alredy exists  ! -->
-                  <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                </div>
-                <div class="form-group has-feedback">
-                  <!----- password -------------->
-                  <input class="form-control" placeholder="Password" id="loginpsw" type="password" autocomplete="off" />
-                  <span style="display:none;font-weight:bold; position:absolute;color: grey;position: absolute;padding:4px;font-size: 11px;background-color:rgba(128, 128, 128, 0.26);z-index: 17;  right: 27px; top: 5px;" id="span_loginpsw"></span>
-                  <!---Alredy exists  ! -->
-                  <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                </div>
-                <div class="row">
-                  <div class="col-xs-12">
-                    <div class="checkbox icheck">
-                      <label>
-                                <input type="checkbox" id="loginrem" > Remember Me
-                              </label>
-                    </div>
-                  </div>
-                  <div class="col-xs-12">
-                    <button type="button" class="btn btn-green btn-block btn-flat" onclick="userlogin()">Sign In</button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-  <!--/ Modal box-->
-  <!--Banner-->
-  <div class="banner">
-    <div class="bg-color">
+  <div id="app">
+    <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
-        <div class="row">
-          <div class="banner-text text-center">
-            <div class="text-border">
-              <h2 class="text-dec">Non-Clashing</h2>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">UENR EXAM<span> MANAGER </span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="btn-trial"><a href="#courses">View Time-Table</a></li>
+            <li class="btn-trial"><a href="#" data-target="#stafflogin" data-toggle="modal">Staff Sign in</a></li>
+            <li class="btn-trial"><a href="#" data-target="#adminlogin" data-toggle="modal">Admin Sign in</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!--/ Navigation bar-->
+    <!--Modal box-->
+    <div class="modal fade" id="stafflogin" role="dialog">
+      <div class="modal-dialog modal-sm">
+  
+        <!-- Modal content no 1-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title text-center form-title">Staff Login</h4>
+          </div>
+          <div class="modal-body padtrbl">
+  
+            <div class="login-box-body">
+              <p class="login-box-msg">Sign in to start your session</p>
+              <div class="form-group">
+                <form name="" id="loginForm">
+                  <div class="form-group has-feedback">
+                    <!----- username -------------->
+                    <input class="form-control" placeholder="Username" id="loginid" type="text" autocomplete="off" v-model="staff_username" />
+                    <span style="display:none;font-weight:bold; position:absolute;color: red;position: absolute;padding:4px;font-size: 11px;background-color:rgba(128, 128, 128, 0.26);z-index: 17;  right: 27px; top: 5px;" id="span_loginid"></span>
+                    <span style="color: red;">{{error1_msg}}</span>
+                    <!---Alredy exists  ! -->
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                  </div>
+                  <div class="form-group has-feedback">
+                    <!----- password -------------->
+                    <input class="form-control" placeholder="Password" id="loginpsw" type="password" autocomplete="off"  v-model="staff_password"/>
+                    <span style="display:none;font-weight:bold; position:absolute;color: grey;position: absolute;padding:4px;font-size: 11px;background-color:rgba(128, 128, 128, 0.26);z-index: 17;  right: 27px; top: 5px;" id="span_loginpsw"></span>
+                    <span style="color: red">{{error2_msg}}</span>
+                    <!---Alredy exists  ! -->
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <div class="checkbox icheck">
+                        <label>
+                                  <input type="checkbox" id="loginrem"> Remember Me
+                                </label>
+                      </div>
+                    </div>
+                    <div class="col-xs-12">
+                      <button type="button" class="btn btn-green btn-block btn-flat" @click.prevent="stafflogin()">Sign In</button>
+                      <div style="text-align: center">
+                        <br>
+                        <span style="color: red">{{staff_signin_message}}</span>
+                        <div class="fa-spin text-success"  role="status" v-show="show_staff">
+                          <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+                          <span class="sr-only">Loading...</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
-            <div class="intro-para text-center quote">
-              <p class="big-text">Examination Scheduling And Attendance Based System</p>
-              <p class="small-text"></p>
-              <a href="#" class="btn get-quote">VIEW TIME-TABLE BY PROGRAM</a>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  
+    <div class="modal fade" id="adminlogin" role="dialog">
+      <div class="modal-dialog modal-sm">
+  
+        <!-- Modal content no 1-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title text-center form-title">Admin Login</h4>
+          </div>
+          <div class="modal-body padtrbl">
+  
+            <div class="login-box-body">
+              <p class="login-box-msg">Sign in to start your session</p>
+              <div class="form-group">
+                <form name="" id="loginForm">
+                  <div class="form-group has-feedback">
+                    <!----- username -------------->
+                    <input class="form-control" placeholder="Username" id="loginid" type="text" autocomplete="off" v-model="admin_username"/>
+                    <span style="display:none;font-weight:bold; position:absolute;color: red;position: absolute;padding:4px;font-size: 11px;background-color:rgba(128, 128, 128, 0.26);z-index: 17;  right: 27px; top: 5px;" id="span_loginid"></span>
+                    <span style="color: red;">{{error3_msg}}</span>
+                    <!---Alredy exists  ! -->
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                  </div>
+                  <div class="form-group has-feedback">
+                    <!----- password -------------->
+                    <input class="form-control" placeholder="Password" id="loginpsw" type="password" autocomplete="off" v-model="admin_password"/>
+                    <span style="display:none;font-weight:bold; position:absolute;color: grey;position: absolute;padding:4px;font-size: 11px;background-color:rgba(128, 128, 128, 0.26);z-index: 17;  right: 27px; top: 5px;" id="span_loginpsw"></span>
+                    <span style="color: red;">{{error4_msg}}</span>
+                    <!---Alredy exists  ! -->
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <div class="checkbox icheck">
+                        <label>
+                                  <input type="checkbox" id="loginrem" > Remember Me
+                                </label>
+                      </div>
+                    </div>
+                    <div class="col-xs-12">
+                      <button type="button" class="btn btn-green btn-block btn-flat" @click="adminlogin()">Sign In</button>
+                      <div style="text-align: center">
+                        <br>
+                        <span style="color: red">{{admin_signin_message}}</span>
+                        <div class="fa-spin text-success"  role="status" v-show="show_admin">
+                          <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+                          <span class="sr-only">Loading...</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
-            <a href="#" class="mouse-hover">
-              <div class="mouse"></div>
-            </a>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+    <!--/ Modal box-->
+    <!--Banner-->
+    <div class="banner">
+      <div class="bg-color">
+        <div class="container">
+          <div class="row">
+            <div class="banner-text text-center">
+              <div class="text-border">
+                <h2 class="text-dec">Non-Clashing</h2>
+              </div>
+              <div class="intro-para text-center quote">
+                <p class="big-text">Examination Scheduling And Attendance Based System</p>
+                <p class="small-text"></p>
+                <a href="#" class="btn get-quote">VIEW TIME-TABLE BY PROGRAM</a>
+              </div>
+              <a href="#" class="mouse-hover">
+                <div class="mouse"></div>
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+    
   
-
-  <!--Footer-->
-  <footer id="footer" class="footer">
-    <div class="container text-center">
-      ©2020 EXAM MANAGER. All rights reserved 
-  </footer>
-  <!--/ Footer-->
-
+    <!--Footer-->
+    <footer id="footer" class="footer">
+      <div class="container text-center">
+        ©2020 EXAM MANAGER. All rights reserved 
+    </footer>
+  </div>
+  <!--/ Footer-->   
+  <script src="js/vue.js"></script>
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery.easing.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
-  <script src="js/custom.js"></script>
+  <scrip src="js/custom.js"></script>
   <script src="contactform/contactform.js"></script>
+
+  <script>
+
+   let app = new Vue({
+      el: "#app",
+      data: {
+        staff_username: "",
+        staff_password: "",
+        admin_password: "",
+        admin_username: "",
+        username_error: "Username required",
+        pass_error: "Password required",
+        error1_msg: "",
+        error2_msg: "",
+        error3_msg: "",
+        error4_msg: "",
+        admin_signin_message: "",
+        staff_signin_message: "",
+        show_admin: false,
+        show_staff: false
+      },
+      methods: {
+        stafflogin () {
+          app.staff_signin_message = "";
+          if(!(this.staff_username)) this.error1_msg = this.username_error;
+          else this.error1_msg = "";
+          if(!(this.staff_password)) this.error2_msg = this.pass_error;
+          else this.error2_msg = "";
+
+          if(this.staff_username.length !==0  && this.staff_password.length !==0){
+            this.show_staff= true
+            setTimeout(function(){
+              app.ajax_staff_signin()
+            }, 3000)
+          }
+        },
+        async ajax_staff_signin(){
+          try {
+              let staff_login = await $.ajax({
+                url: "/staff/signin",
+                method: "post",
+                data: {staff_name: this.staff_username, password: this.staff_password},
+                dataType: "json"
+              })
+
+              if(staff_login.res === "failed"){this.show_staff= false; this.staff_signin_message = staff_login.message} 
+              else{
+                this.show_staff = false
+                this.staff_signin_message = staff_login.message
+              };
+            } catch (error) {
+              console.log(error)
+            }
+        },
+        adminlogin (){
+          app.admin_signin_message = ""
+          if(!(this.admin_username)) this.error3_msg = this.username_error;
+          else this.error3_msg = "";
+          if(!(this.admin_password)) this.error4_msg = this.pass_error;
+          else this.error4_msg = ""
+
+          if(this.admin_username.length !==0  && this.admin_password.length !==0){
+              this.show_admin = true
+              setTimeout(function(){
+                app.ajax_admin_sigin()
+              },3000)
+          }
+        },
+        async ajax_admin_sigin(){
+          try {
+                let admin_signin = await $.ajax({
+                    method: "post",
+                    url: "/admin/signin",
+                    data: {email: this.admin_username, password: this.admin_password}
+                })
+
+                if(admin_signin.res === "failed") {this.show_admin = false; this.admin_signin_message = admin_signin.message;}
+                else {
+                  this.show_admin = false
+                  this.admin_signin_message = admin_signin.message;}
+              } catch (error) {
+                console.log(error)
+              }
+        }
+      },
+      computed: {
+        
+      },
+    }).$mount("#app")
+  </script>
 
 </body>
 

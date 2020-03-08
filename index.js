@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 // seriving static files
-app.use(express.static("client"));
+app.use(express.static(__dirname + "/client"));
 
 // requiring routers
 let data = require("./server/Routers/QRcode_generatorRouter");

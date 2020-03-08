@@ -11,7 +11,7 @@ var login = (req,res,next) => {
     .then(results => {
         if(results.length < 1){
             res.json({
-                message: "invalid username or password"
+                res: "failed", message: "invalid username or password"
             })
         }
         else{
@@ -37,7 +37,7 @@ var login = (req,res,next) => {
                 }
                 else{
                     res.json({
-                        message: "Authentication failed"
+                        res: "failed", message: "Invalid email or password"
                     })
                 }
             })

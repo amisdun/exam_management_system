@@ -1,6 +1,6 @@
 require("../../index");
 const db = require("../db_connection/mongodb");
-const staff =  ("../Schemas/staff_signup");
+const staff =  require("../Schemas/staff_signup");
 
 
 let staff_login = (req,res,next) => {
@@ -9,7 +9,7 @@ let staff_login = (req,res,next) => {
     .then(results => {
         if(results.length < 1){
             res.json({
-                message: "invalid username or password"
+               res: "failed", message: "Invalid username or password"
             })
         }
         else{
@@ -30,13 +30,14 @@ let staff_login = (req,res,next) => {
                         expiresIn: "24h"
                     });
                     res.json({
+                        res: "success",
                         message:  "Authentication succesfull",
                         token: token
                     })
                 }
                 else{
                     res.json({
-                        message: "Authentication failed"
+                        res: "failed", message: "Invalid username or password"
                     })
                 }
             })

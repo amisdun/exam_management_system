@@ -242,7 +242,7 @@
         async ajax_staff_signin(){
           try {
               let staff_login = await $.ajax({
-                url: "/staff/signin",
+                url: "http://localhost:3000/staff/signin",
                 method: "post",
                 data: {staff_name: this.staff_username, password: this.staff_password},
                 dataType: "json"
@@ -275,13 +275,14 @@
           try {
                 let admin_signin = await $.ajax({
                     method: "post",
-                    url: "/admin/signin",
+                    url: "http://localhost:3000/admin/signin",
                     data: {email: this.admin_username, password: this.admin_password}
                 })
 
                 if(admin_signin.res === "failed") {this.show_admin = false; this.admin_signin_message = admin_signin.message;}
                 else {
                   this.show_admin = false
+                  window.location = "admin/index.html"
                   this.admin_signin_message = admin_signin.message;}
               } catch (error) {
                 console.log(error)

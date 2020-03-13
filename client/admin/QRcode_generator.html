@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>SB Admin - Tables</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+  <!-- Page level plugin CSS-->
+  <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin.css" rel="stylesheet">
+  <script src="../js/vue.js"></script>
+
+</head>
+
+<body id="page-top">
+
+  <div id="app">
+    <nav class="navbar navbar-expand navbar-dark bg-info static-top">
+
+      <a class="navbar-brand mr-1" href="index.html">Start Bootstrap</a>
+  
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+  
+      <!-- Navbar Search -->
+      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+  
+      <!-- Navbar -->
+      <ul class="navbar-nav ml-auto ml-md-0">
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-bell fa-fw"></i>
+            <span class="badge badge-danger">9+</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-envelope fa-fw"></i>
+            <span class="badge badge-danger">7</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-circle fa-fw"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="#">Settings</a>
+            <a class="dropdown-item" href="#">Activity Log</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+          </div>
+        </li>
+      </ul>
+  
+    </nav>
+  
+    <div id="wrapper">
+  
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav bg-dark">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Pages</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">Login Screens:</h6>
+            <a class="dropdown-item" href="login.html">Login</a>
+            <a class="dropdown-item" href="register.html">Register</a>
+            <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
+            <div class="dropdown-divider"></div>
+              <h6 class="dropdown-header">Other Pages:</h6>
+              <a class="dropdown-item" href="404.html">404 Page</a>
+              <a class="dropdown-item" href="blank.html">Blank Page</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="QRcode_info.html">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>QRcode Info</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="QRcode_generator.html">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>QRcode Image</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="time_table.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Time Table</span></a>
+        </li>
+      </ul>
+  
+      <div id="content-wrapper">
+  
+        <div class="container-fluid">
+  
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">QRcode Image</li>
+          </ol>
+          <div class="container mb-3">
+            <div class="card-header text-center bg-info text-white mx-auto mt-5" v-show="show_res_msg">{{message}}</div>
+            <div class="card card-register mx-auto mt-5">
+              <div class="card-header text-center">Register Student QRcode Image</div>
+              <div class="card-body">
+                <form>
+                  <div class="form-group">
+                    <div class="form-row">
+                      <div class="col-md-6">
+                        <div class="form-label-group">
+                          <input v-model.trim="first_name" type="text" id="firstName" class="form-control" placeholder="First name" required="required" autofocus="autofocus">
+                          <label for="firstName">First name</label>
+                          <span class="error1 text-danger">{{error1}}</span>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-label-group">
+                          <input v-model.trim="last_name" type="text" id="lastName" class="form-control" placeholder="Last name" required="required">
+                          <label for="lastName">Last name</label>
+                          <span class="error2 text-danger">{{error2}}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="form-label-group">
+                      <input v-model.trim="other_names" type="text" id="OtherName" class="form-control" placeholder="Last name" required="required">
+                      <label for="OtherName">Other names</label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="form-label-group">
+                      <input v-model="program_name" type="text" id="inputEmail" class="form-control" placeholder="Email address" required="required">
+                      <label for="inputEmail">Program Name</label>
+                      <span class="error3 text-danger">{{error3}}</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="form-label-group">
+                      <input v-model.trim="index_number" type="text" id="inputIndex" class="form-control" placeholder="Email address" required="required">
+                      <label for="inputIndex">Index Number</label>
+                      <span class="error4 text-danger">{{error4}}</span>
+                    </div>
+                  </div>
+                  <a class="btn btn-primary btn-block" href="#" @click.prevent="register">Register</a>
+                  <br>
+                  <div class="text-center" v-show="show_loading">
+                    <div class="spinner-grow bg-primary" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- DataTables Example -->
+          
+          </div>
+        </div>
+        <!-- /.container-fluid -->
+  
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer mt-5">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © Your Website 2019</span>
+            </div>
+          </div>
+        </footer>
+  
+      </div>
+      <!-- /.content-wrapper -->
+  
+    </div>
+    <!-- /#wrapper -->
+  
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+  
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Page level plugin JavaScript-->
+  <script src="vendor/datatables/jquery.dataTables.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin.min.js"></script>
+
+  <!-- Demo scripts for this page-->
+  <script src="js/demo/datatables-demo.js"></script>
+  <script src="../js/vue.js"></script>
+
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+          message: "this is my message",
+          error1: "",
+          error2: "",
+          error3: "",
+          error4: "",
+          last_name: "",
+          first_name: "",
+          other_names: "",
+          program_name: "",
+          index_number: "",
+          show_loading: false,
+          show_res_msg: false
+          
+        
+      },
+      methods: {
+        register(){
+          if(!(vm.first_name)) vm.error1 = "First name required";
+          else vm.error1 = "";
+          if(!(vm.last_name)) vm.error2 = "Last name required";
+          else vm.error2 = "";
+          if(!(vm.program_name)) vm.error3 = "Program name required";
+          else vm.error3 = "";
+          if(!(vm.index_number)) vm.error4 = "index number required";
+          else vm.error4 = "";
+
+          if(vm.first_name.length !== 0 && vm.last_name.length !== 0 && vm.program_name !== 0 && vm.index_number !== 0){
+            vm.show_loading = true;
+            setTimeout(function(){
+              vm.ajax_QRcode_generator(vm.first_name,vm.last_name,vm.other_names,vm.program_name,vm.index_number);
+            },3000)
+          }
+        },
+        async ajax_QRcode_generator(first_name,last_name,other_names,program_name,index_number){
+          try {
+                  let name = first_name + " " + other_names + " " + last_name;
+                  (index_number).toUpperCase()
+                  let data = {
+                    student_name: name,
+                    program_name: program_name,
+                    index_number: index_number
+                  }
+                  let QRcode_Image = await $.ajax({
+                    url: "http://localhost:3000/QRcode/generateQrcode",
+                    method: "POST",
+                    data: data,
+                    dataType: "json"
+                  })
+
+                  if(QRcode_Image){vm.show_loading = false; vm.show_res_msg = true; vm.message = QRcode_Image.res; window.location.reload}
+          } catch (error) {
+            console.log(error)
+          }
+
+
+        }
+      },
+      computed: {
+        
+      },
+      mounted() {
+        
+      },
+      created() {
+        
+      }
+    }).$mount("#app")
+  </script>
+
+</body>
+
+</html>

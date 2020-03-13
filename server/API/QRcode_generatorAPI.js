@@ -55,11 +55,11 @@ var generateQRcode = (req,res) => {
     })
     qrcode.toDataURL(data, function (err, url) {
         if(url){
-            student_qrcode_info.find({academic_year: academic_year})
+            student_qrcode_info.findOne({academic_year: academic_year})
             .exec()
             .then(data => {
                 if(data){
-                    let qr_data = data.qrcode_value;
+                    let qr_data = data.qrcode_value
                     let new_index;
                     qr_data.forEach(function(node){
                         if(node.index_number == index_number){
@@ -68,8 +68,8 @@ var generateQRcode = (req,res) => {
                         return new_index;
                     })
                     if(new_index == index_number){
-                        res.json({
-                            qr_res: "QR code image for this index number had already been created"
+                       return res.json({
+                            res: "QR code image for this index number had already been created"
                         })
                     }
                     else{
@@ -82,8 +82,8 @@ var generateQRcode = (req,res) => {
                                 }
                         }},(err,val) => {
                             if(err) console.log(err)
-                            res.json({
-                                new_qr_res: `New student data with QRcode image saved succesfully for ${academic_year}`,
+                           return res.json({
+                                res: `New student data with QRcode image saved succesfully for ${academic_year}`,
                                 data: val
                             })
                         })
@@ -103,14 +103,14 @@ var generateQRcode = (req,res) => {
                     })
                     .save()
                     .then(data => {
-                        res.json({
-                            new_res: `New data formed with academic year ${academic_year}`,
+                       return res.json({
+                            res: `New data formed with academic year ${academic_year}`,
                             data: data
                         })
                     })
                     .catch(err => {
-                        res.json({
-                            err_res: "An error occured",
+                       return res.json({
+                            err: "An error occured",
                             err: err
                         })
                     })
@@ -121,7 +121,7 @@ var generateQRcode = (req,res) => {
             })
         }
         if(err){
-            res.status(500).json({
+          return  res.status(500).json({
                 message: "Data url not created"
             })
         }
@@ -135,18 +135,18 @@ var searchByDate = (req,res,next) => {
     .exec()
     .then(result => {
         if(result.length >= 1){
-            res.status(200).json({
+           return res.status(200).json({
                 result_res: result
             })
         }
         else{
-            res.json({
+          return  res.json({
                 record_res: `no records found for the academic year ${academic_year}`
             })
         }
     })
     .catch(err => {
-        res.status(500).json({
+      return res.status(500).json({
             err: "an error has occured",
             err1: err
         })

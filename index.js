@@ -28,6 +28,7 @@ let attendance = require("./server/Routers/student_attendanceRouter")
 let lecturer_details = require("./server/Routers/lecturer_detailRouter")
 let time_table = require("./server/Routers/time_tableRouter")
 let program_info = require("./server/Routers/program_Router")
+let QRcode = require("./server/Routers/QRcode_generatorRouter")
 
 // using the routers available
 app.use("/admin",admin_login)
@@ -39,6 +40,7 @@ app.use("/student_attendance",attendance)
 app.use("/lecturer_detail",lecturer_details)
 app.use("/student", time_table)
 app.use("/program", program_info)
+app.use("/QRcode", QRcode)
 
 // specifing the development and production port
 let port = process.env.PORT || 3000;

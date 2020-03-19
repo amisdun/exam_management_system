@@ -10,6 +10,10 @@ var program_info = mongoose.Schema({
         type: Number,
         required: true
     },
+    semseter: {
+        type: String,
+        required: true
+    },
     program_name: {
         type: String,
         required: true
@@ -17,21 +21,20 @@ var program_info = mongoose.Schema({
     number_of_student:{
         type: String,
         required: true
-    },  
-    courses_offered: [{
-            course_name: {
-                type: String,
-                required: false
-            },
-            examinar: {
-                type: String,
-                required: false
-            },
-            course_code: {
-                type: String,
-                required: false
-            }
-    }]
+    }, 
+    course_name: {
+        type: String,
+        required: false
+    },
+    examinar: {
+        type: String,
+        required: false
+    },
+    course_code: {
+        type: String,
+        required: false
+    }
+    
 });
 
 var programs = mongoose.model("program_info",program_info);

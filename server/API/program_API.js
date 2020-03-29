@@ -6,8 +6,10 @@ const program_info = require("../Schemas/program_info")
 
 let create_program = async (req,res,next) => {
     try {
-        let available_program = await program_info.findOne({department_name: req.body.department_name, 
-            program_name: req.body.program_name,level: req.body.level}).exec()
+        let available_program = await program_info.findOne({
+            department_name: req.body.department_name, 
+            program_name: req.body.program_name,
+            level: req.body.level}).exec()
             if(available_program) return res.json({res: "program and level already exist"});
             else{
               await  new program_info({
@@ -46,8 +48,11 @@ let edit_program = async (req,res,next) => {
 
 let update_program = async (req,res,next) => {
     try {
-        await program_info.findByIdAndUpdate({_id: req.params.id}, {department_name: req.body.department_name, 
-        level: req.body.level, program_name: req.body.program_name, number_of_student: req.body.number_of_student}).exec()
+        await program_info.findByIdAndUpdate({_id: req.params.id}, {
+        department_name: req.body.department_name, 
+        level: req.body.level, 
+        program_name: req.body.program_name, 
+        number_of_student: req.body.number_of_student}).exec()
 
         return res.json({res: "saved successfuly"})
     } catch (error) {
@@ -69,6 +74,7 @@ let add_courses = async (req,res,next) => {
     try {
         await program_info.findOneAndUpdate({_id: req.body.id}, {"$push": {
             courses_offered: {
+                _id: new mongoose.Types.ObjectId,
                 course_name: req.body.course_name,
                 examiner: req.body.examiner,
                 course_code: req.body.course_code
@@ -83,7 +89,11 @@ let add_courses = async (req,res,next) => {
 
 let delete_course = async (req,res,next) => {
     try {
-        await program_info.findByIdAndDelete({_id: req.params.id}).exec()
+        await program_info.findByIdAndDelete({_id: req.params.id}, {"$pull": {
+            courses_offered: {
+                _id: req.params.course_id
+            }
+        }})
 
         return res.json({res: "deleted"})
     } catch (error) {
@@ -93,7 +103,7 @@ let delete_course = async (req,res,next) => {
 
 let edit_course = async (req,res,next) => {
     try {
-        let edited_course = await program_info.findById(req.params.id).exec()
+        let edited_course = await program_info.findByOne({_id: req.params.id, "courses_offered._id": req.params.course_id}).exec()
         if(edited_course) return res.json({res: "found", data: edited_course})
     } catch (error) {
         console.log(error)
@@ -102,11 +112,18 @@ let edit_course = async (req,res,next) => {
 
 let update_course = async (req,res,next) => {
     try {
-        await program_info.findByIdAndUpdate(req.params.id, {"courses_offered.course_name": req.body.course_name,
-    "courses_offered.examiner": req.body.examiner,
-    "courses_offered.course_code": req.body.course_code}).exec()
+        await program_info.findByOneAndUpdate({_id: req.params.id,"courses_offered._id": req.params.course_id},{"$set": {
+            courses_offered: {
+                course_name: req.body.course_name,
+                examiner: req.body.examiner,
+                course_code: req.body.course_code
+            }
+        }}).exec()
+
+        return res.json({res: "updated", message: "course updated"})
     } catch (error) {
         console.log(error)
+        return res.json({err: "An error has ouccred"})
     }
 }
 

@@ -10,7 +10,7 @@ let create_lecturer = async (req,res,next) => {
     try {
         let name = req.body.name;
         let lecturer = await lecturer_detail.findOne({name: name}).exec()
-        if(lecturer) return res.status(200).json({res: "lecture already exist"})
+        if(lecturer) return res.status(200).json({res: "exist", message: "lecturer detail already exist"})
         
         else {
             await new lecturer_detail({
@@ -18,7 +18,7 @@ let create_lecturer = async (req,res,next) => {
                 name: name,
                 course: req.body.course
             }).save()
-            return res.status(201).json({res: "created"})
+            return res.status(201).json({res: "created", message: "new lecturer created"})
         }
 
     } catch (error) {
@@ -84,11 +84,61 @@ let update = async (req,res,next) => {
     }
 }
 
+let add_course_code = async (req,res,nest) => {
+    let id = req.params.id
+    try {
+        let details = await lecturer_detail.findById(id).exec()
+        if(details){
+            let course = details.course
+            let found_course;
+            course.forEach(function(val){
+                if(val.course_code === req.body.course_code){
+                    found_course = req.body.course_code
+                }
+                return found_course
+            })
+
+            if(found_course === req.body.course_code){
+                return res.json({res: "found", message: "Course already added"})
+            }
+            else{
+                await lecturer_detail.findByIdAndUpdate(id, {"$push" : {
+                    course : {
+                        course_code: req.body.course_code
+                    }
+                }}).exec()
+
+                return res.json({res: "created", message: "Course code added"})
+            }
+        }
+    } catch (error) {
+        return res.json({err: "an error has occured"})
+    }
+}
+
+let delete_single_course_code = async (req,res,next) => {
+    let id = req.params.id;
+    let course_code = req.body.course_code
+    try {
+        await lecturer_detail.findByIdAndUpdate(id, {"$pull" : {
+            course: {
+                course_code: course_code
+            }
+        }}).exec()
+
+        return res.json({res: "deleted", message: "deleted successfully"})
+    } catch (error) {
+        return res.json({err: "an error ha occured"})
+    }
+}
+
 
 module.exports = {
     read_lecturer_detail: read_lecturer_detail,
     read_single: read_single,
     delete_one: delete_one,
     create_lecturer: create_lecturer,
-    update: update
+    update: update,
+    add_course_code: add_course_code,
+    delete_single_course_code: delete_single_course_code
 }

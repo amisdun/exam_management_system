@@ -21,6 +21,15 @@
   <link href="css/sb-admin.css" rel="stylesheet">
   <script src="../js/vue.js"></script>
 
+  <style>
+    .form-control{
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      border-radius: 0px;
+      border-bottom: 2px solid #6c757d;
+    }
+  </style>
 </head>
 
 <body id="page-top">
@@ -28,7 +37,7 @@
   <div id="app">
     <nav class="navbar navbar-expand navbar-dark bg-info static-top">
 
-      <a class="navbar-brand mr-1" href="index.html">Start Bootstrap</a>
+      <a class="navbar-brand mr-1" href="index.html">Exam Center</a>
   
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
@@ -97,22 +106,6 @@
             <span>Dashboard</span>
           </a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Pages</span>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-            <h6 class="dropdown-header">Login Screens:</h6>
-            <a class="dropdown-item" href="login.html">Login</a>
-            <a class="dropdown-item" href="register.html">Register</a>
-            <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
-            <div class="dropdown-divider"></div>
-              <h6 class="dropdown-header">Other Pages:</h6>
-              <a class="dropdown-item" href="404.html">404 Page</a>
-              <a class="dropdown-item" href="blank.html">Blank Page</a>
-          </div>
-        </li>
         <li class="nav-item">
           <a class="nav-link" href="QRcode_info.html">
             <i class="fas fa-fw fa-chart-area"></i>
@@ -127,6 +120,36 @@
           <a class="nav-link" href="time_table.html">
             <i class="fas fa-fw fa-table"></i>
             <span>Time Table</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="admin_signup.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Add Admin</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="time_table.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Create Time Table</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="lecturer_details.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Add lecturer</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="lecturer_halls.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Add Halls</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="programs.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Add Programs/Courses</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="staff_signup.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Signup Staff</span></a>
         </li>
       </ul>
   
@@ -185,10 +208,10 @@
                       <span class="error4 text-danger">{{error4}}</span>
                     </div>
                   </div>
-                  <a class="btn btn-primary btn-block" href="#" @click.prevent="register">Register</a>
+                  <a class="btn btn-secondary btn-block" href="#" @click.prevent="register">Register</a>
                   <br>
                   <div class="text-center" v-show="show_loading">
-                    <div class="spinner-grow bg-primary" role="status">
+                    <div class="spinner-grow bg-secondary" role="status">
                       <span class="sr-only">Loading...</span>
                     </div>
                   </div>
@@ -235,13 +258,14 @@
           <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
+            <a class="btn btn-secondary" href="login.html">Logout</a>
           </div>
         </div>
       </div>
     </div>
   
   </div>
+  <script src="../js/vue.js"></script>
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -258,7 +282,6 @@
 
   <!-- Demo scripts for this page-->
   <script src="js/demo/datatables-demo.js"></script>
-  <script src="../js/vue.js"></script>
 
   <script>
     const vm = new Vue({
@@ -290,7 +313,7 @@
           if(!(vm.index_number)) vm.error4 = "index number required";
           else vm.error4 = "";
 
-          if(vm.first_name.length !== 0 && vm.last_name.length !== 0 && vm.program_name !== 0 && vm.index_number !== 0){
+          if(vm.first_name.length !== 0 && vm.last_name.length !== 0 && vm.program_name.length !== 0 && vm.index_number.length !== 0){
             vm.show_loading = true;
             setTimeout(function(){
               vm.ajax_QRcode_generator(vm.first_name,vm.last_name,vm.other_names,vm.program_name,vm.index_number);
@@ -313,7 +336,7 @@
                     dataType: "json"
                   })
 
-                  if(QRcode_Image){vm.show_loading = false; vm.show_res_msg = true; vm.message = QRcode_Image.res; window.location.reload}
+                  if(QRcode_Image){vm.show_loading = false; vm.show_res_msg = true; vm.message = QRcode_Image.res;}
           } catch (error) {
             console.log(error)
           }

@@ -24,166 +24,239 @@
 
 <body id="page-top">
 
-  <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+  <div id="app">
+    <nav class="navbar navbar-expand navbar-dark bg-info static-top">
 
-    <a class="navbar-brand mr-1" href="index.html">Start Bootstrap</a>
-
-    <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
-      <i class="fas fa-bars"></i>
-    </button>
-
-    <!-- Navbar Search -->
-    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-        <div class="input-group-append">
-          <button class="btn btn-primary" type="button">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </form>
-
-    <!-- Navbar -->
-    <ul class="navbar-nav ml-auto ml-md-0">
-      <li class="nav-item dropdown no-arrow mx-1">
-        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-bell fa-fw"></i>
-          <span class="badge badge-danger">9+</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown no-arrow mx-1">
-        <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-envelope fa-fw"></i>
-          <span class="badge badge-danger">7</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown no-arrow">
-        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-user-circle fa-fw"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-          <a class="dropdown-item" href="#">Settings</a>
-          <a class="dropdown-item" href="#">Activity Log</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
-        </div>
-      </li>
-    </ul>
-
-  </nav>
-
-  <div id="wrapper">
-
-    <!-- Sidebar -->
-    <ul class="sidebar navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="index.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span>
-        </a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-          <h6 class="dropdown-header">Login Screens:</h6>
-          <a class="dropdown-item" href="login.html">Login</a>
-          <a class="dropdown-item" href="register.html">Register</a>
-          <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
-          <div class="dropdown-divider"></div>
-          <h6 class="dropdown-header">Other Pages:</h6>
-          <a class="dropdown-item" href="404.html">404 Page</a>
-          <a class="dropdown-item" href="blank.html">Blank Page</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="QRcode_info.html">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>QRcode Info</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="QRcode_generator.html">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>QRcode Image</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="time_table.html">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Time Table</span></a>
-      </li>
-    </ul>
-
-    <div id="content-wrapper">
-
-      <div class="container-fluid">
-
-        <!-- Breadcrumbs-->
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a href="#">Dashboard</a>
-          </li>
-          <li class="breadcrumb-item active">Charts</li>
-        </ol>
-
-        <!-- Area Chart Example-->
-
-      </div>
-      <!-- /.container-fluid -->
-
-      <!-- Sticky Footer -->
-      <footer class="sticky-footer">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright © Your Website 2019</span>
+      <a class="navbar-brand mr-1" href="index.html">Start Bootstrap</a>
+  
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+  
+      <!-- Navbar Search -->
+      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button">
+              <i class="fas fa-search"></i>
+            </button>
           </div>
         </div>
-      </footer>
-
-    </div>
-    <!-- /.content-wrapper -->
-
-  </div>
-  <!-- /#wrapper -->
-
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
-
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
+      </form>
+  
+      <!-- Navbar -->
+      <ul class="navbar-nav ml-auto ml-md-0">
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-bell fa-fw"></i>
+            <span class="badge badge-danger">9+</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-envelope fa-fw"></i>
+            <span class="badge badge-danger">7</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-circle fa-fw"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="#">Settings</a>
+            <a class="dropdown-item" href="#">Activity Log</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+          </div>
+        </li>
+      </ul>
+  
+    </nav>
+  
+    <div id="wrapper">
+  
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="QRcode_info.html">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>QRcode Info</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="QRcode_generator.html">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>QRcode Image</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="time_table.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Time Table</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="admin_signup.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Add Admin</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="time_table.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Create Time Table</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="lecturer_details.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Add lecturer</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="lecturer_halls.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Add Halls</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="programs.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Add Programs/Courses</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="staff_signup.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Signup Staff</span></a>
+        </li>
+      </ul>
+  
+      <div id="content-wrapper">
+  
+        <div class="container-fluid">
+  
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#logoutModal">Add Admin</a>
+            </li>
+          </ol>
+  
+          <!-- Area Chart Example-->
+  
         </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+        <!-- /.container-fluid -->
+        <div class="container">
+          <div class="card">
+            <div class="card-header">
+              Featured
+            </div>
+            <div class="card-body">
+              <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Staff Name</th>
+                    <th scope="col">Email</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(staff,key) of staffs" :key="key">
+                    <th scope="row">{{key + 1}}</th>
+                    <td>{{staff.staff_name}}</td>
+                    <td>{{staff.email}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © Your Website 2019</span>
+            </div>
+          </div>
+        </footer>
+  
+      </div>
+      <!-- /.content-wrapper -->
+  
+    </div>
+    <!-- /#wrapper -->
+  
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+  
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Signup staff</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" v-model="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                <span class="error1 text-danger">{{error1}}</span>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword2">First name</label>
+                <input type="text" v-model="first_name" class="form-control" id="exampleInputPassword2" placeholder="Staff first name">
+                <span class="error2 text-danger">{{error2}}</span>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword2">Last name</label>
+                <input type="text" v-model="last_name" class="form-control" id="exampleInputPassword3" placeholder="Staff last name">
+                <span class="error3 text-danger">{{error3}}</span>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword2">Other names</label>
+                <input type="text" v-model="others" class="form-control" id="exampleInputPassword4" placeholder="other names">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" v-model="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <span class="error4 text-danger">{{error4}}</span>
+              </div>
+              <div class="text-center" v-show="show_loading">
+                <div class="spinner-grow bg-primary" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+              <div class="text-center" v-show="response">
+                <span class="text-success">{{message}}</span>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" @click.prevent="create_staff">Submit</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
+  <script src="../js/vue.js"></script>
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -201,26 +274,109 @@
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-bar-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
-  <script src="../js/vue.js"></script>
   <script>
     const vm = new Vue({
+      el: "#app",
       data: {
-
+        show_loading: false,
+        error1: "",
+        error2: "",
+        error3: "",
+        error4: "",
+        first_name: "",
+        last_name: "",
+        email: "",
+        others: "",
+        password: "",
+        response: false,
+        message: "",
+        staffs: []
       },
       methods: {
-        
+        create_staff(){
+          if(!(vm.first_name)) vm.error2 = "first name is required";
+          else vm.error2 = "";
+          if(!(vm.last_name)) vm.error3 = "last name is required";
+          else vm.error3 = "";
+          if(!(vm.email)) vm.error1 = "email is required";
+          else vm.error1 = "";
+          if(!(vm.password)) vm.error4 = "password is required"
+          else vm.error4 = "";
+
+          if(vm.first_name.length !== 0 && vm.last_name.length !== 0 && vm.email.length !== 0 && vm.password.length !== 0){
+            vm.show_loading = true;
+            setTimeout(function(){
+              vm.response = false;
+              vm.staff_signup_req(vm.first_name,vm.last_name,vm.others,vm.email,vm.password)
+            },3000)
+          }
+        },
+        async staff_signup_req(first_name,last_name,others,email,password){
+          try {
+          let staff_name = first_name + " " + last_name + " " + others;
+          let data = {
+            staff_name: staff_name,
+            email: email,
+            password: password
+          }
+
+          let signup_res = await $.ajax({
+            url: "http://localhost:3000/staff/staff_signup",
+            method: "POST",
+            dataType: "JSON",
+            data: data
+          })
+          if(signup_res.res === "created"){
+            vm.show_loading = false;
+            vm.response = true;
+            vm.message = signup_res.message
+
+            vm.first_name = "";
+            vm.last_name = ""
+            vm.others = ""
+            vm.password = ""
+            vm.email = ""
+
+            window.location.reload()
+          }
+          } catch (error) {
+            if(error.status === 409){
+            vm.show_loading = false;
+            vm.response = true;
+            vm.message = error.responseJSON.message;
+          }
+          }
+        }
       },
       computed: {
         
       },
-      created() {
+      async created() {
+            try {
+                  let staff = await $.ajax({
+                  url: "http://localhost:3000/staff/all",
+                  method: "GET",
+                  dataType: "JSON",
+                })
+
+                if(staff.res === "found"){
+                  let data = staff.data
+                  vm.staffs = [...data]
+
+                  console.log(vm.staffs)
+                }
+                if(staff.res === "not found"){
+
+                }
+            } catch (error) {
+              console.log(error)
+            }
         
       },
       mounted() {
         
       }
-      
-    })
+    }).$mount("#app")
   </script>
 </body>
 

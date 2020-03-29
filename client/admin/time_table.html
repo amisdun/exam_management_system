@@ -24,9 +24,9 @@
 
 <body id="page-top">
 
-  <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+  <nav class="navbar navbar-expand navbar-dark bg-info static-top">
 
-    <a class="navbar-brand mr-1" href="index.html">Start Bootstrap</a>
+    <a class="navbar-brand mr-1" href="index.html">Exam Center</a>
 
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
       <i class="fas fa-bars"></i>
@@ -95,21 +95,6 @@
           <span>Dashboard</span>
         </a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-          <h6 class="dropdown-header">Login Screens:</h6>
-          <a class="dropdown-item" href="login.html">Login</a>
-          <a class="dropdown-item" href="register.html">Register</a>
-          <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
-          <div class="dropdown-divider"></div>
-          <h6 class="dropdown-header">Other Pages:</h6>
-          <a class="dropdown-item" href="404.html">404 Page</a>
-          <a class="dropdown-item" href="blank.html">Blank Page</a>
-        </div>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="QRcode_info.html">
@@ -126,6 +111,31 @@
           <i class="fas fa-fw fa-table"></i>
           <span>Time Table</span></a>
       </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="admin_signup.html">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Add Admin</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="time_table.html">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Create Time Table</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="lecturer_details.html">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Add lecturer</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="lecturer_halls.html">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Add Halls</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="programs.html">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Add Programs/Courses</span></a>
+      </li>
     </ul>
 
     <div id="content-wrapper">
@@ -137,7 +147,7 @@
           <li class="breadcrumb-item">
             <a href="#">Dashboard</a>
           </li>
-          <li class="breadcrumb-item active">Charts</li>
+          <li class="breadcrumb-item active">Time Table</li>
         </ol>
 
         <!-- Area Chart Example-->
@@ -145,6 +155,74 @@
       </div>
       <!-- /.container-fluid -->
 
+      <div class="container">
+        <div class="row">
+          <div class="col"> 
+                  <form action="" id="regtable">
+                  <div class="form-row align-items-center">
+                    <div class="col-md my-1">
+                      <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                        <option selected>Select Course</option>
+                        <option value="">comp Eng</option>
+                        
+                      </select>
+                    </div>
+                  </div>
+          
+                  <div class="form-row align-items-center">
+                    <div class="col-md my-1">
+                      <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                        <option selected>Select Time Session</option>
+                        <option value="">Morning</option>
+                        <option value="">Afternoon</option>
+                        
+                      </select>
+                    </div>
+                  </div>
+          
+                  <div class="form-row align-items-center">
+                    <div class="col-md my-1">
+                    <input class="form-control" type="date" >
+                    </div>
+                  </div>
+          
+                  <div class="form-row align-items-center">
+                    <div class="col-md my-1">
+                      <input type="hidden" name="count" value="1" />
+                          <div class="control-group" id="fields">
+                              <div class="controls" id="profs"> 
+                                      <div id="field" class="form-inline">
+                                        <select class="custom-select mb-3 mr-2" style="width: 87%;" id="field1" name="prof1">
+                                          <option selected>Select Exam Hall</option>
+                                          <option value="">Morning</option>
+                                          <option value="">Afternoon</option>
+                                          
+                                        </select>
+                                        <!-- <input  class="form-control mb-3 mr-1" id="field1" name="prof1" type="text" placeholder="Type something" style="width: 90%;"> -->
+                                        <button id="b1" class="btn btn-secondary mb-3 mr-2  add-more" >+</button>
+                                      </div>   
+                              <br>
+                              </div>
+                          </div>
+                  </div>
+                  </div>
+                  <div class="form-row justify-content-center">
+                    <div class="col-md-8 my-1 ">
+                    <input class="form-control btn-secondary" type="submit" value="Add to Table"  >
+                    </div>
+                  </div>
+                </form>
+          </div>
+  
+          <div class="col shadow-lg p-3 mb-5 bg-white">
+            <small class="text-muted">
+              This payne is a preview of the Table You just Added... 
+            </small>
+            <hr>
+              </div>
+        </div>
+      </div>
+     
       <!-- Sticky Footer -->
       <footer class="sticky-footer">
         <div class="container my-auto">
@@ -221,6 +299,42 @@
       }
       
     })
+  </script>
+  <script>
+
+
+$(document).ready(function(){
+    var next = 1;
+    $(".add-more").click(function(e){
+        e.preventDefault();
+        var addto = "#field" + next;
+        var addRemove = "#field" + (next);
+        next = next + 1;
+
+        var newIn = '   <select class="custom-select mb-3 mr-2" style="width: 87%;"  id="field' + next + '" name="field' + next + '"> <option selected>Select Exam Hall</option><option value="">Morning</option> <option value="">Afternoon</option></select>';
+        
+        // var newIn = '<input autocomplete="off" style="width: 90%;" class="input form-control mb-3  mr-1" id="field' + next + '" name="field' + next + '" type="text">';
+        var newInput = $(newIn);
+        var removeBtn = '<button id="remove' + (next - 1) + '" class="btn btn-danger mb-3 mr-2 remove-me" >-</button></div><div id="field">';
+        var removeButton = $(removeBtn);
+        $(addto).after(newInput);
+        $(addRemove).after(removeButton);
+        $("#field" + next).attr('data-source',$(addto).attr('data-source'));
+        $("#count").val(next);  
+        
+            $('.remove-me').click(function(e){
+                e.preventDefault();
+                var fieldNum = this.id.charAt(this.id.length-1);
+                var fieldID = "#field" + fieldNum;
+                $(this).remove();
+                $(fieldID).remove();
+            });
+    });
+    
+
+    
+});
+
   </script>
 </body>
 

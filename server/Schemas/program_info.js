@@ -22,18 +22,21 @@ var program_info = mongoose.Schema({
         type: String,
         required: true
     }, 
-    course_name: {
-        type: String,
-        required: false
-    },
-    examinar: {
-        type: String,
-        required: false
-    },
-    course_code: {
-        type: String,
-        required: false
-    }
+    courses_offered: [{
+        _id: mongoose.Schema.Types.ObjectId,
+        course_name: {
+            type: String,
+            required: false
+        },
+        examinar: {
+            type: String,
+            required: false
+        },
+        course_code: {
+            type: String,
+            required: false
+        }
+    }]
     
 });
 

@@ -6,10 +6,12 @@ let lecturer_datails = mongoose.Schema({
         type: String,
         required: true
     },
-    course: {
-        type: String,
-        requred: true
-    }
+    course: [{
+        course_code: {
+            type: String,
+            required: false
+        }
+    }]
 })
 
 let lecturer = mongoose.model("lecturer_detail",lecturer_datails);

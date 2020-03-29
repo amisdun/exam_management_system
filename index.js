@@ -2,8 +2,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 const cors = require("cors");
-let jwt = require("jsonwebtoken");
-let bcrypt = require("bcrypt");
 
 let app = express();
 
@@ -29,6 +27,7 @@ let lecturer_details = require("./server/Routers/lecturer_detailRouter")
 let time_table = require("./server/Routers/time_tableRouter")
 let program_info = require("./server/Routers/program_Router")
 let QRcode = require("./server/Routers/QRcode_generatorRouter")
+let lecturer_halls = require("./server/Routers/lecturer_hallsRouter")
 
 // using the routers available
 app.use("/admin",admin_login)
@@ -41,9 +40,13 @@ app.use("/lecturer_detail",lecturer_details)
 app.use("/student", time_table)
 app.use("/program", program_info)
 app.use("/QRcode", QRcode)
+app.use("/lecturer_hall", lecturer_halls)
 
 // specifing the development and production port
-let port = process.env.PORT || 3000;
+let port;
+
+if(process.env.NODE_ENV === "production") port = process.env.PORT;
+else port = 3000;
 
 //serving the homepage to the client
 app.get("/",(req,res) => {

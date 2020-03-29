@@ -24,7 +24,7 @@ var register = (req,res,next) => {
         if(new_email === req_email || new_name === req_name){
            return res.status(409).json({
                 message: "admin email or name is already in use",
-                res: admins
+                res: "available"
             })
         }
         else{
@@ -61,8 +61,8 @@ var register = (req,res,next) => {
                 .then(result => {
                     if(result){
                        return res.status(200).json({
-                            result: "admin account created successfuly",
-                            res: result
+                            message: "admin account created successfuly",
+                            res: "created"
                         })
                     }
                 })
@@ -78,6 +78,17 @@ var register = (req,res,next) => {
 };
 
 
+let get_admins = async (req,res,next) => {
+    try {
+        let admins = await admin.find({}).exec()
+        if(admins) return res.json({res: "found", data: admins})
+        else return res.json({res: "not found"})
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 module.exports = {
-    register: register
+    register: register,
+    get_admins: get_admins
 }

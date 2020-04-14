@@ -20,6 +20,11 @@
   <!-- Custom styles for this template-->
   <link href="css/sb-admin.css" rel="stylesheet">
 
+<style>
+
+
+</style>
+
 </head>
 
 <body id="page-top">
@@ -153,11 +158,17 @@
               <a href="#">Dashboard</a>
             </li>
             <li class="breadcrumb-item active">Charts</li>
+            <div class="col-auto" style="margin-left:60%" >
+              <input type="text" class="form-control" placeholder="Search by name">
+            </div>
+            <div class="col-auto">
+              <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+          </div>
           </ol>
   
           <!-- Area Chart Example-->
-  
-        </div>
+        
         <!-- /.container-fluid -->
           <div class="container">
             <div class="alert" :class="server_res === 'created'? 'alert-success' : 'alert-danger'" role="alert" v-show="message">
@@ -166,13 +177,22 @@
             <form>
               <div class="form-row">
                 <div class="col-auto">
-                  <input type="text" class="form-control" placeholder="First name" v-model="first_name">
+                  <input type="text" class="form-control" placeholder="Program" v-model="program">
                   <span class="text-danger" >{{error1}}</span>
                 </div>
                 <div class="col-auto">
-                  <input type="text" class="form-control" placeholder="Last name" v-model="last_name">
+                  <input type="text" class="form-control" placeholder="Department" v-model="Department">
                   <span class="text-danger" >{{error2}}</span>
                 </div>
+                <div class="col-auto">
+                  <input type="number" class="form-control" placeholder="Level" v-model.number="level">
+                  <span class="text-danger" >{{error3}}</span>
+                </div>
+                <div class="col-auto">
+                  <input type="number" class="form-control" placeholder="No of students" v-model.number="No_students">
+                  <span class="text-danger" >{{error4}}</span>
+                </div>
+
                 <div class="col-auto">
                   <div class="text-center" v-show="show_loading">
                     <div class="spinner-grow bg-primary" role="status">
@@ -183,12 +203,6 @@
                 <div class="col-auto">
                   <button type="submit" class="btn btn-primary" @click.prevent="submit_details">Submit</button>
                 </div>
-                <div class="col-auto">
-                  <input type="text" class="form-control" placeholder="Search by name">
-                </div>
-                <div class="col-auto">
-                  <button type="submit" class="btn btn-primary">Search</button>
-                </div>
               </div>
             </form>
   
@@ -196,30 +210,37 @@
               <div class="card-header">
                 Featured
               </div>
-              <div class="card-body">
-                <table class="table">
+              <div class="card-body table-responsive">
+                <table class="table table-hover table-bordered">
                   <thead class="thead-dark">
                     <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Lecturer name</th>
-                      <th scope="col">Courses</th>
+                      <th scope="col">Level</th>
+                      <th scope="col">Program name</th>
+                      <th scope="col">No of Student</th>
+                      <th scope="col">Courses offered</th>
                       <th scope="col">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="(lecturer,key) of lec_detail" :key="key" :id="lecturer._id">
-                      <th scope="row">{{key + 1}}</th>
-                      <td>{{lecturer.name}}</td>
+                    <tr v-for="(program,key) of program_and_courses" :key="key" :id="program._id">
+                      <td>{{program.level}}</td>
+                      <td>{{program.program_name}}</td>
+                      <td>{{program.number_of_student}}</td>
                       <td>
                         <div class="btn-group" role="group" aria-label="Basic example">
-                          <button type="button" style="font-size: 0.6rem;" class="btn btn-secondary btn-group-sm" v-for="(course_code,index) of lecturer.course" :key="index" :value="course_code.course_code">{{course_code.course_code}} <a href="#" class="btn btn-danger" style="font-size: 0.6rem;" @click.prevent="remove_course_code">X</a></button>
+                          
+                          <button type="button"  style="font-size: 0.6rem;" class="btn withTooltip btn-dark btn-group-sm" v-for="(course,index) of program.courses_offered" :key="index" data-toggle="tooltip" rel="tooltip" data-html="true" 
+                          data-original-title="<li>Course: </li><li>Examinar</li>" >
+                            {{course.course_code}}
+                             <a href="#" class="btn btn-danger" style="font-size: 0.6rem;" :id="course._id" @click.prevent="remove_course_detail">X</a>
+                          </button>
                         </div>
                     </td>
                     <td>
                       <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#editModal" @click.prevent="get_lecturer_id">Edit</button>
-                        <button type="button" class="btn btn-outline-danger" @click.prevent="delete_lecturer_detail">Delete</button>
-                        <button type="button" class="btn btn-outline-success" data-toggle="modal" @click.prevent="course_code_id" data-target="#addModal">Add course</button>
+                        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#editModal" @click.prevent="get_program">Edit</button>
+                        <button type="button" class="btn btn-outline-danger" @click.prevent="delete_program_detail">Delete</button>
+                        <button type="button" class="btn btn-outline-success" data-toggle="modal" @click.prevent="get_program_id" data-target="#addModal">Add course</button>
                       </div>
                     </td>
                     </tr>
@@ -278,8 +299,16 @@
           <div class="modal-body">
             <form>
               <div class="form-group">
-                <input type="text" v-model="add_course" class="form-control" id="exampleInputPassword2" placeholder="Input course code">
-                <span class="error2 text-danger">{{add_error}}</span>
+                <input type="text" v-model="add_course_code" class="form-control" id="exampleInputPassword2" placeholder="course code">
+                <span class="error2 text-danger">{{add_error1}}</span>
+              </div>
+              <div class="form-group">
+                <input type="text" v-model="add_course_name" class="form-control" id="exampleInputPassword2" placeholder="course name">
+                <span class="error2 text-danger">{{add_error2}}</span>
+              </div>
+              <div class="form-group">
+                <input type="text" v-model="add_examinar" class="form-control" id="exampleInputPassword2" placeholder="examiner">
+                <span class="error2 text-danger">{{add_error3}}</span>
               </div>
               <div class="text-center" v-show="add_show_loading">
                 <div class="spinner-grow bg-primary" role="status">
@@ -287,12 +316,12 @@
                 </div>
               </div>
               <div class="text-center" v-show="add_message">
-                <span class="" :class="add_res === 'created'? 'text-success':'text-danger'">{{add_response}}</span>
+                <span class="" :class="add_res === 'added'? 'text-success':'text-danger'">{{add_response}}</span>
               </div>
             </form>
           </div>
           <div class="modal-footer">
-            <a class="btn btn-primary" href="#" @click="add_course_code">Add Course</a>
+            <a class="btn btn-primary" href="#" @click.prevent="add_course_details">Add Course</a>
           </div>
         </div>
       </div>
@@ -310,12 +339,20 @@
           <div class="modal-body">
             <form>
               <div class="form-group">
-                <input type="text" v-model="edit_first_name" class="form-control" id="exampleInputPassword2" placeholder="first name">
+                <input type="text" v-model="edit_program" class="form-control" id="exampleInputPassword2" placeholder="Program">
                 <span class="error2 text-danger">{{edit_error1}}</span>
               </div>
               <div class="form-group">
-                <input type="text" v-model="edit_last_name" class="form-control" id="exampleInputPassword3" placeholder="last name">
+                <input type="text" v-model="edit_department" class="form-control" id="exampleInputPassword3" placeholder="department name">
                 <span class="error3 text-danger">{{edit_error2}}</span>
+              </div>
+              <div class="form-group">
+                <input type="number" v-model.number="edit_level" class="form-control" id="exampleInputPassword3" placeholder="level">
+                <span class="error3 text-danger">{{edit_error3}}</span>
+              </div>
+              <div class="form-group">
+                <input type="number" v-model.number="edit_No_of_students" class="form-control" id="exampleInputPassword3" placeholder="No of students">
+                <span class="error3 text-danger">{{edit_error4}}</span>
               </div>
               <div class="text-center" v-show="edit_show_loading">
                 <div class="spinner-grow bg-primary" role="status">
@@ -327,8 +364,9 @@
               </div>
             </form>
           </div>
+          
           <div class="modal-footer">
-            <a class="btn btn-primary" href="#" @click="save_changes">Save</a>
+            <a class="btn btn-primary" href="#" @click.prevent="save_changes">Save</a>
           </div>
         </div>
       </div>
@@ -338,7 +376,8 @@
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+  <!-- <script src="vendor/bootstrap/js/bootstrap.min.js"></script> -->
+  
   <!-- Core plugin JavaScript-->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
@@ -353,19 +392,268 @@
   <script src="js/demo/chart-bar-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="../js/vue.js"></script>
+
+  <script>$("[rel=tooltip]").tooltip({html:true});</script>
   <script>
+   
+   
     const vm = new Vue({
+      el: "#app",
       data: {
+        program: "",
+        Department: "",
+        No_students: null,
+        level: null,
+        error1: "",
+        error2: "",
+        error3: "",
+        error4: "",
+        program_and_courses: [],
+        message: "",
+        response: "",
+        edit_error1: "",
+        edit_error2: "",
+        edit_error3: "",
+        edit_error4: "",
+        edit_department: "",
+        edit_program: "",
+        edit_level: null,
+        edit_No_of_students: null,
+        edit_message: "",
+        edit_show_loading: false,
+        edit_response: "",
+        show_loading: false,
+        add_course_code: "",
+        add_course_name: "",
+        add_examinar: "",
+        add_error1: "",
+        add_error2: "",
+        add_error3: "",
+        add_message: "",
+        add_response: "",
+        add_res: "",
+        add_show_loading: false,
+        server_res: "",
+        program_id: "",
+        edit_program_id: ""
+
 
       },
       methods: {
-        
+       async submit_details(){
+          if(!vm.program){vm.error1 = "program name is required"}
+          else{vm.error1 = ""}
+          if(!vm.Department){vm.error2 = "Department name required"}
+          else{vm.error2 = ""}
+          if(vm.No_students === null || parseInt(vm.No_students) === 0){vm.error4 = "number of students required"}
+          else{
+            if(typeof vm.No_students !== "number") vm.error4 = "should be an integer";
+            else vm.error4 = ""
+          }
+          if(vm.level === null || parseInt(vm.level) === 0){vm.error3 = "level required"}
+          else{
+            if(typeof vm.level !== "number") vm.error3 = "level should be an integer";
+            else vm.error3 = "";
+          }
+
+          if(vm.program.length >= 1 && vm.Department.length >= 1 && vm.No_students !== null && typeof vm.No_students === "number" && vm.level !== null && typeof vm.level === "number"){
+            vm.show_loading = true
+
+            setTimeout(async function(){
+              let data = {
+                program_name: vm.program,
+                department_name: vm.Department,
+                number_of_student: parseInt(vm.No_students),
+                level: parseInt(vm.level)
+              }
+
+              let create_program = await $.ajax({
+                url: "/program/create_program",
+                method: "POST",
+                dataType: "JSON",
+                data: data
+              })
+
+              if(create_program.res === "created"){
+                console.log(create_program.msg)
+                vm.show_loading = false
+                vm.server_res = "created"
+                vm.response = create_program.msg
+                vm.message = true
+                setTimeout(function(){
+                  location.reload()
+                },1500)
+              }
+              if(create_program.res === "exist"){
+                console.log(create_program.msg)
+                vm.show_loading = false
+                vm.server_res = "exist"
+                vm.response = create_program.msg
+                vm.message = true
+              }
+            },1000)
+          }
+        },
+        save_changes(){
+          if(!vm.edit_program){vm.edit_error1 = "program name is required"}
+          else{vm.edit_error1 = ""}
+          if(!vm.edit_department){vm.edit_error2 = "Department name required"}
+          else{vm.edit_error2 = ""}
+          if(vm.edit_No_of_students === null || parseInt(vm.edit_No_of_students) === 0){vm.edit_error4 = "number of students required"}
+          else{
+            if(typeof vm.edit_No_of_students !== "number") vm.edit_error4 = "should be an integer";
+            else vm.edit_error4 = ""
+          }
+          if(vm.edit_level === null || parseInt(vm.edit_level) === 0){vm.edit_error3 = "level required"}
+          else{
+            if(typeof vm.edit_level !== "number") vm.edit_error3 = "level should be an integer";
+            else vm.edit_error3 = "";
+          }
+
+          if(vm.edit_program.length >= 1 && vm.edit_department.length >= 1 && vm.edit_No_of_students !== null && typeof vm.edit_No_of_students === "number" && vm.edit_level !== null && typeof vm.edit_level === "number"){
+            vm.edit_show_loading = true
+
+            setTimeout(async function(){
+              let data = {
+                department_name: vm.edit_department,
+                program_name: vm.edit_program,
+                level: vm.edit_level,
+                number_of_student: vm.edit_No_of_students
+              }
+              let update_program = await $.ajax({
+                url: `/program/update_program/${vm.edit_program_id}`,
+                method: "PATCH",
+                dataType: "JSON",
+                data: data
+              })
+
+              if(update_program.res === "updated"){
+                vm.edit_show_loading = false
+                vm.edit_response = "updated successfully"
+                vm.edit_message = true
+
+                setTimeout(function(){
+                  location.reload()
+                },1500)
+              }
+            },1000)
+          }
+        },
+        async get_program(e){
+          let id = e.currentTarget.parentElement.parentElement.parentElement.id
+
+          vm.edit_program_id = id;
+
+          try {
+            let get_program = await $.ajax({
+              url: `/program/edit_program/${id}`,
+              method: "GET"
+            })
+
+            if(get_program.res === "found"){
+              vm.edit_No_of_students = get_program.data.number_of_student
+              vm.edit_department = get_program.data.department_name
+              vm.edit_level = get_program.data.level
+              vm.edit_program = get_program.data.program_name
+            }
+          } catch (error) {
+            console.log(error)
+          }
+
+        },
+        get_program_id(e){
+          let id = e.currentTarget.parentElement.parentElement.parentElement.id
+
+          vm.program_id = id
+          console.log(vm.program_id)
+        },
+        async remove_course_detail(e){
+          let program_id = e.currentTarget.parentElement.parentElement.parentElement.parentElement.id
+          let course_id = e.currentTarget.id
+          
+          let delete_course = await $.ajax({
+            url: `/program/delete_course/${program_id}/${course_id}`,
+            method: "DELETE"
+          })
+
+          if(delete_course.res === "deleted"){
+            location.reload()
+          }
+        },
+        async delete_program_detail(e){
+          let id = e.currentTarget.parentElement.parentElement.parentElement.id
+          try {
+           let delete_program =  await $.ajax({
+              url: `/program/delete_program/${id}`,
+              method: "DELETE"
+            })
+
+            if(delete_program.res === "deleted"){
+              location.reload()
+            }
+
+          } catch (error) {
+            console.log(error)
+          }
+        },
+        add_course_details(){
+          if(!vm.add_course_code){vm.add_error1 = "course code required"}
+          else vm.add_error1 = ""
+          if(!vm.add_course_name){vm.add_error2 = "course name required"}
+          else vm.add_error2 = ""
+          if(!vm.add_examinar){vm.add_error3 = "examinar required"}
+          else vm.add_error3 = ""
+
+          if(vm.add_course_name.length >= 1 && vm.add_course_code.length >= 1 && vm.add_examinar.length >= 1){
+            vm.add_show_loading = true
+
+            setTimeout(async function(){
+              let data = {
+                course_name: vm.add_course_name,
+                course_code: vm.add_course_code,
+                examiner: vm.add_examinar
+              }
+              console.log(vm.program_id)
+              let add_course_details = await $.ajax({
+                url: `/program/add_course/${vm.program_id}`,
+                method: "PUT",
+                dataType: "JSON",
+                data: data
+              })
+
+              if(add_course_details.res === "added"){
+                vm.add_show_loading = false
+                vm.add_res = add_course_details.res
+                vm.add_response = "New course Added"
+                vm.add_message = true
+                
+                setTimeout(function(){
+                  location.reload()
+                },500)
+              }
+              if(add_course_details.res === "exist"){
+                vm.add_show_loading = false
+                vm.add_res = add_course_details.res
+                vm.add_response = "course already exist"
+                vm.add_message = true
+              }
+            },1000)
+          }
+        }
       },
       computed: {
         
       },
-      created() {
-        
+      async created() {
+        let programs = await $.ajax({url: "/program/all_programs", method: "GET"})
+        if(programs.res === "found"){
+          vm.program_and_courses = [...programs.data]
+          console.log(vm.program_and_courses)
+        }
+        else{
+          vm.program_and_courses.push("No data found")
+          console.log(vm.program_and_courses)
+        }
       },
       mounted() {
         

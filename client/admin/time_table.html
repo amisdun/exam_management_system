@@ -24,239 +24,240 @@
 
 <body id="page-top">
 
-  <nav class="navbar navbar-expand navbar-dark bg-info static-top">
+  <div id="app">
+    <nav class="navbar navbar-expand navbar-dark bg-info static-top">
 
-    <a class="navbar-brand mr-1" href="index.html">Exam Center</a>
-
-    <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
-      <i class="fas fa-bars"></i>
-    </button>
-
-    <!-- Navbar Search -->
-    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-        <div class="input-group-append">
-          <button class="btn btn-primary" type="button">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </form>
-
-    <!-- Navbar -->
-    <ul class="navbar-nav ml-auto ml-md-0">
-      <li class="nav-item dropdown no-arrow mx-1">
-        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-bell fa-fw"></i>
-          <span class="badge badge-danger">9+</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown no-arrow mx-1">
-        <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-envelope fa-fw"></i>
-          <span class="badge badge-danger">7</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown no-arrow">
-        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-user-circle fa-fw"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-          <a class="dropdown-item" href="#">Settings</a>
-          <a class="dropdown-item" href="#">Activity Log</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
-        </div>
-      </li>
-    </ul>
-
-  </nav>
-
-  <div id="wrapper">
-
-    <!-- Sidebar -->
-    <ul class="sidebar navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="index.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span>
-        </a>
-      </li>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="QRcode_info.html">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>QRcode Info</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="QRcode_generator.html">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>QRcode Image</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="time_table.html">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Time Table</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="admin_signup.html">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Add Admin</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="time_table.html">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Create Time Table</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="lecturer_details.html">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Add lecturer</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="lecturer_halls.html">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Add Halls</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="programs.html">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Add Programs/Courses</span></a>
-      </li>
-    </ul>
-
-    <div id="content-wrapper">
-
-      <div class="container-fluid">
-
-        <!-- Breadcrumbs-->
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a href="#">Dashboard</a>
-          </li>
-          <li class="breadcrumb-item active">Time Table</li>
-        </ol>
-
-        <!-- Area Chart Example-->
-
-      </div>
-      <!-- /.container-fluid -->
-
-      <div class="container">
-        <div class="row">
-          <div class="col"> 
-                  <form action="" id="regtable">
-                  <div class="form-row align-items-center">
-                    <div class="col-md my-1">
-                      <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                        <option selected>Select Course</option>
-                        <option value="">comp Eng</option>
-                        
-                      </select>
-                    </div>
-                  </div>
-          
-                  <div class="form-row align-items-center">
-                    <div class="col-md my-1">
-                      <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                        <option selected>Select Time Session</option>
-                        <option value="">Morning</option>
-                        <option value="">Afternoon</option>
-                        
-                      </select>
-                    </div>
-                  </div>
-          
-                  <div class="form-row align-items-center">
-                    <div class="col-md my-1">
-                    <input class="form-control" type="date" >
-                    </div>
-                  </div>
-          
-                  <div class="form-row align-items-center">
-                    <div class="col-md my-1">
-                      <input type="hidden" name="count" value="1" />
-                          <div class="control-group" id="fields">
-                              <div class="controls" id="profs"> 
-                                      <div id="field" class="form-inline">
-                                        <select class="custom-select mb-3 mr-2" style="width: 87%;" id="field1" name="prof1">
-                                          <option selected>Select Exam Hall</option>
-                                          <option value="">Morning</option>
-                                          <option value="">Afternoon</option>
-                                          
-                                        </select>
-                                        <!-- <input  class="form-control mb-3 mr-1" id="field1" name="prof1" type="text" placeholder="Type something" style="width: 90%;"> -->
-                                        <button id="b1" class="btn btn-secondary mb-3 mr-2  add-more" >+</button>
-                                      </div>   
-                              <br>
-                              </div>
-                          </div>
-                  </div>
-                  </div>
-                  <div class="form-row justify-content-center">
-                    <div class="col-md-8 my-1 ">
-                    <input class="form-control btn-secondary" type="submit" value="Add to Table"  >
-                    </div>
-                  </div>
-                </form>
-          </div>
+      <a class="navbar-brand mr-1" href="index.html">Exam Center</a>
   
-          <div class="col shadow-lg p-3 mb-5 bg-white">
-            <small class="text-muted">
-              This payne is a preview of the Table You just Added... 
-            </small>
-            <hr>
-              </div>
-        </div>
-      </div>
-     
-      <!-- Sticky Footer -->
-      <footer class="sticky-footer">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright © Your Website 2019</span>
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+  
+      <!-- Navbar Search -->
+      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button">
+              <i class="fas fa-search"></i>
+            </button>
           </div>
         </div>
-      </footer>
-
-    </div>
-    <!-- /.content-wrapper -->
-
-  </div>
-  <!-- /#wrapper -->
-
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
-
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
+      </form>
+  
+      <!-- Navbar -->
+      <ul class="navbar-nav ml-auto ml-md-0">
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-bell fa-fw"></i>
+            <span class="badge badge-danger">9+</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-envelope fa-fw"></i>
+            <span class="badge badge-danger">7</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-circle fa-fw"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="#">Settings</a>
+            <a class="dropdown-item" href="#">Activity Log</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+          </div>
+        </li>
+      </ul>
+  
+    </nav>
+  
+    <div id="wrapper">
+  
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="QRcode_info.html">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>QRcode Info</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="QRcode_generator.html">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>QRcode Image</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="time_table.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Time Table</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="admin_signup.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Add Admin</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="time_table.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Create Time Table</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="lecturer_details.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Add lecturer</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="lecturer_halls.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Add Halls</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="programs.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Add Programs/Courses</span></a>
+        </li>
+      </ul>
+  
+      <div id="content-wrapper">
+  
+        <div class="container-fluid">
+  
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Time Table</li>
+          </ol>
+  
+          <!-- Area Chart Example-->
+  
         </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+        <!-- /.container-fluid -->
+  
+        <div class="container">
+          <div class="row">
+            <div class="col"> 
+                    <form action="" id="regtable">
+                    <div class="form-row align-items-center">
+                      <div class="col-md my-1">
+                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" v-model="select_course">
+                          <option value="" selected>Select Course</option>
+                          <option v-for="(course,key) of programs_and_courses" :key="key" :value="course.course_code">{{course.course_name}}</option>
+                        </select>
+                      </div>
+                    </div>
+            
+                    <div class="form-row align-items-center">
+                      <div class="col-md my-1">
+                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                          <option selected>Select Time Session</option>
+                          <option value="">Morning</option>
+                          <option value="">Afternoon</option>
+                          
+                        </select>
+                      </div>
+                    </div>
+            
+                    <div class="form-row align-items-center">
+                      <div class="col-md my-1">
+                      <input class="form-control" type="date" >
+                      </div>
+                    </div>
+            
+                    <div class="form-row align-items-center">
+                      <div class="col-md my-1">
+                        <input type="hidden" name="count" value="1" />
+                            <div class="control-group" id="fields">
+                                <div class="controls" id="profs"> 
+                                        <div id="field" class="form-inline">
+                                          <select class="custom-select mb-3 mr-2" style="width: 87%;" id="field1" name="prof1">
+                                            <option selected>Select Exam Hall</option>
+                                            <option value="">Morning</option>
+                                            <option value="">Afternoon</option>
+                                            
+                                          </select>
+                                          <!-- <input  class="form-control mb-3 mr-1" id="field1" name="prof1" type="text" placeholder="Type something" style="width: 90%;"> -->
+                                          <button id="b1" class="btn btn-secondary mb-3 mr-2  add-more" >+</button>
+                                        </div>   
+                                <br>
+                                </div>
+                            </div>
+                    </div>
+                    </div>
+                    <div class="form-row justify-content-center">
+                      <div class="col-md-8 my-1 ">
+                      <input class="form-control btn-secondary" type="submit" value="Add to Table"  >
+                      </div>
+                    </div>
+                  </form>
+            </div>
+    
+            <div class="col shadow-lg p-3 mb-5 bg-white">
+              <small class="text-muted">
+                This payne is a preview of the Table You just Added... 
+              </small>
+              <hr>
+                </div>
+          </div>
+        </div>
+       
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © Your Website 2019</span>
+            </div>
+          </div>
+        </footer>
+  
+      </div>
+      <!-- /.content-wrapper -->
+  
+    </div>
+    <!-- /#wrapper -->
+  
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+  
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
+          </div>
         </div>
       </div>
     </div>
@@ -282,8 +283,10 @@
   <script src="../js/vue.js"></script>
   <script>
     const vm = new Vue({
+      el: "#app",
       data: {
-
+        programs_and_courses: [],
+        select_course: ""
       },
       methods: {
         
@@ -291,8 +294,28 @@
       computed: {
         
       },
-      created() {
-        
+     async created() {
+        try {
+          let courses = await $.ajax({
+            url: "/program/all_programs",
+            method: "GET"
+          })
+
+          if(courses.res === "found"){
+
+            (courses.data).forEach(function(course){
+              (course.courses_offered).forEach(function(val){
+                vm.programs_and_courses.push(val)
+              })
+            })
+            console.log(vm.programs_and_courses)
+          }
+          else{
+            vm.programs_and_courses.push(courses.data)
+          }
+        } catch (error) {
+          console.log(error)
+        }
       },
       mounted() {
         

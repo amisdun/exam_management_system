@@ -299,8 +299,6 @@
           index_number: "",
           show_loading: false,
           show_res_msg: false
-          
-        
       },
       methods: {
         register(){
@@ -317,7 +315,7 @@
             vm.show_loading = true;
             setTimeout(function(){
               vm.ajax_QRcode_generator(vm.first_name,vm.last_name,vm.other_names,vm.program_name,vm.index_number);
-            },3000)
+            },1000)
           }
         },
         async ajax_QRcode_generator(first_name,last_name,other_names,program_name,index_number){

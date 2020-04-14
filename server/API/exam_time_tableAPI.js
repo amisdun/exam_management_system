@@ -10,12 +10,7 @@ let time_table_generator = async (req,res,next) => {
        return res.json({res: "Course already added"})
    }
    else {
-       let days = [{day: "monday",value: 1},
-                   {day: "tuesday" ,value: 2},
-                   {day: "wednesday", value: 3},
-                   {day: "thursday", value: 4},
-                   {day: "friday", value: 5}
-                  ]
+       
         //checking for the hard constraints
         let halls = [];
         let all_schedules = await time_table.find({
@@ -26,7 +21,7 @@ let time_table_generator = async (req,res,next) => {
             exam_day: req.body.exam_day, 
             exam_time: req.body.exam_time}).exec()
         all_schedules.forEach(function(hall){
-            hall.lecturer_hall.forEach(function(hall_name){
+            (hall.lecturer_hall).forEach(function(hall_name){
                 if(hall_name === req.body.lecturer_hall){
                     halls.push(hall_name)
 
@@ -86,6 +81,12 @@ let check_slot_flexibility = async (req,res,next) => {
     let flexibilty = req.body.flexibilty
 
     // checking for soft constraint conditions
+    let days = [{day: "monday",value: 1},
+                   {day: "tuesday" ,value: 2},
+                   {day: "wednesday", value: 3},
+                   {day: "thursday", value: 4},
+                   {day: "friday", value: 5}
+                  ]
     let program_course = await time_table.findOne({
         exam_date: req.body.exam_date,
         program_name: req.body.program_name, 

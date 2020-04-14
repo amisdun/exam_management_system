@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 var program_info = mongoose.Schema({
     _id : mongoose.Schema.Types.ObjectId,
-    departmant_name: {
+    department_name: {
         type: String,
         required: true
     },
@@ -10,20 +10,15 @@ var program_info = mongoose.Schema({
         type: Number,
         required: true
     },
-    semseter: {
-        type: String,
-        required: true
-    },
     program_name: {
         type: String,
         required: true
     },
     number_of_student:{
-        type: String,
+        type: Number,
         required: true
     }, 
     courses_offered: [{
-        _id: mongoose.Schema.Types.ObjectId,
         course_name: {
             type: String,
             required: false

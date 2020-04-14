@@ -2,7 +2,7 @@ const db = require("../db_connection/mongodb");
 const qrcode = require("qrcode");
 const mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
-var student_qrcode_info = require("../Schemas/QRcode_student_info");
+const student_qrcode_info = require("../Schemas/QRcode_student_info");
 require("../../index");
 
 //API FOR GENERATING A QRCODE AND STORING THEM INTO THE DATABASE
@@ -128,6 +128,11 @@ var generateQRcode = (req,res) => {
       })
 }
 
+
+let QRcode_info = async (req,res,next) => {
+    let qrcode_info = await student_qrcode_info.find({}).exec()
+    if(qrcode_info.length >= 1) return res.json({res: "found", data: qrcode_info})
+}
 // API TO MAKE QUERRY BY DATE
 var searchByDate = (req,res,next) => {
     let academic_year = (req.query.academic_year).toUpperCase();
@@ -136,7 +141,8 @@ var searchByDate = (req,res,next) => {
     .then(result => {
         if(result.length >= 1){
            return res.status(200).json({
-                result_res: result
+                res: "found",
+                data: result
             })
         }
         else{
@@ -178,9 +184,25 @@ var searchByIndexNum = (req,res,next) => {
     })
 }
 
+let delete_qrcode_info = async (req,res,next) => {
+    try {
+        await student_qrcode_info.findByIdAndUpdate(req.params.parent_id, {"$pull" : {
+            qrcode_value: {
+                _id: req.params.qrcode_id
+            }
+        }}).exec()
+    
+        return res.json({res: "deleted"})
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 
 module.exports =  {
     generateQRcode: generateQRcode,
     searchByDate: searchByDate,
     searchByIndexNum: searchByIndexNum,
+    QRcode_info: QRcode_info,
+    delete_qrcode_info: delete_qrcode_info
 }

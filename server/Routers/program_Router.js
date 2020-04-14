@@ -14,7 +14,7 @@ router.get("/edit_program/:id", program_info.edit_program)
 // CRUD ACTIONS ON COURSES
 
 router.get("/edit_course/:id/:course_id", program_info.edit_course)
-router.post("/add_course/:id", program_info.add_courses)
+router.put("/add_course/:id", program_info.add_courses)
 router.patch("/update_course/:id/:course_id", program_info.update_course)
 router.delete("/delete_course/:id/:course_id", program_info.delete_course)
 

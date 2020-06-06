@@ -137,6 +137,11 @@
             <i class="fas fa-fw fa-table"></i>
             <span>Add Programs/Courses</span></a>
         </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="staff_signup.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Signup Staff</span></a>
+        </li>
       </ul>
   
       <div id="content-wrapper">
@@ -157,32 +162,58 @@
         <!-- /.container-fluid -->
   
         <div class="container">
+          <div class="alert" :class="server_res === 'created'? 'alert-success' : 'alert-danger'" role="alert" v-show="message">
+            {{response}}
+          </div>
           <div class="row">
             <div class="col"> 
                     <form action="" id="regtable">
+                      <div class="form-row align-items-center">
+                        <div class="col-md my-1">
+                          <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" v-model="select_program">
+                            <option value="" disabled selected>Select Program</option>
+                            <option v-for="(program,key) of programs" :key="key" :value="program.number_of_student">{{program.program_name}}</option>
+                          </select>
+                          <span class="text-danger">{{error1}}</span>
+                        </div>  
+                      </div>
                     <div class="form-row align-items-center">
                       <div class="col-md my-1">
                         <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" v-model="select_course">
-                          <option value="" selected>Select Course</option>
-                          <option v-for="(course,key) of programs_and_courses" :key="key" :value="course.course_code">{{course.course_name}}</option>
+                          <option value="" disabled selected>Select Course</option>
+                          <option v-for="(course,key) of programs_and_courses" :key="key">{{course.course_code}}</option>
                         </select>
-                      </div>
+                        <span class="text-danger">{{error2}}</span>
+                      </div>  
                     </div>
             
                     <div class="form-row align-items-center">
                       <div class="col-md my-1">
-                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                          <option selected>Select Time Session</option>
-                          <option value="">Morning</option>
-                          <option value="">Afternoon</option>
-                          
+                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" v-model="select_section">
+                          <option value="" disabled selected>Select Time Session</option>
+                          <option value="8:00">Morning</option>
+                          <option value="2:00">Afternoon</option>
                         </select>
+                        <span class="text-danger">{{error3}}</span>
                       </div>
                     </div>
-            
                     <div class="form-row align-items-center">
                       <div class="col-md my-1">
-                      <input class="form-control" type="date" >
+                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" v-model="select_day">
+                          <option value="" disabled selected>Select Day</option>
+                          <option value="monday">monday</option>
+                          <option value="tuesday">tuesday</option>
+                          <option value="wednesday">wednesday</option>
+                          <option value="thursday">thursday</option>
+                          <option value="friday">friday</option>                          
+                        </select>
+                        <span class="text-danger">{{error4}}</span>
+                      </div>
+                    </div>
+                    <div class="form-row align-items-center">
+                      <div class="col-md my-1">
+                      <input class="form-control" type="date" v-model="select_date">
+                      <span class="text-danger">{{error5}}</span>
                       </div>
                     </div>
             
@@ -192,23 +223,34 @@
                             <div class="control-group" id="fields">
                                 <div class="controls" id="profs"> 
                                         <div id="field" class="form-inline">
-                                          <select class="custom-select mb-3 mr-2" style="width: 87%;" id="field1" name="prof1">
-                                            <option selected>Select Exam Hall</option>
-                                            <option value="">Morning</option>
-                                            <option value="">Afternoon</option>
-                                            
+                                          <select class="custom-select mb-3 mr-2" style="width: 87%;" id="field1" v-model="select_halls">
+                                            <option value="" disabled selected>Select Exam Hall</option>
+                                            <option v-for="(hall,key) of lecturer_halls" :value="hall.hall_name">{{hall.hall_name}}</option>
                                           </select>
-                                          <!-- <input  class="form-control mb-3 mr-1" id="field1" name="prof1" type="text" placeholder="Type something" style="width: 90%;"> -->
-                                          <button id="b1" class="btn btn-secondary mb-3 mr-2  add-more" >+</button>
+                                          <button id="b1" class="btn btn-secondary mb-3 mr-2  add-more" @click.prevent="AddHall">+</button>
+                                          <span class="text-danger">{{error6}}</span>
                                         </div>   
                                 <br>
                                 </div>
+                            </div>
+
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                          
+                              <button type="button"  style="font-size: 0.6rem;" class="btn withTooltip btn-dark btn-group-sm" v-for="(hall,key) of selected_halls" :key="key" data-toggle="tooltip" rel="tooltip" data-html="true" 
+                              data-original-title="<li>Course: </li><li>Examinar</li>" >{{hall}}
+                                 <a href="#" class="btn btn-danger" style="font-size: 0.6rem;" :id="key" @click.prevent="remove">X</a>
+                              </button>
                             </div>
                     </div>
                     </div>
                     <div class="form-row justify-content-center">
                       <div class="col-md-8 my-1 ">
-                      <input class="form-control btn-secondary" type="submit" value="Add to Table"  >
+                      <input class="form-control btn-secondary" type="submit" @click.prevent="AddTimeTable" value="Add to Table"  >
+                      </div>
+                    </div>
+                    <div class="text-center" v-show="show_loading">
+                      <div class="spinner-grow bg-primary" role="status">
+                        <span class="sr-only">Loading...</span>
                       </div>
                     </div>
                   </form>
@@ -286,10 +328,95 @@
       el: "#app",
       data: {
         programs_and_courses: [],
-        select_course: ""
+        select_course: "",
+        lecturer_halls: [] ,
+        select_halls: "",
+        programs: [],
+        select_program: "",
+        selected_halls: [],
+        select_section: "",
+        select_date: "",
+        select_day: "",
+        error1: "",
+        error2: "",
+        error3: "",
+        error4: "",
+        error5: "",
+        error6: "",
+        show_loading: false,
+        server_res: "",
+        response: "",
+        message: false
       },
       methods: {
-        
+        AddHall(){
+          if(vm.selected_halls.length < 1){
+            vm.selected_halls.push(vm.select_halls)
+          }
+          else{
+            let added_hall = false
+            for(hall of vm.selected_halls){
+              if(hall === vm.select_halls){
+                added_hall = true             
+                return added_hall
+              }
+            }
+            if(added_hall === false){
+              vm.selected_halls.push(vm.select_halls)
+            }
+          }
+        },
+        remove(e){
+          let index = e.currentTarget.id
+          vm.selected_halls.splice(index,1)
+        },
+        async AddTimeTable(){
+          this.message = false
+          if(!this.select_program) this.error1 = "Select a program";
+          else this.error1 = ""
+          if(!this.select_course) this.error2 = "Select a Course";
+          else this.error2 = ""
+          if(!this.select_section) this.error3 = "Select Time session";
+          else this.error3 = ""
+          if(!this.select_day) this.error4 = "Select day"
+          else this.error4 = ""
+          if(!this.select_date) this.error5 = "Select date"
+          else this.error5 = ""
+          if(this.selected_halls.length < 1) this.error6 = "Select Hall(s)"
+          else this.error6 = ""
+
+          console.log(this.select_section)
+          console.log(this.select_day)
+
+          if(
+            this.select_program.length != 0 && 
+            this.select_course.length != 0 && 
+            this.select_day.length != 0 &&
+            this.select_date.length != 0 &&
+            this.select_section.length != 0 &&
+            this.selected_halls.length != 0
+          ){
+            this.show_loading = true
+            setTimeout(async function(){
+              try {
+                let time_table_res = await $.ajax({
+                  url: "/student/time_table",
+                  methos: "POST",
+                  dataType: "JSON",
+                  data: {
+                    exam_day: this.select_day,
+                    exam_date: this.select_date,
+                    program_name: this.select_program,
+                    course_name: this.select_course,
+
+                  }
+                })
+              } catch (error) {
+                console.log(error)
+              }
+            },1000)
+          }
+        }
       },
       computed: {
         
@@ -301,14 +428,14 @@
             method: "GET"
           })
 
-          if(courses.res === "found"){
 
-            (courses.data).forEach(function(course){
-              (course.courses_offered).forEach(function(val){
+          if(courses.res === "found"){
+            vm.programs = [...(courses.data)]
+            for(course of courses.data){
+              for(val of course.courses_offered){
                 vm.programs_and_courses.push(val)
-              })
-            })
-            console.log(vm.programs_and_courses)
+              }
+            }
           }
           else{
             vm.programs_and_courses.push(courses.data)
@@ -316,9 +443,24 @@
         } catch (error) {
           console.log(error)
         }
+        
+        try {
+          let halls = await $.ajax({
+            url: "/lecturer_hall/all",
+            method: "GET"
+          })
+
+          if(halls.res === "found"){
+            this.lecturer_halls = [...halls.data]
+          }
+          else if(halls.res === "no data"){
+            console.log("No data found")
+          }
+        } catch (error) {
+          console.log(error)
+        }
       },
       mounted() {
-        
       }
       
     })
@@ -326,37 +468,37 @@
   <script>
 
 
-$(document).ready(function(){
-    var next = 1;
-    $(".add-more").click(function(e){
-        e.preventDefault();
-        var addto = "#field" + next;
-        var addRemove = "#field" + (next);
-        next = next + 1;
+// $(document).ready(function(){
+//     var next = 1;
+//     $(".add-more").click(function(e){
+//         e.preventDefault();
+//         var addto = "#field" + next;
+//         var addRemove = "#field" + (next);
+//         next = next + 1;
 
-        var newIn = '   <select class="custom-select mb-3 mr-2" style="width: 87%;"  id="field' + next + '" name="field' + next + '"> <option selected>Select Exam Hall</option><option value="">Morning</option> <option value="">Afternoon</option></select>';
+//         var newIn = '   <select class="custom-select mb-3 mr-2" style="width: 87%;"  id="field' + next + '" name="field' + next + '"> <option selected>Select Exam Hall</option><option value="">Morning</option> <option value="">Afternoon</option></select>';
         
-        // var newIn = '<input autocomplete="off" style="width: 90%;" class="input form-control mb-3  mr-1" id="field' + next + '" name="field' + next + '" type="text">';
-        var newInput = $(newIn);
-        var removeBtn = '<button id="remove' + (next - 1) + '" class="btn btn-danger mb-3 mr-2 remove-me" >-</button></div><div id="field">';
-        var removeButton = $(removeBtn);
-        $(addto).after(newInput);
-        $(addRemove).after(removeButton);
-        $("#field" + next).attr('data-source',$(addto).attr('data-source'));
-        $("#count").val(next);  
+//         // var newIn = '<input autocomplete="off" style="width: 90%;" class="input form-control mb-3  mr-1" id="field' + next + '" name="field' + next + '" type="text">';
+//         var newInput = $(newIn);
+//         var removeBtn = '<button id="remove' + (next - 1) + '" class="btn btn-danger mb-3 mr-2 remove-me" >-</button></div><div id="field">';
+//         var removeButton = $(removeBtn);
+//         $(addto).after(newInput);
+//         $(addRemove).after(removeButton);
+//         $("#field" + next).attr('data-source',$(addto).attr('data-source'));
+//         $("#count").val(next);  
         
-            $('.remove-me').click(function(e){
-                e.preventDefault();
-                var fieldNum = this.id.charAt(this.id.length-1);
-                var fieldID = "#field" + fieldNum;
-                $(this).remove();
-                $(fieldID).remove();
-            });
-    });
+//             $('.remove-me').click(function(e){
+//                 e.preventDefault();
+//                 var fieldNum = this.id.charAt(this.id.length-1);
+//                 var fieldID = "#field" + fieldNum;
+//                 $(this).remove();
+//                 $(fieldID).remove();
+//             });
+//     });
     
 
     
-});
+// });
 
   </script>
 </body>

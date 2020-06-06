@@ -18,6 +18,7 @@ var program_info = mongoose.Schema({
         type: Number,
         required: true
     }, 
+    
     courses_offered: [{
         course_name: {
             type: String,

@@ -3,6 +3,6 @@ const express = require("express")
 const router = express.Router()
 require("../../index")
 
-router.post("/time_table", time_table.check_slot_flexibility, time_table.time_table)
-
+router.get("/time_table", time_table.time_table)
+router.get("/all_time_table", time_table.all_time_table)
 module.exports = router

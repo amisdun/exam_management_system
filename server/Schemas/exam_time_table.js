@@ -1,10 +1,6 @@
 const mongoose = require("mongoose");
 
 var timeTable_schema = mongoose.Schema({
-    exam_date: {
-        type: String,
-        required: true
-    },
     exam_day: {
         type: String,
         required: true
@@ -17,7 +13,7 @@ var timeTable_schema = mongoose.Schema({
         type: String,
         required: true
     },
-    no_of_students: {
+    number_of_students: {
         type: Number, 
         required: true
     },
@@ -27,10 +23,6 @@ var timeTable_schema = mongoose.Schema({
     },
     course_name: {
         type: String,
-        required: true
-    },
-    level: {
-        type: Number,
         required: true
     },
     lecture_halls: {

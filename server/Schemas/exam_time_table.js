@@ -36,6 +36,10 @@ var timeTable_schema = mongoose.Schema({
     course_code: {
         type: String,
         required: true
+    },
+    level: {
+      type: String,
+      required: true
     }
 })
 

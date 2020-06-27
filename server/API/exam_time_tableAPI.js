@@ -148,7 +148,6 @@ let check_slot_flexibility = async (req, res, next) => {
   ];
   let program_course = await time_table
     .findOne({
-      exam_date: req.body.exam_date,
       program_name: req.body.program_name,
       level: req.body.level
     })
@@ -170,7 +169,7 @@ let check_slot_flexibility = async (req, res, next) => {
         });
 
         let flex_day = n_val - val;
-
+        console.log(flex_day)
         if (flex_day <= 1) {
           if (flexibilty == null || flexibilty == "" || flexibilty == undefined) {
             return res.json({

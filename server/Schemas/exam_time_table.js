@@ -5,6 +5,10 @@ var timeTable_schema = mongoose.Schema({
         type: String,
         required: true
     },
+    exam_date: {
+        type: String,
+        required: true
+    },
     exam_time: {
         type: String,
         required: true
@@ -14,7 +18,7 @@ var timeTable_schema = mongoose.Schema({
         required: true
     },
     number_of_students: {
-        type: Number, 
+        type: Number,
         required: true
     },
     examiner: {
@@ -35,6 +39,6 @@ var timeTable_schema = mongoose.Schema({
     }
 })
 
-var time_table = mongoose.model("time_table",timeTable_schema);
+var time_table = mongoose.model("time_table", timeTable_schema);
 
 module.exports = time_table;

@@ -85,17 +85,17 @@ let time_table_generator = async (req, res, next) => {
           return res.status(201).json({res: "created", msg: "New Time Table Data added"})
       }
       if (halls.length > 0) {
-        return res.json({
+        return res.status(422).json({
           res: "hall(s) unavailable", data: halls
         })
       }
       if (day_and_time_availabilty === false) {
-        return res.json({
+        return res.status(422).json({
           res: "time slot unavailable"
         })
       }
       if (halls.length > 0 && day_and_time_availabilty === false) {
-        return res.json({
+        return res.status(422).json({
           res: "hall and time slot unavailable", data: halls
         })
       }
@@ -122,7 +122,7 @@ let time_table_generator = async (req, res, next) => {
 
 
 let check_slot_flexibility = async (req, res, next) => {
-  let flexibilty = req.body.flexibilty;
+  let flexibility = req.body.flexibility;
 
   // checking for soft constraint conditions
   let days = [{
@@ -171,12 +171,12 @@ let check_slot_flexibility = async (req, res, next) => {
         let flex_day = n_val - val;
         console.log(flex_day)
         if (flex_day <= 1) {
-          if (flexibilty == null || flexibilty == "" || flexibilty == undefined) {
-            return res.json({
+          if (flexibility == null || flexibility == "" || flexibility == undefined) {
+            return res.status(422).json({
               res: "No flexibility",
               msg: "No flexibility for this program, do you want to continue?",
             });
-          } else {
+          } else if (flexibility === true){
             next();
           }
         } else {

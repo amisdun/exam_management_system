@@ -7,6 +7,21 @@ const mongoose = require("mongoose");
 require("../../index");
 
 let time_table_generator = async (req, res, next) => {
+  var academic_year,temp_year;
+  let year = new Date().getUTCFullYear();
+  const defualt_month = 6;
+  var month = new Date().getMonth() + 1;
+
+  if(defualt_month > month){
+      semester = "second semester";
+       temp_year = year - 1;
+       academic_year = `${temp_year}/${year}`;
+  }
+  else{
+      semester = "first semester";
+       temp_year = year + 1;
+       academic_year = `${year}/${temp_year}`;
+  }
   //meeting the hard and soft constraints conditions
   let get_all_time_table = await time_table.find({}).exec()
   let schedule = await time_table.find({
@@ -24,6 +39,8 @@ let time_table_generator = async (req, res, next) => {
       exam_date: req.body.exam_date,
       exam_day: req.body.exam_day,
       exam_time: req.body.exam_time,
+      semester: semester,
+      academic_year: academic_year,
       program_name: req.body.program_name,
       course_name: req.body.course_name,
       level: req.body.level,
@@ -75,6 +92,8 @@ let time_table_generator = async (req, res, next) => {
             exam_day: req.body.exam_day,
             exam_time: req.body.exam_time,
             program_name: req.body.program_name,
+            semester: semester,
+            academic_year: academic_year,
             course_name: req.body.course_name,
             level: req.body.level,
             lecture_halls: [...req.body.hall],
@@ -106,6 +125,8 @@ let time_table_generator = async (req, res, next) => {
         exam_day: req.body.exam_day,
         exam_time: req.body.exam_time,
         program_name: req.body.program_name,
+        semester: semester,
+        academic_year: academic_year,
         course_name: req.body.course_name,
         level: req.body.level,
         lecture_halls: [...req.body.hall],
@@ -191,10 +212,60 @@ let check_slot_flexibility = async (req, res, next) => {
 let fetch_all_time_table = async (req, res, next) => {
   let all_time_table = await time_table.find({}).exec();
 
-  return res.json({
+  return res.status(200).json({
     data: all_time_table,
   });
 };
+
+let fetch_academic_sem_time_table = async (req,res,next) => {
+  try {
+    let { academic_year, semester } = req.body
+
+    let get_time_table = await time_table.find({academic_year: academic_year, semester: semester}).exec()
+
+    if(get_time_table.length > 0) return res.status(200).json({res: "data found", data: get_time_table})
+    else return res.status(404).json({res: "no data found"})
+  } catch (e) {
+    return res.status(500).json({error: e})
+  }
+}
+
+let find_by_id_and_delete = async (req,res,next) => {
+  try {
+    let { id } = req.params
+
+    await time_table.findByIdAndDelete(id).exec()
+
+    return res.status(204).json({res: "deleted"})
+  } catch (e) {
+    return res.status(500).json({error: e})
+  }
+}
+
+let find_by_id_and_update = async (req,res,next) => {
+  try {
+    let { id } = req.params
+
+    let update = await time_table.findByIdAndUpdate(id, {
+      exam_date: req.body.exam_date,
+      exam_day: req.body.exam_day,
+      exam_time: req.body.exam_time,
+      program_name: req.body.program_name,
+      semester: semester,
+      academic_year: academic_year,
+      course_name: req.body.course_name,
+      level: req.body.level,
+      lecture_halls: [...req.body.hall],
+      examiner: req.body.examiner,
+      number_of_students: req.body.number_of_students,
+      course_code: req.body.course_code
+    }).exec()
+
+    return res.status(200).json({res: "updated"})
+  } catch (e) {
+    return res.status(500).json({error: e})
+  }
+}
 
 // let time_table_generator = async (req, res, next) => {
 //   //await time_table.deleteMany({}).exec()
@@ -461,4 +532,8 @@ let fetch_all_time_table = async (req, res, next) => {
 module.exports = {
   time_table_generator: time_table_generator,
   check_slot_flexibility: check_slot_flexibility,
+  find_by_id_and_delete: find_by_id_and_delete,
+  find_by_id_and_update: find_by_id_and_update,
+  fetch_academic_sem_time_table: fetch_academic_sem_time_table,
+  fetch_all_time_table: fetch_all_time_table
 };

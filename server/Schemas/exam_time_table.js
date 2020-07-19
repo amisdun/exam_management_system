@@ -5,6 +5,14 @@ var timeTable_schema = mongoose.Schema({
         type: String,
         required: true
     },
+    semester: {
+      type: String,
+      required: true
+    },
+    academic_year: {
+      type: String,
+      required: true
+    },
     exam_date: {
         type: String,
         required: true

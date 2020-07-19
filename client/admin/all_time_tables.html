@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin - Charts</title>
+  <title>Admin | Timetable</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -20,6 +20,22 @@
   <!-- Custom styles for this template-->
   <link href="css/sb-admin.css" rel="stylesheet">
 
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <!-- Material Design Bootstrap -->
+<<<<<<< HEAD
+  <!-- <link href="css/mdb.css" rel="stylesheet"> -->
+  <style media="screen">
+      div.myButton {
+          width: 25px !important;
+          height: 25px !important;
+      }
+  </style>
+=======
+  <link href="css/mdb.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="css/style.css" rel="stylesheet">
+>>>>>>> 2119df048646dbb0d94743745bfb802542ff8ad9
 </head>
 
 <body id="page-top">
@@ -36,8 +52,7 @@
       <!-- Navbar Search -->
       <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search"
-            aria-describedby="basic-addon2">
+          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
           <div class="input-group-append">
             <button class="btn btn-primary" type="button">
               <i class="fas fa-search"></i>
@@ -49,8 +64,7 @@
       <!-- Navbar -->
       <ul class="navbar-nav ml-auto ml-md-0">
         <li class="nav-item dropdown no-arrow mx-1">
-          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-bell fa-fw"></i>
             <span class="badge badge-danger">9+</span>
           </a>
@@ -62,8 +76,7 @@
           </div>
         </li>
         <li class="nav-item dropdown no-arrow mx-1">
-          <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-envelope fa-fw"></i>
             <span class="badge badge-danger">7</span>
           </a>
@@ -75,8 +88,7 @@
           </div>
         </li>
         <li class="nav-item dropdown no-arrow">
-          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-user-circle fa-fw"></i>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
@@ -112,11 +124,6 @@
             <span>QRcode Image</span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="time_table.html">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Time Table</span></a>
-        </li>
-        <li class="nav-item active">
           <a class="nav-link" href="admin_signup.html">
             <i class="fas fa-fw fa-table"></i>
             <span>Add Admin</span></a>
@@ -146,6 +153,11 @@
             <i class="fas fa-fw fa-table"></i>
             <span>Signup Staff</span></a>
         </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="all_time_tables.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>View Time table</span></a>
+        </li>
       </ul>
 
       <div id="content-wrapper">
@@ -157,7 +169,7 @@
             <li class="breadcrumb-item">
               <a href="#">Dashboard</a>
             </li>
-            <li class="breadcrumb-item active">Time Table</li>
+            <li class="breadcrumb-item active">View Timetable</li>
           </ol>
 
           <!-- Area Chart Example-->
@@ -166,6 +178,202 @@
         <!-- /.container-fluid -->
 
         <div class="container">
+
+          <div class="row">
+            <div class="col">
+              <!-- Central Modal Fluid Success-->
+             <div class="modal fade" id="view_timetable" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+               aria-hidden="true">
+               <div class="modal-dialog modal-fluid modal-notify modal-success" role="document">
+                 <!--Content-->
+                 <div class="modal-content">
+                   <!--Header-->
+                   <div class="modal-header">
+                     <p class="heading lead">Time Table</p>
+
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                       <span aria-hidden="true" class="white-text">&times;</span>
+                     </button>
+                   </div>
+
+                   <!--Body-->
+                   <div class="modal-body">
+                     <div class="text-center">
+                       <i class="fas fa-check fa-4x mb-3 animated rotateIn"></i>
+                       <!--Grid column-->
+
+                         <!-- Table  -->
+                         <table class="table table-hover">
+                           <!-- Table head -->
+                           <thead class="blue-grey lighten-4">
+                             <tr>
+                               <th>#</th>
+                               <th>Lorem</th>
+                               <th>Ipsum</th>
+                               <th>Dolor</th>
+                             </tr>
+                           </thead>
+                           <!-- Table head -->
+
+                           <!-- Table body -->
+                           <tbody>
+                             <tr>
+                               <th scope="row">1</th>
+                               <td>Cell 1</td>
+                               <td>Cell 2</td>
+                               <td>Cell 3</td>
+                             </tr>
+                             <tr>
+                               <th scope="row">2</th>
+                               <td>Cell 4</td>
+                               <td>Cell 5</td>
+                               <td>Cell 6</td>
+                             </tr>
+                             <tr>
+                               <th scope="row">3</th>
+                               <td>Cell 7</td>
+                               <td>Cell 8</td>
+                               <td>Cell 9</td>
+                             </tr>
+                           </tbody>
+                           <!-- Table body -->
+                         </table>
+                         <!-- Table  -->
+
+                       </div>
+
+                </div>
+
+                   <!--Footer-->
+                   <div class="modal-footer">
+                     <a role="button" class="btn btn-success">Edit
+                       <i class="far fa-edit ml-1"></i>
+                     </a>
+                     <a role="button" class="btn btn-outline-success waves-effect" data-dismiss="modal">Close</a>
+                   </div>
+                 </div>
+                 <!--/.Content-->
+               </div>
+             </div>
+             <!-- Central Modal Fluid Success-->
+
+              <!-- button for view timetable modal -->
+
+             <form>
+ <div class="form-row align-items-center">
+   <div class="col-auto">
+     <label class="sr-only" for="inlineFormInput">Academic Year</label>
+     <div class="input-group mb-2">
+       <div class="input-group-prepend">
+         <div class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></div>
+       </div>
+     <input class="form-control" type="text" name="academic_year" id="academic_year" placeholder="enter academic year">
+     </div>
+     </div>
+   <div class="col-auto">
+     <label class="sr-only" for="inlineFormInputGroup">Semester</label>
+     <div class="input-group mb-2">
+       <div class="input-group-prepend">
+         <div class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></div>
+       </div>
+       <select class="form-control " name="academic_sem" id="academic_sem">
+            <option value="first_sem">First Semester</option>
+            <option value="Second_sem">Second Semester</option>
+       </select>
+     </div>
+   </div>
+   <div class="col-auto">
+     <button type="button" class="btn btn-success mb-3 rounded" data-toggle="modal" data-target="#view_timetable"><i class="fa fa-search" aria-hidden="true"></i> Search Timetable</button>
+   </div>
+ </div>
+</form>
+<<<<<<< HEAD
+      </div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+    <!-- Table  -->
+    <table class="table table-hover table-responsive table-sm">
+      <!-- Table head -->
+      <thead class="thead-dark">
+        <tr>
+          <th>Exam Date</th>
+          <th>Exam Day</th>
+          <th>Exam Time</th>
+          <th>Academic Year</th>
+          <th>Semester</th>
+          <th>Programme</th>
+          <th>Course Name</th>
+          <th>Course Code</th>
+          <th>Level</th>
+          <th>Lecture Halls</th>
+          <th>Examiner</th>
+          <th>Number of Students</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <!-- Table head -->
+
+      <!-- Table body -->
+      <tbody>
+        <tr>
+          <th role="row"><form><input class="form-control" type="date" name="" id=""></form></th>
+          <td><form>
+            <select class="form-control" name="" id="">
+              <option selected>Morning</option>
+              <option >Afternoon</option>
+            </select>
+        </form></td>
+          <td><form><input class="form-control" type="time" name="" id=""></form></td>
+          <td><form><input class="form-control" type="text" name="" id=""></form></td>
+          <td><form>
+            <select class="form-control" name="" id="">
+              <option value="first_sem" selected >First Semester</option>
+              <option value="second_sem">Afternoon</option>
+            </select>
+        </form></td>
+          <td><form><input class="form-control" type="text" name="" id=""></form></td>
+          <td><form><input class="form-control" type="text" name="" id=""></form></td>
+          <td><form><input class="form-control" type="text" name="" id=""></form></td>
+          <td><form>
+            <select  class="form-control" name="" id="">
+              <option >100</option>
+              <option>200</option>
+              <option>300</option>
+              <option>400</option>
+            </select>
+        </form></td>
+        <td><button></button></td>
+          <td><form><input class="form-control" type="text" name="" id=""></form></td>
+
+
+          <td><div class="form-group"><form><input class="form-control" type="number" name="" id=""></form></div></td>
+
+          <td>
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+          <label class="btn btn-success">
+            <input type="radio" name="options" id="option1" autocomplete="off" checked><i class="fa fa-check" aria-hidden="true"></i>
+          </label>
+          <label class="btn btn-primary">
+            <input type="radio" name="options" id="option3" autocomplete="off"><i class="fa fa-university" aria-hidden="true"></i>
+          </label>
+        </div>
+      </td>
+        </tr>
+      </tbody>
+      <!-- Table body -->
+    </table>
+    <!-- Table  -->
+  </div>
+
+</div>
+
+</div>
+
+=======
+            </div>
+>>>>>>> 2119df048646dbb0d94743745bfb802542ff8ad9
 
 
         <!-- Sticky Footer -->
@@ -189,33 +397,39 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-      aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
-          </div>
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="login.html">Logout</a>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
+  <!-- JQuery -->
+<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="js/mdb.min.js"></script>
   <!-- Page level plugin JavaScript-->
   <script src="vendor/chart.js/Chart.min.js"></script>
 
@@ -228,17 +442,78 @@
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
   <script src="../js/vue.js"></script>
-  <script>
-    const vm = new Vue({
-      el: '#app',
-      data: {
 
-      },
-      methods: {
+  <script type="text/javascript">
+  const vm = new Vue({
+    el: "#app",
+    data: {
+      time_table: [{
+        exam_day: "",
+        exam_time: "",
+        exam_date: "",
+        semester: "",
+        academic_year: "",
+        program_name: "",
+        course_name: "",
+        level: "",
+        lecture_halls: null,
+        examiner: "",
+        number_of_students: "",
+        course_code: ""
+      }]
+    },
+    methods: {
+
+    },
+    async created(){
+
+      var academic_year,temp_year
+      let year = new Date().getUTCFullYear();
+      var level,semester;
+      const defualt_month = 6;
+      var month = new Date().getMonth() + 1;
+
+      if(defualt_month > month){
+          semester = "second semester";
+           temp_year = year - 1;
+           academic_year = `${temp_year}/${year}`;
 
       }
-    })
+      else{
+          semester = "first semester";
+           temp_year = year + 1;
+           academic_year = `${year}/${temp_year}`;
+      }
+
+      try {
+        let all_exam_time_table = await $.ajax({
+          url: "/student/search_by_academic_year",
+          method: "POST",
+          data: {
+            academic_year: academic_year,
+            semester: semester
+          },
+          dataType: "JSON"
+
+        })
+
+        let {res,data} = all_exam_time_table
+        console.log(all_exam_time_table)
+        if(res === "data found"){
+          vm.time_table = data
+          console.log(vm.time_table)
+        }
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    BeforeCreate(){
+
+    }
+  })
   </script>
+
+
 </body>
 
 </html>

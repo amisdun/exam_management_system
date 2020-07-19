@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Admin | Timetable</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+  <!-- Page level plugin CSS-->
+  <link href="admin/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="admin/css/sb-admin.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <!-- Material Design Bootstrap -->
+  <link href="admin/css/mdb.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="admin/css/style.css" rel="stylesheet">
+</head>
+
+<body id="page-top">
+
+  <div id="app">
+    <nav class="navbar navbar-expand navbar-dark bg-info static-top">
+
+      <a class="navbar-brand mr-1" href="index.html">Exam Center</a>
+
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Navbar Search -->
+      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Navbar -->
+      <ul class="navbar-nav ml-auto ml-md-0">
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-bell fa-fw"></i>
+            <span class="badge badge-danger">9+</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-envelope fa-fw"></i>
+            <span class="badge badge-danger">7</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-circle fa-fw"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="#">Settings</a>
+            <a class="dropdown-item" href="#">Activity Log</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+          </div>
+        </li>
+      </ul>
+
+    </nav>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="QRcode_info.html">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>QRcode Info</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="QRcode_generator.html">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>QRcode Image</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="time_table.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Time Table</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="admin_signup.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Add Admin</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="time_table.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Create Time Table</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="lecturer_details.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Add lecturer</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="lecturer_halls.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Add Halls</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="programs.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Add Programs/Courses</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="staff_signup.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Signup Staff</span></a>
+        </li>
+      </ul>
+
+      <div id="content-wrapper">
+
+        <div class="container-fluid">
+
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">View Timetable</li>
+          </ol>
+
+          <!-- Area Chart Example-->
+
+        </div>
+        <!-- /.container-fluid -->
+
+        <div class="container">
+
+          <div class="row">
+            <div class="col">
+              <!-- Central Modal Fluid Success-->
+             <div class="modal fade" id="view_timetable" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+               aria-hidden="true">
+               <div class="modal-dialog modal-fluid modal-notify modal-success" role="document">
+                 <!--Content-->
+                 <div class="modal-content">
+                   <!--Header-->
+                   <div class="modal-header">
+                     <p class="heading lead">Time Table</p>
+
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                       <span aria-hidden="true" class="white-text">&times;</span>
+                     </button>
+                   </div>
+
+                   <!--Body-->
+                   <div class="modal-body">
+                     <div class="text-center">
+                       <i class="fas fa-check fa-4x mb-3 animated rotateIn"></i>
+                       <!--Grid column-->
+
+                         <!-- Table  -->
+                         <table class="table table-hover">
+                           <!-- Table head -->
+                           <thead class="blue-grey lighten-4">
+                             <tr>
+                               <th>#</th>
+                               <th>Lorem</th>
+                               <th>Ipsum</th>
+                               <th>Dolor</th>
+                             </tr>
+                           </thead>
+                           <!-- Table head -->
+
+                           <!-- Table body -->
+                           <tbody>
+                             <tr>
+                               <th scope="row">1</th>
+                               <td>Cell 1</td>
+                               <td>Cell 2</td>
+                               <td>Cell 3</td>
+                             </tr>
+                             <tr>
+                               <th scope="row">2</th>
+                               <td>Cell 4</td>
+                               <td>Cell 5</td>
+                               <td>Cell 6</td>
+                             </tr>
+                             <tr>
+                               <th scope="row">3</th>
+                               <td>Cell 7</td>
+                               <td>Cell 8</td>
+                               <td>Cell 9</td>
+                             </tr>
+                           </tbody>
+                           <!-- Table body -->
+                         </table>
+                         <!-- Table  -->
+
+                       </div>
+
+                </div>
+
+                   <!--Footer-->
+                   <div class="modal-footer">
+                     <a role="button" class="btn btn-success">Edit
+                       <i class="far fa-edit ml-1"></i>
+                     </a>
+                     <a role="button" class="btn btn-outline-success waves-effect" data-dismiss="modal">Close</a>
+                   </div>
+                 </div>
+                 <!--/.Content-->
+               </div>
+             </div>
+             <!-- Central Modal Fluid Success-->
+
+              <!-- button for view timetable modal -->
+
+             <form>
+ <div class="form-row align-items-center">
+   <div class="col-auto">
+     <label class="sr-only" for="inlineFormInput">Academic Year</label>
+     <div class="input-group mb-2">
+       <div class="input-group-prepend">
+         <div class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></div>
+       </div>
+     <input class="form-control" type="text" name="academic_year" id="academic_year" placeholder="enter academic year">
+     </div>
+     </div>
+   <div class="col-auto">
+     <label class="sr-only" for="inlineFormInputGroup">Semester</label>
+     <div class="input-group mb-2">
+       <div class="input-group-prepend">
+         <div class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></div>
+       </div>
+       <select class="form-control " name="academic_sem" id="academic_sem">
+            <option value="first_sem">First Semester</option>
+            <option value="Second_sem">Second Semester</option>
+       </select>
+     </div>
+   </div>
+   <div class="col-auto">
+     <button type="button" class="btn btn-success mb-3 rounded" data-toggle="modal" data-target="#view_timetable"><i class="fa fa-search" aria-hidden="true"></i> Search Timetable</button>
+   </div>
+ </div>
+</form>
+            </div>
+
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © Your Website 2019</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="login.html">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap core JavaScript-->
+<script src="admin/vendor/jquery/jquery.min.js"></script>
+  <script src="admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <!-- JQuery -->
+<script type="text/javascript" src="admin/js/jquery-3.4.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="admin/js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="admin/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="admin/js/mdb.min.js"></script>
+  <!-- Page level plugin JavaScript-->
+  <script src="admin/vendor/chart.js/Chart.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="admin/js/sb-admin.min.js"></script>
+
+  <!-- Demo scripts for this page-->
+  <script src="admin/js/demo/chart-area-demo.js"></script>
+  <script src="admin/js/demo/chart-bar-demo.js"></script>
+  <script src="admin/js/demo/chart-pie-demo.js"></script>
+  <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+  <script src="../js/vue.js"></script>
+
+
+</body>
+
+</html>

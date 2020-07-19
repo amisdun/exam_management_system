@@ -37,7 +37,7 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav navbar-right">
-            <li class="btn-trial"><a href="#courses">View Time-Table</a></li>
+            <li class="btn-trial"><a href="view-timetable.html">View Time-Table</a></li>
             <li class="btn-trial"><a href="#" data-target="#stafflogin" data-toggle="modal">Staff Sign in</a></li>
             <li class="btn-trial"><a href="#" data-target="#adminlogin" data-toggle="modal">Admin Sign in</a></li>
           </ul>
@@ -48,7 +48,7 @@
     <!--Modal box-->
     <div class="modal fade" id="stafflogin" role="dialog">
       <div class="modal-dialog modal-sm">
-  
+
         <!-- Modal content no 1-->
         <div class="modal-content">
           <div class="modal-header">
@@ -56,7 +56,7 @@
             <h4 class="modal-title text-center form-title">Staff Login</h4>
           </div>
           <div class="modal-body padtrbl">
-  
+
             <div class="login-box-body">
               <p class="login-box-msg">Sign in to start your session</p>
               <div class="form-group">
@@ -102,13 +102,13 @@
             </div>
           </div>
         </div>
-  
+
       </div>
     </div>
-  
+
     <div class="modal fade" id="adminlogin" role="dialog">
       <div class="modal-dialog modal-sm">
-  
+
         <!-- Modal content no 1-->
         <div class="modal-content">
           <div class="modal-header">
@@ -116,7 +116,7 @@
             <h4 class="modal-title text-center form-title">Admin Login</h4>
           </div>
           <div class="modal-body padtrbl">
-  
+
             <div class="login-box-body">
               <p class="login-box-msg">Sign in to start your session</p>
               <div class="form-group">
@@ -162,7 +162,7 @@
             </div>
           </div>
         </div>
-  
+
       </div>
     </div>
     <!--/ Modal box-->
@@ -178,7 +178,7 @@
               <div class="intro-para text-center quote">
                 <p class="big-text">Examination Scheduling And Attendance Based System</p>
                 <p class="small-text"></p>
-                <a href="#" class="btn get-quote">VIEW TIME-TABLE BY PROGRAM</a>
+                <a href="viewtimetable.html" class="btn get-quote">VIEW TIME-TABLE BY PROGRAM</a>
               </div>
               <a href="#" class="mouse-hover">
                 <div class="mouse"></div>
@@ -188,15 +188,15 @@
         </div>
       </div>
     </div>
-    
-  
+
+
     <!--Footer-->
     <footer id="footer" class="footer">
       <div class="container text-center">
-        ©2020 EXAM MANAGER. All rights reserved 
+        ©2020 EXAM MANAGER. All rights reserved
     </footer>
   </div>
-  <!--/ Footer-->   
+  <!--/ Footer-->
   <script src="js/vue.js"></script>
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery.easing.min.js"></script>
@@ -248,7 +248,7 @@
                 dataType: "json"
               })
 
-              if(staff_login.res === "failed"){this.show_staff= false; this.staff_signin_message = staff_login.message} 
+              if(staff_login.res === "failed"){this.show_staff= false; this.staff_signin_message = staff_login.message}
               else{
                 this.show_staff = false
                 this.staff_signin_message = staff_login.message
@@ -290,7 +290,7 @@
         }
       },
       computed: {
-        
+
       },
     }).$mount("#app")
   </script>

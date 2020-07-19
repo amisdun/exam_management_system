@@ -26,13 +26,13 @@
 
   <div id="app">
       <nav class="navbar navbar-expand navbar-dark bg-info static-top">
-  
+
         <a class="navbar-brand mr-1" href="index.html">Start Bootstrap</a>
-    
+
         <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
           <i class="fas fa-bars"></i>
         </button>
-    
+
         <!-- Navbar Search -->
         <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
           <div class="input-group">
@@ -44,7 +44,7 @@
             </div>
           </div>
         </form>
-    
+
         <!-- Navbar -->
         <ul class="navbar-nav ml-auto ml-md-0">
           <li class="nav-item dropdown no-arrow mx-1">
@@ -83,11 +83,11 @@
             </div>
           </li>
         </ul>
-    
+
       </nav>
-    
+
       <div id="wrapper">
-    
+
         <!-- Sidebar -->
         <ul class="sidebar navbar-nav bg-dark">
           <li class="nav-item">
@@ -105,11 +105,6 @@
             <a class="nav-link" href="QRcode_generator.html">
               <i class="fas fa-fw fa-chart-area"></i>
               <span>QRcode Image</span></a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="time_table.html">
-              <i class="fas fa-fw fa-table"></i>
-              <span>Time Table</span></a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="admin_signup.html">
@@ -141,12 +136,17 @@
               <i class="fas fa-fw fa-table"></i>
               <span>Signup Staff</span></a>
           </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="all_time_tables.html">
+              <i class="fas fa-fw fa-table"></i>
+              <span>View Time table</span></a>
+          </li>
         </ul>
-    
+
         <div id="content-wrapper">
-    
+
           <div class="container-fluid">
-    
+
             <!-- Breadcrumbs-->
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
@@ -154,7 +154,7 @@
               </li>
               <li class="breadcrumb-item active">QRcode Info</li>
             </ol>
-            
+
               <form>
                 <div class="form-row">
                   <div class="form-group col-md-6">
@@ -165,7 +165,7 @@
                   </div>
                 </div>
               </form>
-              
+
             <!-- DataTables Example -->
             <div class="table-responsive">
               <table class="table table-hover table-responsive-lg table-responsive-md table-responsive-sm table-responsive-xl">
@@ -191,11 +191,11 @@
                 </tbody>
               </table>
             </div>
-            
+
             </div>
           </div>
           <!-- /.container-fluid -->
-    
+
           <!-- Sticky Footer -->
           <footer class="sticky-footer mt-5">
             <div class="container my-auto">
@@ -204,16 +204,16 @@
               </div>
             </div>
           </footer>
-    
+
         </div>
         <!-- /.content-wrapper -->
       <!-- /#wrapper -->
-    
+
       <!-- Scroll to Top Button-->
       <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
       </a>
-    
+
       <!-- Logout Modal-->
       <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -260,12 +260,12 @@
           semester: "",
           academic_year: "",
           parent_id: ""
-        
+
       },
       methods: {
        async delete_info(e) {
           let qrcode_id = e.currentTarget.id
-          
+
           try {
             let delete_qrcode = await $.ajax({url: `/QRcode/delete_qrcode/${vm.parent_id}/${qrcode_id}`, method: "delete"})
             if(delete_qrcode.res === "deleted"){
@@ -278,16 +278,16 @@
         }
       },
       computed: {
-        
+
       },
       mounted() {
-        
+
       },
       async created() {
             try {
               let temp_year;
               let year = new Date().getUTCFullYear();
-              
+
               const defualt_month = 6;
               var month = new Date().getMonth() + 1;
 
@@ -314,7 +314,7 @@
             } catch (error) {
               console.log(error)
             }
-        
+
       }
     })
   </script>

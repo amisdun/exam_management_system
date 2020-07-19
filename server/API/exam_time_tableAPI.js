@@ -7,12 +7,8 @@ const mongoose = require("mongoose");
 require("../../index");
 
 let time_table_generator = async (req, res, next) => {
-  var academic_year,i_length,i_slice,l_year,t_year,temp_year;
+  var academic_year,temp_year;
   let year = new Date().getUTCFullYear();
-  let program_name = (req.body.program_name).toUpperCase();
-  // Getting the semester and level from the index number
-  var index_number = (req.body.index_number).toUpperCase();
-  var level,semester;
   const defualt_month = 6;
   var month = new Date().getMonth() + 1;
 
@@ -20,31 +16,11 @@ let time_table_generator = async (req, res, next) => {
       semester = "second semester";
        temp_year = year - 1;
        academic_year = `${temp_year}/${year}`;
-       i_length = (index_number.length) - 2;
-       i_slice = index_number.slice(i_length,)
-       l_year = academic_year.slice(7,)
-       t_year = academic_year.slice(2,4);
-      if(i_slice == t_year){
-          level = 1+ "00"
-      }
-      else{
-          level = (l_year - i_slice) + "00";
-      }
   }
   else{
       semester = "first semester";
        temp_year = year + 1;
        academic_year = `${year}/${temp_year}`;
-       i_length = (index_number.length) - 2;
-       i_slice = index_number.slice(i_length,)
-       l_year = academic_year.slice(7,)
-       t_year = academic_year.slice(2,4);
-      if(i_slice == t_year){
-          level = 1+"00"
-      }
-      else{
-          level = (l_year - i_slice) + "00";
-      }
   }
   //meeting the hard and soft constraints conditions
   let get_all_time_table = await time_table.find({}).exec()
@@ -236,7 +212,7 @@ let check_slot_flexibility = async (req, res, next) => {
 let fetch_all_time_table = async (req, res, next) => {
   let all_time_table = await time_table.find({}).exec();
 
-  return res.json({
+  return res.status(200).json({
     data: all_time_table,
   });
 };
@@ -558,5 +534,6 @@ module.exports = {
   check_slot_flexibility: check_slot_flexibility,
   find_by_id_and_delete: find_by_id_and_delete,
   find_by_id_and_update: find_by_id_and_update,
-  fetch_academic_sem_time_table: fetch_academic_sem_time_table
+  fetch_academic_sem_time_table: fetch_academic_sem_time_table,
+  fetch_all_time_table: fetch_all_time_table
 };

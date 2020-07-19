@@ -33,11 +33,11 @@
     <nav class="navbar navbar-expand navbar-dark bg-info static-top">
 
       <a class="navbar-brand mr-1" href="index.html">Start Bootstrap</a>
-  
+
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
       </button>
-  
+
       <!-- Navbar Search -->
       <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
         <div class="input-group">
@@ -49,7 +49,7 @@
           </div>
         </div>
       </form>
-  
+
       <!-- Navbar -->
       <ul class="navbar-nav ml-auto ml-md-0">
         <li class="nav-item dropdown no-arrow mx-1">
@@ -88,11 +88,11 @@
           </div>
         </li>
       </ul>
-  
+
     </nav>
-  
+
     <div id="wrapper">
-  
+
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
         <li class="nav-item">
@@ -110,11 +110,6 @@
           <a class="nav-link" href="QRcode_generator.html">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>QRcode Image</span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="time_table.html">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Time Table</span></a>
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="admin_signup.html">
@@ -146,12 +141,17 @@
             <i class="fas fa-fw fa-table"></i>
             <span>Signup Staff</span></a>
         </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="all_time_tables.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>View Time table</span></a>
+        </li>
       </ul>
-  
+
       <div id="content-wrapper">
-  
+
         <div class="container-fluid">
-  
+
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
@@ -166,9 +166,9 @@
             </div>
           </div>
           </ol>
-  
+
           <!-- Area Chart Example-->
-        
+
         <!-- /.container-fluid -->
           <div class="container">
             <div class="alert" :class="server_res === 'created'? 'alert-success' : 'alert-danger'" role="alert" v-show="message">
@@ -205,7 +205,7 @@
                 </div>
               </div>
             </form>
-  
+
             <div class="card mt-4">
               <div class="card-header">
                 Featured
@@ -228,8 +228,8 @@
                       <td>{{program.number_of_student}}</td>
                       <td>
                         <div class="btn-group" role="group" aria-label="Basic example">
-                          
-                          <button type="button"  style="font-size: 0.6rem;" class="btn withTooltip btn-dark btn-group-sm" v-for="(course,index) of program.courses_offered" :key="index" data-toggle="tooltip" rel="tooltip" data-html="true" 
+
+                          <button type="button"  style="font-size: 0.6rem;" class="btn withTooltip btn-dark btn-group-sm" v-for="(course,index) of program.courses_offered" :key="index" data-toggle="tooltip" rel="tooltip" data-html="true"
                           data-original-title="<li>Course: </li><li>Examinar</li>" >
                             {{course.course_code}}
                              <a href="#" class="btn btn-danger" style="font-size: 0.6rem;" :id="course._id" @click.prevent="remove_course_detail">X</a>
@@ -256,18 +256,18 @@
             </div>
           </div>
         </footer>
-  
+
       </div>
       <!-- /.content-wrapper -->
-  
+
     </div>
     <!-- /#wrapper -->
-  
+
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
       <i class="fas fa-angle-up"></i>
     </a>
-  
+
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -364,7 +364,7 @@
               </div>
             </form>
           </div>
-          
+
           <div class="modal-footer">
             <a class="btn btn-primary" href="#" @click.prevent="save_changes">Save</a>
           </div>
@@ -377,7 +377,7 @@
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- <script src="vendor/bootstrap/js/bootstrap.min.js"></script> -->
-  
+
   <!-- Core plugin JavaScript-->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
@@ -395,8 +395,8 @@
 
   <script>$("[rel=tooltip]").tooltip({html:true});</script>
   <script>
-   
-   
+
+
     const vm = new Vue({
       el: "#app",
       data: {
@@ -570,7 +570,7 @@
         async remove_course_detail(e){
           let program_id = e.currentTarget.parentElement.parentElement.parentElement.parentElement.id
           let course_id = e.currentTarget.id
-          
+
           let delete_course = await $.ajax({
             url: `/program/delete_course/${program_id}/${course_id}`,
             method: "DELETE"
@@ -626,7 +626,7 @@
                 vm.add_res = add_course_details.res
                 vm.add_response = "New course Added"
                 vm.add_message = true
-                
+
                 setTimeout(function(){
                   location.reload()
                 },500)
@@ -642,7 +642,7 @@
         }
       },
       computed: {
-        
+
       },
       async created() {
         let programs = await $.ajax({url: "/program/all_programs", method: "GET"})
@@ -656,9 +656,9 @@
         }
       },
       mounted() {
-        
+
       }
-      
+
     })
   </script>
 </body>

@@ -23,19 +23,30 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
   <!-- Material Design Bootstrap -->
-<<<<<<< HEAD
   <!-- <link href="css/mdb.css" rel="stylesheet"> -->
-  <style media="screen">
-      div.myButton {
-          width: 25px !important;
-          height: 25px !important;
-      }
-  </style>
-=======
-  <link href="css/mdb.css" rel="stylesheet">
+
+
+  <!-- <link href="css/mdb.css" rel="stylesheet"> -->
   <!-- Your custom styles (optional) -->
   <link href="css/style.css" rel="stylesheet">
->>>>>>> 2119df048646dbb0d94743745bfb802542ff8ad9
+
+  <style media="screen">
+  table {
+    table-layout: fixed !important;
+  }
+  select {
+    width: 125px !important;
+  }
+  .just_add {
+    width: 500px !important;
+  }
+  .it {
+    font-size: 12px !important;
+    width: 80px !important;
+    margin: none !important;
+    padding: : none !important;
+  }
+  </style>
 </head>
 
 <body id="page-top">
@@ -105,301 +116,261 @@
     <div id="wrapper">
 
       <!-- Sidebar -->
-      <ul class="sidebar navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="index.html">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span>
-          </a>
-        </li>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="QRcode_info.html">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>QRcode Info</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="QRcode_generator.html">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>QRcode Image</span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="admin_signup.html">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Add Admin</span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="time_table.html">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Create Time Table</span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="lecturer_details.html">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Add lecturer</span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="lecturer_halls.html">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Add Halls</span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="programs.html">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Add Programs/Courses</span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="staff_signup.html">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Signup Staff</span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="all_time_tables.html">
-            <i class="fas fa-fw fa-table"></i>
-            <span>View Time table</span></a>
-        </li>
-      </ul>
+      <!-- <ul class="sidebar navbar-nav">
+      <li class="nav-item">
+      <a class="nav-link" href="index.html">
+      <i class="fas fa-fw fa-tachometer-alt"></i>
+      <span>Dashboard</span>
+    </a>
+  </li>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="QRcode_info.html">
+<i class="fas fa-fw fa-chart-area"></i>
+<span>QRcode Info</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="QRcode_generator.html">
+<i class="fas fa-fw fa-chart-area"></i>
+<span>QRcode Image</span></a>
+</li>
+<li class="nav-item active">
+<a class="nav-link" href="admin_signup.html">
+<i class="fas fa-fw fa-table"></i>
+<span>Add Admin</span></a>
+</li>
+<li class="nav-item active">
+<a class="nav-link" href="time_table.html">
+<i class="fas fa-fw fa-table"></i>
+<span>Create Time Table</span></a>
+</li>
+<li class="nav-item active">
+<a class="nav-link" href="lecturer_details.html">
+<i class="fas fa-fw fa-table"></i>
+<span>Add lecturer</span></a>
+</li>
+<li class="nav-item active">
+<a class="nav-link" href="lecturer_halls.html">
+<i class="fas fa-fw fa-table"></i>
+<span>Add Halls</span></a>
+</li>
+<li class="nav-item active">
+<a class="nav-link" href="programs.html">
+<i class="fas fa-fw fa-table"></i>
+<span>Add Programs/Courses</span></a>
+</li>
+<li class="nav-item active">
+<a class="nav-link" href="staff_signup.html">
+<i class="fas fa-fw fa-table"></i>
+<span>Signup Staff</span></a>
+</li>
+<li class="nav-item active">
+<a class="nav-link" href="all_time_tables.html">
+<i class="fas fa-fw fa-table"></i>
+<span>View Time table</span></a>
+</li>
+</ul> -->
 
-      <div id="content-wrapper">
-
-        <div class="container-fluid">
-
-          <!-- Breadcrumbs-->
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-              <a href="#">Dashboard</a>
-            </li>
-            <li class="breadcrumb-item active">View Timetable</li>
-          </ol>
-
-          <!-- Area Chart Example-->
-
-        </div>
-        <!-- /.container-fluid -->
-
-        <div class="container">
-
-          <div class="row">
-            <div class="col">
-              <!-- Central Modal Fluid Success-->
-             <div class="modal fade" id="view_timetable" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-               aria-hidden="true">
-               <div class="modal-dialog modal-fluid modal-notify modal-success" role="document">
-                 <!--Content-->
-                 <div class="modal-content">
-                   <!--Header-->
-                   <div class="modal-header">
-                     <p class="heading lead">Time Table</p>
-
-                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                       <span aria-hidden="true" class="white-text">&times;</span>
-                     </button>
-                   </div>
-
-                   <!--Body-->
-                   <div class="modal-body">
-                     <div class="text-center">
-                       <i class="fas fa-check fa-4x mb-3 animated rotateIn"></i>
-                       <!--Grid column-->
-
-                         <!-- Table  -->
-                         <table class="table table-hover">
-                           <!-- Table head -->
-                           <thead class="blue-grey lighten-4">
-                             <tr>
-                               <th>#</th>
-                               <th>Lorem</th>
-                               <th>Ipsum</th>
-                               <th>Dolor</th>
-                             </tr>
-                           </thead>
-                           <!-- Table head -->
-
-                           <!-- Table body -->
-                           <tbody>
-                             <tr>
-                               <th scope="row">1</th>
-                               <td>Cell 1</td>
-                               <td>Cell 2</td>
-                               <td>Cell 3</td>
-                             </tr>
-                             <tr>
-                               <th scope="row">2</th>
-                               <td>Cell 4</td>
-                               <td>Cell 5</td>
-                               <td>Cell 6</td>
-                             </tr>
-                             <tr>
-                               <th scope="row">3</th>
-                               <td>Cell 7</td>
-                               <td>Cell 8</td>
-                               <td>Cell 9</td>
-                             </tr>
-                           </tbody>
-                           <!-- Table body -->
-                         </table>
-                         <!-- Table  -->
-
-                       </div>
-
-                </div>
-
-                   <!--Footer-->
-                   <div class="modal-footer">
-                     <a role="button" class="btn btn-success">Edit
-                       <i class="far fa-edit ml-1"></i>
-                     </a>
-                     <a role="button" class="btn btn-outline-success waves-effect" data-dismiss="modal">Close</a>
-                   </div>
-                 </div>
-                 <!--/.Content-->
-               </div>
-             </div>
-             <!-- Central Modal Fluid Success-->
-
-              <!-- button for view timetable modal -->
-
-             <form>
- <div class="form-row align-items-center">
-   <div class="col-auto">
-     <label class="sr-only" for="inlineFormInput">Academic Year</label>
-     <div class="input-group mb-2">
-       <div class="input-group-prepend">
-         <div class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></div>
-       </div>
-     <input class="form-control" type="text" name="academic_year" id="academic_year" placeholder="enter academic year">
-     </div>
-     </div>
-   <div class="col-auto">
-     <label class="sr-only" for="inlineFormInputGroup">Semester</label>
-     <div class="input-group mb-2">
-       <div class="input-group-prepend">
-         <div class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></div>
-       </div>
-       <select class="form-control " name="academic_sem" id="academic_sem">
-            <option value="first_sem">First Semester</option>
-            <option value="Second_sem">Second Semester</option>
-       </select>
-     </div>
-   </div>
-   <div class="col-auto">
-     <button type="button" class="btn btn-success mb-3 rounded" data-toggle="modal" data-target="#view_timetable"><i class="fa fa-search" aria-hidden="true"></i> Search Timetable</button>
-   </div>
- </div>
-</form>
-<<<<<<< HEAD
-      </div>
+<div id="content-wrapper">
 
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-12">
-    <!-- Table  -->
-    <table class="table table-hover table-responsive table-sm">
-      <!-- Table head -->
-      <thead class="thead-dark">
-        <tr>
-          <th>Exam Date</th>
-          <th>Exam Day</th>
-          <th>Exam Time</th>
-          <th>Academic Year</th>
-          <th>Semester</th>
-          <th>Programme</th>
-          <th>Course Name</th>
-          <th>Course Code</th>
-          <th>Level</th>
-          <th>Lecture Halls</th>
-          <th>Examiner</th>
-          <th>Number of Students</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <!-- Table head -->
 
-      <!-- Table body -->
-      <tbody>
-        <tr>
-          <th role="row"><form><input class="form-control" type="date" name="" id=""></form></th>
-          <td><form>
-            <select class="form-control" name="" id="">
-              <option selected>Morning</option>
-              <option >Afternoon</option>
-            </select>
-        </form></td>
-          <td><form><input class="form-control" type="time" name="" id=""></form></td>
-          <td><form><input class="form-control" type="text" name="" id=""></form></td>
-          <td><form>
-            <select class="form-control" name="" id="">
-              <option value="first_sem" selected >First Semester</option>
-              <option value="second_sem">Afternoon</option>
-            </select>
-        </form></td>
-          <td><form><input class="form-control" type="text" name="" id=""></form></td>
-          <td><form><input class="form-control" type="text" name="" id=""></form></td>
-          <td><form><input class="form-control" type="text" name="" id=""></form></td>
-          <td><form>
-            <select  class="form-control" name="" id="">
-              <option >100</option>
-              <option>200</option>
-              <option>300</option>
-              <option>400</option>
-            </select>
-        </form></td>
-        <td><button></button></td>
-          <td><form><input class="form-control" type="text" name="" id=""></form></td>
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="#">Dashboard</a>
+      </li>
+      <li class="breadcrumb-item active">View Timetable</li>
+    </ol>
 
+    <!-- Area Chart Example-->
 
-          <td><div class="form-group"><form><input class="form-control" type="number" name="" id=""></form></div></td>
-
-          <td>
-            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-          <label class="btn btn-success">
-            <input type="radio" name="options" id="option1" autocomplete="off" checked><i class="fa fa-check" aria-hidden="true"></i>
-          </label>
-          <label class="btn btn-primary">
-            <input type="radio" name="options" id="option3" autocomplete="off"><i class="fa fa-university" aria-hidden="true"></i>
-          </label>
-        </div>
-      </td>
-        </tr>
-      </tbody>
-      <!-- Table body -->
-    </table>
-    <!-- Table  -->
   </div>
+  <!-- /.container-fluid -->
 
-</div>
+  <div class="container-fluid">
 
-</div>
+    <div class="row">
+      <div class="col">
+        <!-- Central Modal Fluid Success-->
+        <!-- Central Modal Fluid Success-->
 
-
+        <!-- button for view timetable modal -->
+        <div class="alert alert-success mr-2" role="alert" v-show="show_alert">
+          {{alert_message}}
+          </div
+        <form>
+          <div class="form-row align-items-center">
+            <div class="col-auto">
+              <label class="sr-only" for="inlineFormInput">Academic Year</label>
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></div>
+                </div>
+                <input class="form-control" type="text" name="academic_year" id="academic_year" v-model="search_academic_year" placeholder="eg. 2017/2018">
+              </div>
             </div>
-
-
-
-        <!-- Sticky Footer -->
-        <footer class="sticky-footer">
-          <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-              <span>Copyright © Your Website 2019</span>
+            <div class="col-auto">
+              <label class="sr-only" for="inlineFormInputGroup">Semester</label>
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></div>
+                </div>
+                <select class="form-control " v-model="search_semester">
+                  <option value="" selected disabled>select semester</option>
+                  <option>first semester</option>
+                  <option>second semester</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-auto">
+              <button type="button" class="btn btn-success mb-3 rounded" @click.prevent="search_timetable"><i class="fa fa-search" aria-hidden="true"></i> Search Timetable</button>
             </div>
           </div>
-        </footer>
-
+        </form>
       </div>
-      <!-- /.content-wrapper -->
+
+
+      <form>
+        <div class="form-group mr-5">
+          <input type="email" class="form-control" v-model="search_course" placeholder="Search by course code">
+        </div>
+      </form>
+
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+              <!-- Table  -->
+              <table class="table table-hover table-responsive table-sm w-100 m-0">
+                <!-- Table head -->
+                <thead class="thead-dark">
+                  <tr>
+                    <th>Exam Date</th>
+                    <th>Exam Time</th>
+                    <th>Programme</th>
+                    <th>Course Code</th>
+                    <th>Level</th>
+                    <th>Lecture Halls</th>
+                    <th>Examiner</th>
+                    <th>Number of Students</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <!-- Table head -->
+
+                <!-- Table body -->
+                <tbody>
+                  <tr v-for="(table,key) in search_table_course_code" v-for="table in time_table" :key="key">
+                    <th role="row"><form><input class="form-control" type="date" v-model="table.exam_date" id=""></form></th>
+                    <td><form>
+                      <select class="form-control" v-model="table.exam_time" >
+                        <option>Morning</option>
+                        <option >Afternoon</option>
+                      </select>
+                    </form></td>
+                    <td><form><input class="form-control" type="text" class="just_add" v-model="table.program_name"></form></td>
+                    <td><form><input class="form-control" type="text" v-model="table.course_code"></form></td>
+                    <td><form>
+                      <select  class="form-control" v-model="table.level">
+                        <option selected>100</option>
+                        <option>200</option>
+                        <option>300</option>
+                        <option>400</option>
+                      </select>
+                    </form></td>
+                    <td>
+                      <div class="dropdown show">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Halls
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                          <a class="dropdown-item" href="#" v-for="(bt,key) of table.lecture_halls" :key="key"><span class="btn btn-dark btn-sm">{{bt}}</span> <span class="btn btn-danger btn-sm" @click.prevent="table.lecture_halls.splice(key,1)" href="#">X</span></a>
+                        </div>
+                      </div>
+                    </td>
+                    <td><form><input class="form-control" type="text" v-model="table.examiner"></form></td>
+
+
+                    <td><div class="form-group"><form><input class="form-control" type="number" v-model="table.number_of_students"></form></div></td>
+
+                    <td>
+                      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+
+                        <label class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Save Changes" @click.prevent="save_changes(table._id,key)">
+                          <input type="radio" name="options" id="option1" autocomplete="off" checked><i class="fa fa-check" aria-hidden="true"></i>
+                        </label>
+
+                        <label class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Add Hall" @click.prevent="hall_index(key)">
+                          <div data-toggle="modal" data-target="#exampleModal">
+                            <input type="radio" name="options" id="option3" autocomplete="off" ><i class="fa fa-university" aria-hidden="true"></i>
+                          </div>
+                        </label>
+
+
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+                <!-- Table body -->
+              </table>
+              <!-- Table  -->
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Modal for adding Halls -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add Hall</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <input type="text" class="form-control" v-model="hall_name">
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" @click.prevent="add_hall">Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="btn btn-info" href="time_table.html">Go Back</a>
+
+
+      <!-- Sticky Footer -->
+      <footer class="sticky-footer">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright © Your Website 2019</span>
+          </div>
+        </div>
+      </footer>
 
     </div>
-    <!-- /#wrapper -->
+    <!-- /.content-wrapper -->
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-      <i class="fas fa-angle-up"></i>
-    </a>
+  </div>
+  <!-- /#wrapper -->
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
@@ -418,36 +389,38 @@
 
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-  <!-- JQuery -->
+<!-- Core plugin JavaScript-->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- JQuery -->
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 <!-- Bootstrap tooltips -->
 <script type="text/javascript" src="js/popper.min.js"></script>
 <!-- Bootstrap core JavaScript -->
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <!-- MDB core JavaScript -->
-<script type="text/javascript" src="js/mdb.min.js"></script>
-  <!-- Page level plugin JavaScript-->
-  <script src="vendor/chart.js/Chart.min.js"></script>
+<!-- <script type="text/javascript" src="js/mdb.min.js"></script> -->
+<!-- Page level plugin JavaScript-->
+<script src="vendor/chart.js/Chart.min.js"></script>
 
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin.min.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="js/sb-admin.min.js"></script>
 
-  <!-- Demo scripts for this page-->
-  <script src="js/demo/chart-area-demo.js"></script>
-  <script src="js/demo/chart-bar-demo.js"></script>
-  <script src="js/demo/chart-pie-demo.js"></script>
-  <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
-  <script src="../js/vue.js"></script>
+<!-- Demo scripts for this page-->
+<script src="js/demo/chart-area-demo.js"></script>
+<script src="js/demo/chart-bar-demo.js"></script>
+<script src="js/demo/chart-pie-demo.js"></script>
+<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+<script src="../js/vue.js"></script>
 
-  <script type="text/javascript">
-  const vm = new Vue({
-    el: "#app",
-    data: {
+<script type="text/javascript">
+const vm = new Vue({
+  el: "#app",
+  data(){
+    return {
       time_table: [{
+        _id: "",
         exam_day: "",
         exam_time: "",
         exam_date: "",
@@ -456,62 +429,139 @@
         program_name: "",
         course_name: "",
         level: "",
-        lecture_halls: null,
+        lecture_halls: [],
         examiner: "",
         number_of_students: "",
         course_code: ""
-      }]
+      }],
+      index: null,
+      hall_name: "",
+      show_alert: false,
+      alert_message: "",
+      search_semester: "",
+      search_academic_year: "",
+      search_course: ""
+    }
+  },
+  methods: {
+    add_hall(){
+      vm.time_table[vm.index].lecture_halls.push(vm.hall_name)
     },
-    methods: {
-
+    hall_index(key){
+      vm.index = key
     },
-    async created(){
-
-      var academic_year,temp_year
-      let year = new Date().getUTCFullYear();
-      var level,semester;
-      const defualt_month = 6;
-      var month = new Date().getMonth() + 1;
-
-      if(defualt_month > month){
-          semester = "second semester";
-           temp_year = year - 1;
-           academic_year = `${temp_year}/${year}`;
-
-      }
-      else{
-          semester = "first semester";
-           temp_year = year + 1;
-           academic_year = `${year}/${temp_year}`;
-      }
-
+    async search_timetable(){
+      vm.show_alert = false
       try {
-        let all_exam_time_table = await $.ajax({
+        let searched_time_table = await $.ajax({
           url: "/student/search_by_academic_year",
           method: "POST",
           data: {
-            academic_year: academic_year,
-            semester: semester
+            academic_year: vm.search_academic_year,
+            semester: vm.search_semester
           },
           dataType: "JSON"
-
         })
 
-        let {res,data} = all_exam_time_table
-        console.log(all_exam_time_table)
-        if(res === "data found"){
-          vm.time_table = data
+        if(searched_time_table.res === "data found"){
+          vm.time_table = searched_time_table.data
           console.log(vm.time_table)
+        }
+      } catch (e) {
+        console.log(e)
+        if(e.status === 404){
+          vm.alert_message = "No data found"
+          vm.show_alert = true
+        }
+      }
+    },
+    async save_changes(id,key){
+      vm.show_alert = false
+      try {
+        let time_table_update = await $.ajax({
+          url: `/student/update_time_table/${id}`,
+          method: "PUT",
+          contentType: 'application/json',
+          data: JSON.stringify({
+            exam_day: vm.time_table[key].exam_day,
+            exam_date: vm.time_table[key].exam_date,
+            exam_time: vm.time_table[key].exam_time,
+            semester: vm.time_table[key].semester,
+            academic_year: vm.time_table[key].academic_year,
+            program_name: vm.time_table[key].program_name,
+            course_name: vm.time_table[key].course_name,
+            level: vm.time_table[key].level,
+            lecture_halls: vm.time_table[key].lecture_halls,
+            examiner: vm.time_table[key].examiner,
+            number_of_students: vm.time_table[key].number_of_students,
+            course_code: vm.time_table[key].course_code
+          })
+        })
+
+        if(time_table_update.res === "updated"){
+          vm.alert_message = "Updated"
+          vm.show_alert = true
         }
       } catch (e) {
         console.log(e)
       }
     },
-    BeforeCreate(){
+
+  },
+  computed: {
+    search_table_course_code() {
+      return this.time_table.filter((table) => {
+        return table.course_code.toLowerCase().includes(this.search_course.toLowerCase());
+      })
+    }
+  },
+  async created(){
+
+    var academic_year,temp_year
+    let year = new Date().getUTCFullYear();
+    var level,semester;
+    const defualt_month = 6;
+    var month = new Date().getMonth() + 1;
+
+    if(defualt_month > month){
+      semester = "second semester";
+      temp_year = year - 1;
+      academic_year = `${temp_year}/${year}`;
 
     }
-  })
-  </script>
+    else{
+      semester = "first semester";
+      temp_year = year + 1;
+      academic_year = `${year}/${temp_year}`;
+    }
+
+    try {
+      let all_exam_time_table = await $.ajax({
+        url: "/student/search_by_academic_year",
+        method: "POST",
+        data: {
+          academic_year: academic_year,
+          semester: semester
+        },
+        dataType: "JSON"
+
+      })
+
+      let {res,data} = all_exam_time_table
+      console.log(all_exam_time_table)
+      if(res === "data found"){
+        vm.time_table = data
+        console.log(vm.time_table)
+      }
+    } catch (e) {
+      console.log(e)
+    }
+  },
+  BeforeCreate(){
+
+  }
+})
+</script>
 
 
 </body>

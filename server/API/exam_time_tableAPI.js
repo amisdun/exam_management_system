@@ -244,18 +244,18 @@ let find_by_id_and_delete = async (req,res,next) => {
 
 let find_by_id_and_update = async (req,res,next) => {
   try {
+    console.log(req.body.exam_day)
     let { id } = req.params
-
-    let update = await time_table.findByIdAndUpdate(id, {
+    await time_table.findByIdAndUpdate(id, {
       exam_date: req.body.exam_date,
       exam_day: req.body.exam_day,
       exam_time: req.body.exam_time,
       program_name: req.body.program_name,
-      semester: semester,
-      academic_year: academic_year,
+      semester: req.body.semester,
+      academic_year: req.body.academic_year,
       course_name: req.body.course_name,
       level: req.body.level,
-      lecture_halls: [...req.body.hall],
+      lecture_halls: req.body.lecture_halls,
       examiner: req.body.examiner,
       number_of_students: req.body.number_of_students,
       course_code: req.body.course_code
@@ -263,6 +263,7 @@ let find_by_id_and_update = async (req,res,next) => {
 
     return res.status(200).json({res: "updated"})
   } catch (e) {
+    console.log(e)
     return res.status(500).json({error: e})
   }
 }

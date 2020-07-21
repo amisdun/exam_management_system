@@ -38,7 +38,7 @@
                     </ul>
                 </div>
             </div>
-        </nav> 
+        </nav>
         <header class="masthead bg-primary text-white text-center">
             <div class="container d-flex align-items-center flex-column">
                 <!-- Masthead Avatar Image--><img class="masthead-avatar mb-5" src="assets/img/uenr1.jpg" style="width: 100px;" alt="">
@@ -175,7 +175,7 @@
                 </div>
             </div>
         </div>
-        
+
         <section class="page-section bg-primary text-white mb-0" id="about">
             <div class="container">
                 <!-- About Section Heading-->
@@ -200,7 +200,7 @@
                               </div>
                             </div>
                           </div>
-                          
+
 
                           <!-- Modal for QR Code Scanner -->
                           <div class="col-sm-12 col-md-8 col-lg-8">
@@ -214,13 +214,15 @@
                                   </div>
                                   <div class="modal-body">
                                     <h5 class="modal-title" id="ModalLabel">QR Code Scanner</h5>
-                                    <video id="preview"></video>
+                                    <div class="text-center">
+                                      <video id="preview" class="w-75"></video>
+                                    </div>
                                 </div>
                                     <div class="modal-footer">
                                     <button class="btn btn-primary" href="#" data-dismiss="modal"><i class="fas fa-times fa-fw"></i>Close Scanner</button>
                                 </div>
                               </div>
-                        
+
                             </div>
                           </div>
                         </div>
@@ -340,7 +342,7 @@ Clark, MO 65243</p>
                 scanner.camera = cameras[cameras.length - 1];
                 scanner.start();
                 $('#qr_code').modal('show')
-                 
+
             })
             .catch(e => console.error(e));
             scanner.addListener('scan', content => {
@@ -348,10 +350,10 @@ Clark, MO 65243</p>
                     my_data: content
                 }
                 console.log(data)
-               
+
             });
-            
-            
+
+
             }
         </script>
     </body>

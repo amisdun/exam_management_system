@@ -4,7 +4,7 @@ const staff =  require("../Schemas/staff_signup");
 
 
 let staff_login = (req,res,next) => {
-    staff.find({staff_name: req.body.staff_name})
+    staff.find({email: req.body.email})
     .exec()
     .then(results => {
         if(results.length < 1){
@@ -22,7 +22,7 @@ let staff_login = (req,res,next) => {
                 }
                 else if(valid === true){
                     let token =jwt.sign({
-                        staff_name: results.staff_name,
+                        email: results.email,
                         userId: results._id
                     },
                     "dbkdbkqrjgrvgcwtkrnhrigukbqk",

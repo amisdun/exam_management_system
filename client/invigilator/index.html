@@ -21,6 +21,9 @@
     outline: 1px solid greenyellow;
   }
 
+.attendance-modal {
+    width: 1200px !important;
+}
   </style>
 </head>
 <body id="page-top">
@@ -190,6 +193,7 @@
           <div class="divider-custom-line"></div>
         </div>
         <div class="text-center m-0">
+            <h4>To take attendance select course code</h4>
           <form>
             <div class="form-row">
               <div class="col-lg-6 col-md-12 col-sm-12 col-sm-12 form-group">
@@ -212,13 +216,52 @@
             </div>
           </form>
         </div>
+
+        <div class="text-center m-0">
+                <h4>To view attendance select level, program and course code</h4>
+            <form>
+                <div class="row">
+                    <div class="col-sm-12 col-md-4 col-lg-4 form-group">
+                         <select class="form-control">
+                             <option value="" selected disabled>select level</option>
+                             <option>100</option>
+                             <option>200</option>
+                             <option>300</option>
+                             <option>400</option>
+                         </select>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-4 form-group">
+                         <select class="form-control">
+                             <option value="" selected disabled>select program</option>
+                             <option></option>
+                         </select>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-4 form-group">
+                         <select class="form-control">
+                             <option value="" selected disabled>select course code</option>
+                             <option>CENG206</option>
+                             <option>CENG308</option>
+                             <option>CENG412</option>
+                         </select>
+                    </div>
+                </div>
+            </form>
+        </div>
         <!-- About Section Content-->
         <div class="row">
             <div class="container mb-3 col-sm-12 col-md-10 col-lg-6">
               <div class="card card-register mx-auto mt-5">
                 <div class="card-header text-center text-dark">QR Code Scanner</div>
                 <div class="card-body">
+                    <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
                   <a class="btn btn-outline-secondary btn-block" href="#" id="qr_code_modal" @click.prevent="check_course" data-target="" data-toggle="" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">Scan QR Code</a>
+                  </div>
+                   <div class="col-sm-12 col-md-6 col-lg-6">
+                  <a class="btn btn-success btn-block" href="#" id="attendance_modal" data-toggle="modal"
+                      data-target="#attendance" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+                      aria-hidden="true">View List</a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -252,10 +295,66 @@
               </div>
             </div>
 
+             <!-- Modal for Attendance taken -->
+                 <div class="modal fade attendance-modal" id="attendance" role="dialog">
+                     <div class="modal-dialog modal-lg">
+                         <div class="modal-content">
+                             <div class="modal-header">
+                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                     <span aria-hidden="true">&times;</span>
+                                 </button>
+                             </div>
+                        
+                             <div class="modal-body">
+                                 <h5 class="modal-title text-dark text-center" id="ModalLabel">Attendance List</h5>
+                                     <div class="table-responsive">
+                                         <table
+                                             class="table table-hover table-responsive-lg table-responsive-md table-responsive-sm table-responsive-xl">
+                                             <thead class="thead-dark">
+                                                 <tr>
+                                                     <th scope="col">Index No#</th>
+                                                     <th scope="col">Name</th>
+                                                     <th scope="col">Program</th>
+                                                     <th scope="col">Level</th>
+                                                     <th scope="col">Registered Course</th>
+                                                     <th scope="col">Academic Year</th>
+                                                     <th scope="col">Semester</th>
+                                                     <th scope="col">Signature</th>
+                                                     <th scope="col">Attendance Taken</th>
+                                                 </tr>
+                                             </thead>
+                                             <tbody>
+                                                 <tr>
+                                                     <td>UE20013016</td>
+                                                     <td>Emmanuel Adiba</td>
+                                                     <td>BSc Computer Engineering</td>
+                                                     <td>400</td>
+                                                     <td>Robotics</td>
+                                                     <td>2020</td>
+                                                     <td>Second</td>
+                                                     <td>400</td>
+                                                     <td></i>
+                                                         <p class="btn btn-info"><i class="fas fa-check"></i></p>
+                                                     </td>
+                                                 </tr>
+                                             </tbody>
+                                         </table>
+                                 </div>
+                             </div>
+                             <div class="modal-footer">
+                                 <button class="btn btn-primary" href="#" data-dismiss="modal"><i
+                                     class="fas fa-times fa-fw"></i>Close Attendance</button>
+                                     <button type="button" class="btn btn-secondary mx-2">Save as PDF</button>
+                                     </div>
+                             </div>
+                         </div>
+                     </div>
+             </div>
+
 
 
             <!-- DataTables Example -->
-            <div class="table-responsive">
+            <!-- <div class="table-responsive">
               <table class="table table-hover table-responsive-lg table-responsive-md table-responsive-sm table-responsive-xl">
                 <thead class="thead-dark">
                   <tr>
@@ -284,7 +383,8 @@
                   </tr>
                 </tbody>
               </table>
-            </div>
+            </div> -->
+
           </div>
         </div>
       </div>

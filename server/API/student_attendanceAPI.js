@@ -53,9 +53,9 @@ let attendance = (req,res,next) => {
 //   console.log(err)
 // })
 
-// fetch_registered_courses.find({}).exec().then(data => {
-//   console.log(data)
-// })
+fetch_registered_courses.find({}).exec().then(data => {
+  console.log(data)
+})
 // let registered = new fetch_registered_courses({
 //     _id: new mongoose.Types.ObjectId,
 //     academic_year: academic_year,
@@ -64,7 +64,7 @@ let attendance = (req,res,next) => {
 //     program_name: program_name,
 //     semester_type: semester,
 //     program_level: level,
-//     registered_courses: ['CENG200','CENG455','CENG206','CENG207']
+//     registered_courses: ['CENG308','CENG302','CENG206','CENG207']
 //   })
 //   .save()
 //   .then(res => {

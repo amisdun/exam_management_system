@@ -37,7 +37,7 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav navbar-right">
-            <li class="btn-trial"><a href="view-timetable.html">View Time-Table</a></li>
+            <li class="btn-trial"><a href="#" id="lp_view_timetable" data-toggle="modal" data-target="#exampleModal">View Time-Table</a></li>
             <li class="btn-trial"><a href="#" data-target="#stafflogin" data-toggle="modal">Staff Sign in</a></li>
             <li class="btn-trial"><a href="#" data-target="#adminlogin" data-toggle="modal">Admin Sign in</a></li>
           </ul>
@@ -166,6 +166,46 @@
       </div>
     </div>
     <!--/ Modal box-->
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-6 form-group">
+                  <select class="form-control">
+                    <option value="" selected disabled>select level</option>
+                    <option>100</option>
+                    <option>200</option>
+                    <option>300</option>
+                    <option>400</option>
+                  </select>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 form-group">
+                  <select class="form-control">
+                    <option value="" selected disabled>select program</option>
+                    <option></option>
+                  </select>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <a href="#" class="btn btn-success">View Timetable</a><!-- redirects to pdf timetable -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end view timetable modal -->
     <!--Banner-->
     <div class="banner">
       <div class="bg-color">
@@ -189,6 +229,112 @@
       </div>
     </div>
 
+    <!-- Table for displaying timetable -->
+    <div class="center" hidden="true">
+        <div class="table-responsive">
+          <!-- Table  -->
+          <table class="table table-hover table-responsive table-sm w-100 m-0">
+            <!-- Table head -->
+            <thead class="thead-dark">
+              <tr>
+                <th>Exam Date</th>
+                <th>Exam Time</th>
+                <th>Programme</th>
+                <th>Course Code</th>
+                <th>Level</th>
+                <th>Lecture Halls</th>
+                <th>Examiner</th>
+                <th>Number of Students</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <!-- Table head -->
+
+            <!-- Table body -->
+            <tbody>
+              <tr v-for="(table,key) in search_table_course_code" v-for="table in time_table" :key="key">
+                <th role="row">
+                  <form><input class="form-control" type="date" v-model="table.exam_date" id=""></form>
+                </th>
+                <td>
+                  <form>
+                    <select class="form-control" v-model="table.exam_time">
+                      <option>Morning</option>
+                      <option>Afternoon</option>
+                    </select>
+                  </form>
+                </td>
+                <td>
+                  <form><input class="form-control" type="text" class="just_add" v-model="table.program_name">
+                  </form>
+                </td>
+                <td>
+                  <form><input class="form-control" type="text" v-model="table.course_code"></form>
+                </td>
+                <td>
+                  <form>
+                    <select class="form-control" v-model="table.level">
+                      <option selected>100</option>
+                      <option>200</option>
+                      <option>300</option>
+                      <option>400</option>
+                    </select>
+                  </form>
+                </td>
+                <td>
+                  <div class="dropdown show">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Halls
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <a class="dropdown-item" href="#" v-for="(bt,key) of table.lecture_halls" :key="key"><span
+                          class="btn btn-dark btn-sm">{{bt}}</span> <span class="btn btn-danger btn-sm"
+                          @click.prevent="table.lecture_halls.splice(key,1)" href="#">X</span></a>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <form><input class="form-control" type="text" v-model="table.examiner">
+                  </form>
+                </td>
+
+
+                <td>
+                  <div class="form-group">
+                    <form><input class="form-control" type="number" v-model="table.number_of_students"></form>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="btn-group btn-group-toggle" data-toggle="buttons">
+
+                    <label class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Save Changes"
+                      @click.prevent="save_changes(table._id,key)">
+                      <input type="radio" name="options" id="option1" autocomplete="off" checked><i class="fa fa-check"
+                        aria-hidden="true"></i>
+                    </label>
+
+                    <label class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Add Hall"
+                      @click.prevent="hall_index(key)">
+                      <div data-toggle="modal" data-target="#exampleModal">
+                        <input type="radio" name="options" id="option3" autocomplete="off"><i class="fa fa-university"
+                          aria-hidden="true"></i>
+                      </div>
+                    </label>
+
+
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+            <!-- Table body -->
+          </table>
+          <!-- Table  -->
+        </div>
+    </div>
+    <!-- end table -->
 
     <!--Footer-->
     <footer id="footer" class="footer">

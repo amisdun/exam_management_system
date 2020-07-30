@@ -181,26 +181,28 @@
             <form>
               <div class="row">
                 <div class="col-sm-12 col-md-6 col-lg-6 form-group">
-                  <select class="form-control">
+                  <select class="form-control" v-model="selected_level">
                     <option value="" selected disabled>select level</option>
                     <option>100</option>
                     <option>200</option>
                     <option>300</option>
                     <option>400</option>
                   </select>
+                  <span class="text-danger">{{level_error}}</span>
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-6 form-group">
-                  <select class="form-control">
+                  <select class="form-control" v-model="selected_program">
                     <option value="" selected disabled>select program</option>
-                    <option></option>
+                    <option v-for="(program,key) of all_programs" :key="key">{{program.program_name}}</option>
                   </select>
+                  <span class="text-danger">{{program_error}}</span>
                 </div>
               </div>
             </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <a href="#" class="btn btn-success">View Timetable</a><!-- redirects to pdf timetable -->
+            <a href="#" class="btn btn-success" @click.prevent="view_time_table_as_pdf">View Timetable</a><!-- redirects to pdf timetable -->
           </div>
         </div>
       </div>
@@ -368,7 +370,13 @@
         admin_signin_message: "",
         staff_signin_message: "",
         show_admin: false,
-        show_staff: false
+        show_staff: false,
+        selected_program: null,
+        all_programs: null,
+        selected_level: "",
+        level_error: "",
+        program_error: "",
+        all_fetched_program: null
       },
       methods: {
         stafflogin () {
@@ -418,6 +426,49 @@
               },3000)
           }
         },
+        async view_time_table_as_pdf(){
+          if(!vm.selected_level) vm.level_error = "Please select level"
+          else vm.level_error = ""
+          if(!vm.selected_program) vm.program_error = "please select a program"
+          else vm.program_error = ""
+
+          if(vm.selected_level.length !== 0 && vm.selected_program.length !== 0){
+            try {
+              let fetched_programs = await $.ajax({
+                url: "/student/student_time_table",
+                method: "POST",
+                dataType: "JSON",
+                data: {
+                  level: vm.selected_level,
+                  program_name: vm.selected_program
+                }
+              })
+
+              let { res,data } = fetched_programs
+
+              if(res === "found"){
+                vm.all_fetched_program = data
+
+                var element = document.getElementById('element-to-print');
+                var opt = {
+                  margin:       1,
+                  filename:     'myfile.pdf',
+                  image:        { type: 'jpeg', quality: 0.98 },
+                  html2canvas:  { scale: 2 },
+                  jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+                };
+                
+                // New Promise-based usage:
+                html2pdf().from(element).set(opt).save();
+                
+                // Old monolithic-style usage:
+                html2pdf(element, opt);
+              }
+            } catch (e) {
+              console.log(e)
+            }
+          }
+        },
         async ajax_admin_sigin(){
           try {
                 let admin_signin = await $.ajax({
@@ -440,6 +491,21 @@
       computed: {
 
       },
+     async created(){
+        try {
+          let all_student_programs = await $.ajax({
+            url: "/program/all_programs",
+            method: "GET",
+            dataType: "JSON"
+          })
+
+          let {data,res} = all_student_programs
+
+          if(res === "found") vm.all_programs = data
+        } catch (e) {
+          console.log(e)
+        }
+      }
     }).$mount("#app")
   </script>
 

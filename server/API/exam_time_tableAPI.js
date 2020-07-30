@@ -230,6 +230,39 @@ let fetch_academic_sem_time_table = async (req,res,next) => {
   }
 }
 
+let fetch_student_time_table = async (req,res,next) => {
+  try {
+      var academic_year,temp_year;
+    let year = new Date().getUTCFullYear();
+    const defualt_month = 6;
+    var month = new Date().getMonth() + 1;
+
+    if(defualt_month > month){
+        semester = "second semester";
+        temp_year = year - 1;
+        academic_year = `${temp_year}/${year}`;
+    }
+    else{
+        semester = "first semester";
+        temp_year = year + 1;
+        academic_year = `${year}/${temp_year}`;
+    }
+    let { level, program_name } = req.body
+
+      let found_student_time_table = await time_table.find({
+        academic_year: academic_year,
+        semester: semester,
+        level: level,
+        program_name: program_name
+      }).exec()
+
+      if(found_student_time_table.length > 0) return res.json({res: "found", data: found_student_time_table})
+      else return res.status(404).json({res: "no data"})
+  } catch (e) {
+  
+  }
+}
+
 let find_by_id_and_delete = async (req,res,next) => {
   try {
     let { id } = req.params
@@ -536,5 +569,6 @@ module.exports = {
   find_by_id_and_delete: find_by_id_and_delete,
   find_by_id_and_update: find_by_id_and_update,
   fetch_academic_sem_time_table: fetch_academic_sem_time_table,
-  fetch_all_time_table: fetch_all_time_table
+  fetch_all_time_table: fetch_all_time_table,
+  fetch_student_time_table: fetch_student_time_table
 };

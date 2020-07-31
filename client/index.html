@@ -254,80 +254,36 @@
 
             <!-- Table body -->
             <tbody>
-              <tr v-for="(table,key) in search_table_course_code" v-for="table in time_table" :key="key">
+              <tr>
                 <th role="row">
-                  <form><input class="form-control" type="date" v-model="table.exam_date" id=""></form>
+                  
                 </th>
                 <td>
-                  <form>
-                    <select class="form-control" v-model="table.exam_time">
-                      <option>Morning</option>
-                      <option>Afternoon</option>
-                    </select>
-                  </form>
+                  
                 </td>
                 <td>
-                  <form><input class="form-control" type="text" class="just_add" v-model="table.program_name">
-                  </form>
+                  
                 </td>
                 <td>
-                  <form><input class="form-control" type="text" v-model="table.course_code"></form>
+                  
                 </td>
                 <td>
-                  <form>
-                    <select class="form-control" v-model="table.level">
-                      <option selected>100</option>
-                      <option>200</option>
-                      <option>300</option>
-                      <option>400</option>
-                    </select>
-                  </form>
+                  
                 </td>
                 <td>
-                  <div class="dropdown show">
-                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Halls
-                    </a>
-
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                      <a class="dropdown-item" href="#" v-for="(bt,key) of table.lecture_halls" :key="key"><span
-                          class="btn btn-dark btn-sm">{{bt}}</span> <span class="btn btn-danger btn-sm"
-                          @click.prevent="table.lecture_halls.splice(key,1)" href="#">X</span></a>
-                    </div>
-                  </div>
+                 
                 </td>
                 <td>
-                  <form><input class="form-control" type="text" v-model="table.examiner">
-                  </form>
+                 
                 </td>
 
 
                 <td>
-                  <div class="form-group">
-                    <form><input class="form-control" type="number" v-model="table.number_of_students"></form>
-                  </div>
+                  
                 </td>
 
                 <td>
-                  <div class="btn-group btn-group-toggle" data-toggle="buttons">
-
-                    <label class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Save Changes"
-                      @click.prevent="save_changes(table._id,key)">
-                      <input type="radio" name="options" id="option1" autocomplete="off" checked><i class="fa fa-check"
-                        aria-hidden="true"></i>
-                    </label>
-
-                    <label class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Add Hall"
-                      @click.prevent="hall_index(key)">
-                      <div data-toggle="modal" data-target="#exampleModal">
-                        <input type="radio" name="options" id="option3" autocomplete="off"><i class="fa fa-university"
-                          aria-hidden="true"></i>
-                      </div>
-                    </label>
-
-
-                  </div>
+                 
                 </td>
               </tr>
             </tbody>

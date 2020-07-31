@@ -218,26 +218,16 @@
             <form>
                 <div class="row">
                     <div class="col-sm-12 col-md-4 col-lg-4 form-group">
-                         <select class="form-control">
-                             <option value="" selected disabled>select level</option>
-                             <option>100</option>
-                             <option>200</option>
-                             <option>300</option>
-                             <option>400</option>
-                         </select>
-                    </div>
-                    <div class="col-sm-12 col-md-4 col-lg-4 form-group">
-                         <select class="form-control">
+                         <select class="form-control" v-model="selected_program">
                              <option value="" selected disabled>select program</option>
-                             <option></option>
+                             <option v-for="(program,key) of programs" :key="key"
+                             :value="{key:key,program_id:program._id}"><span>{{programs.program_name}}</span><span>{{programs.level}}</span></option>
                          </select>
                     </div>
                     <div class="col-sm-12 col-md-4 col-lg-4 form-group">
-                         <select class="form-control">
+                         <select class="form-control" v-model="selected_course_code">
                              <option value="" selected disabled>select course code</option>
-                             <option>CENG206</option>
-                             <option>CENG308</option>
-                             <option>CENG412</option>
+                             <option v-for="(course,key) of courses" :key="key">{{course.course_code}}</option>
                          </select>
                     </div>
                 </div>
@@ -469,7 +459,8 @@
       all_courses: [],
       show_alert: false,
       alert_message: "",
-      alert_response: ""
+      alert_response: "",
+      programs: [],
     },
     methods: {
       check_course(){
@@ -539,7 +530,13 @@
         return this.all_courses.filter((course) => {
           return course.course_code.toLowerCase().includes(this.search_course.toLowerCase());
           })
-        }
+        },
+
+      courses(){
+        let index = vm.selected_program.key
+        console.log(vm.programs[index])
+        return vm.programs[index]
+      }
     },
     async created(){
       try {
@@ -552,6 +549,20 @@
       } catch (e) {
         console.log(e)
       }
+
+      try {
+          let courses = await $.ajax({
+            url: "/program/all_programs",
+            method: "GET"
+          })
+
+
+          if (courses.res === "found") {
+            vm.programs = [...(courses.data)]
+          }
+        } catch (error) {
+          console.log(error)
+        }
     }
   })
   </script>

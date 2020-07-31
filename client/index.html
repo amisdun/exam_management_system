@@ -232,7 +232,7 @@
     </div>
 
     <!-- Table for displaying timetable -->
-    <div class="center" hidden="true">
+    <div class="center" hidden="true" id="element-to-print">
         <div class="table-responsive">
           <!-- Table  -->
           <table class="table table-hover table-responsive table-sm w-100 m-0">
@@ -460,9 +460,6 @@
                 
                 // New Promise-based usage:
                 html2pdf().from(element).set(opt).save();
-                
-                // Old monolithic-style usage:
-                html2pdf(element, opt);
               }
             } catch (e) {
               console.log(e)

@@ -2,7 +2,8 @@ const db = require("../db_connection/mongodb");
 require("../../index");
 let fetch_registered_courses = require("../Schemas/sample_studentsRegCourses");
 let student_attendance = require("../Schemas/student_attendance");
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
+const { get } = require("../..");
 
 let attendance = (req,res,next) => {
   let student_name = req.body.student_name;
@@ -95,7 +96,6 @@ fetch_registered_courses.find({}).exec().then(data => {
                     confirmed_course = courses
                     return confirmed_course
                   }
-
               })
                   if(confirmed_course != null){
                     console.log(confirmed_course)
@@ -114,7 +114,7 @@ fetch_registered_courses.find({}).exec().then(data => {
                       index_number: index_number,
                       level: level,
                       exam_year: academic_year,
-                      student_name: req.body.student_name,
+                      student_name: student_name,
                       student_signature: student_initials
                     })
                     .save()
@@ -159,6 +159,43 @@ fetch_registered_courses.find({}).exec().then(data => {
 
   }
 
+ let get_attendance_by_details = async (req,res,next) => {
+
+  let { course_code, program_name, level } = req.body
+
+  //Getting academic year date
+  let academic_year,temp_year;
+  let year = new Date().getUTCFullYear();
+
+  // Getting the semester and level from the index number
+  const defualt_month = 6;
+  let month = new Date().getMonth() + 1;
+
+  if(defualt_month > month){
+    semester = "second semester";
+    temp_year = year - 1;
+    academic_year = `${temp_year}/${year}`;
+  }
+  else{
+    semester = "first semester";
+    temp_year = year + 1;
+    academic_year = `${year}/${temp_year}`;
+  }
+
+  let get_attendance = await student_attendance.find({course_code: course_code, 
+    program_name: program_name, 
+    level: level,
+    academic_year: academic_year,
+    semester: semester
+  }).exec()
+
+  if(get_attendance.length > 0){
+    return res.status(200).json({res: "found", data: get_attendance})
+  }
+  else return res.status(404).json({res: "no data", msg: "No data found"})
+ }
+
   module.exports = {
-    attendance: attendance
+    attendance: attendance,
+    get_attendance_by_details: get_attendance_by_details
   }

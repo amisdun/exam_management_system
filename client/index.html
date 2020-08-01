@@ -247,43 +247,42 @@
                 <th>Lecture Halls</th>
                 <th>Examiner</th>
                 <th>Number of Students</th>
-                <th>Action</th>
+                <th>Course code</th>
               </tr>
             </thead>
             <!-- Table head -->
 
             <!-- Table body -->
             <tbody>
-              <tr>
-                <th role="row">
+              <tr v-for="(table,key) of all_fetched_time_table" :key="key">
+                <td>
+                  {{table.exam_date}}
+                </td>
+                <td>
+                  {{table.exam_time}}
+                </td>
+                <td>
+                  {{table.program_name}}
+                </td>
+                <td>
+                  {{table.course_name}}
+                </td>
+                <td>
+                 {{table.level}}
+                </td>
+                <td>
+                  <span v-for="(hall,key) of table.lecture_halls" :key="key">{{hall}},</span>
+                 </td>
+                <td>
+                  {{table.examiner}}
+                </td>
+                
+                <td>
+                  {{table.number_of_students}}
+                </td>
                   
-                </th>
                 <td>
-                  
-                </td>
-                <td>
-                  
-                </td>
-                <td>
-                  
-                </td>
-                <td>
-                  
-                </td>
-                <td>
-                 
-                </td>
-                <td>
-                 
-                </td>
-
-
-                <td>
-                  
-                </td>
-
-                <td>
-                 
+                  {{table.course_code}}
                 </td>
               </tr>
             </tbody>
@@ -370,7 +369,7 @@
         selected_level: "",
         level_error: "",
         program_error: "",
-        all_fetched_program: null
+        all_fetched_time_table: null
       },
       methods: {
         stafflogin () {
@@ -441,7 +440,7 @@
               let { res,data } = fetched_programs
 
               if(res === "found"){
-                vm.all_fetched_program = data
+                vm.all_fetched_time_table = data
 
                 demoFromHTML()
               }

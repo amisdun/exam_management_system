@@ -359,7 +359,6 @@
               if(staff_login.res === "failed"){this.show_staff= false; this.staff_signin_message = staff_login.message}
               else{
                 this.show_staff = false
-                localStorage.setItem("staff_token", staff_login.token)
                 this.staff_signin_message = staff_login.message
                 window.location = "invigilator/index.html"
               };
@@ -403,35 +402,7 @@
 
               if(res === "found"){
                 vm.all_fetched_time_table = data
-                try {
-                  let html_form = document.querySelector("#element-to-print")
-                  let filename = "time_table.pdf"
-                  let pageSize = "A4"
-                  let data = {
-                    html: html_form,
-                    inlinePdf: true,
-                    fileName: filename,
-                    options: {
-                      pageSize: pageSize
-                    }
-                  }
-                  setTimeout(async function(){
-                    let html_pdf = await $.ajax({
-                      url: "https://v2018.api2pdf.com/wkhtmltopdf/html",
-                      headers: {
-                        Authorization: "a35af926-3121-48c9-a7aa-559e3217ab0b"
-                      },
-                      contentType: "application/json",
-                      data: JSON.stringify(data)
-                    })
-                    let { pdf } = html_pdf
-                    if(html_pdf){
-                      window.open(pdf)
-                    }
-                  }, 100)
-                } catch (e) {
-                  console.log(e)
-                }
+                
               }
             } catch (e) {
               console.log(e)
@@ -449,7 +420,6 @@
                 if(admin_signin.res === "failed") {this.show_admin = false; this.admin_signin_message = admin_signin.message;}
                 else {
                   this.show_admin = false
-                  localStorage.setItem("admin_token", admin_signin.token)
                   window.location = "admin/index.html"
                   this.admin_signin_message = admin_signin.message;
                 }

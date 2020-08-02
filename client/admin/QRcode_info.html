@@ -314,7 +314,11 @@
             } catch (error) {
               console.log(error)
             }
-
+      },
+      beforeCreate() {
+        if(!localStorage.getItem("admin_token")){
+          window.location = "../index.html"
+        }
       }
     })
   </script>

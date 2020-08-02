@@ -544,8 +544,10 @@
           console.log(e)
         }
       },
-      BeforeCreate() {
-
+      beforeCreate() {
+        if(!localStorage.getItem("admin_token")){
+          window.location = "../index.html"
+        }
       }
     })
   </script>

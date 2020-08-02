@@ -217,6 +217,7 @@
                 <h4>To view attendance select level, program and course code</h4>
             <form>
                 <div class="row">
+
                     <div class="col-sm-12 col-md-6 col-lg-6 form-group">
                          <select class="form-control" v-model="selected_program">
                              <option value="" selected disabled>select program</option>
@@ -229,6 +230,18 @@
                          <select class="form-control" v-model="selected_course_code">
                              <option value="" selected disabled>select course code</option>
                              <option v-for="(course,key) of courses" :key="key" :value="course.course_code">{{course.course_code}}</option>
+                    <div class="col-sm-12 col-md-4 col-lg-4 form-group">
+                         <select class="form-control" v-model="selected_program">
+                             <option value="" selected disabled>select program</option>
+                             <option v-for="(program,key) of programs" :key="key"
+                             :value="{key:key,program_id:program._id,level: program.level}"><span>{{programs.program_name}}</span><span>{{programs.level}}</span></option>
+                         </select>
+                         <span class="text-danger">{{error2}}</span>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-4 form-group">
+                         <select class="form-control" v-model="selected_course_code">
+                             <option value="" selected disabled>select course code</option>
+                             <option v-for="(course,key) of courses" :key="key">{{course.course_code}}</option>
                          </select>
                          <span class="text-danger">{{error1}}</span>
                     </div>
@@ -326,6 +339,8 @@
                                  </div>
                              </div>
                              <div class="modal-footer">
+                              <td>{{student.student_signature}}</td>
+                          </tr>
                                  <button class="btn btn-primary" href="#" data-dismiss="modal"><i
                                      class="fas fa-times fa-fw"></i>Close Attendance</button>
                                      <button type="button" class="btn btn-secondary mx-2" onclick="javascript:demoFromHTML();">Save as PDF</button>
@@ -415,15 +430,6 @@
 
   </script>
   <script>
-
-function demoFromHTML() {
-       var pdf = new jsPDF();
-
-       pdf.autoTable({html: '#mytable'})
-
-
-       pdf.save('time_table.pdf');
-}
   const vm = new Vue({
     el: "#app",
     data: {
@@ -482,7 +488,7 @@ function demoFromHTML() {
                 vm.student_attendance = data
               }
             } catch (e) {
-              consonoele.log(e)
+              console.log(e)
             }
           },100);
         }
@@ -549,10 +555,15 @@ function demoFromHTML() {
       courses(){
         let index = vm.selected_program.key
         vm.level = vm.selected_program.level
+
         let prog = vm.programs[index]
         if(prog === undefined) return null
         else return vm.programs[index].courses_offered
         
+
+        console.log(vm.programs[index])
+        return vm.programs[index]
+
       }
     },
     async created(){

@@ -217,28 +217,20 @@
                 <h4>To view attendance select level, program and course code</h4>
             <form>
                 <div class="row">
-                    <div class="col-sm-12 col-md-4 col-lg-4 form-group">
-                         <select class="form-control">
-                             <option value="" selected disabled>select level</option>
-                             <option>100</option>
-                             <option>200</option>
-                             <option>300</option>
-                             <option>400</option>
-                         </select>
-                    </div>
-                    <div class="col-sm-12 col-md-4 col-lg-4 form-group">
-                         <select class="form-control">
+                    <div class="col-sm-12 col-md-6 col-lg-6 form-group">
+                         <select class="form-control" v-model="selected_program">
                              <option value="" selected disabled>select program</option>
-                             <option></option>
+                             <option v-for="(program,key) of programs" :key="key"
+                             :value="{key:key,program_id:program._id,level: program.level}"><span>{{program.program_name}}</span><span>   {{program.level}}</span></option>
                          </select>
+                         <span class="text-danger">{{error2}}</span>
                     </div>
-                    <div class="col-sm-12 col-md-4 col-lg-4 form-group">
-                         <select class="form-control">
+                    <div class="col-sm-12 col-md-6 col-lg-6 form-group">
+                         <select class="form-control" v-model="selected_course_code">
                              <option value="" selected disabled>select course code</option>
-                             <option>CENG206</option>
-                             <option>CENG308</option>
-                             <option>CENG412</option>
+                             <option v-for="(course,key) of courses" :key="key" :value="course.course_code">{{course.course_code}}</option>
                          </select>
+                         <span class="text-danger">{{error1}}</span>
                     </div>
                 </div>
             </form>
@@ -254,7 +246,7 @@
                   <a class="btn btn-outline-secondary btn-block" href="#" id="qr_code_modal" @click.prevent="check_course" data-target="" data-toggle="" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">Scan QR Code</a>
                   </div>
                    <div class="col-sm-12 col-md-6 col-lg-6">
-                  <a class="btn btn-success btn-block" href="#" id="attendance_modal" data-toggle="modal"
+                  <a class="btn btn-success btn-block" href="#" @click.prevent="view_time_table" id="attendance_modal" data-toggle="modal"
                       data-target="#attendance" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
                       aria-hidden="true">View List</a>
                   </div>
@@ -301,37 +293,33 @@
                                  </button>
                              </div>
                         
-                             <div class="modal-body">
+                             <div class="modal-body" id="element-to-print">
                                  <h5 class="modal-title text-dark text-center" id="ModalLabel">Attendance List</h5>
                                      <div class="table-responsive">
                                          <table
-                                             class="table table-hover table-responsive-lg table-responsive-md table-responsive-sm table-responsive-xl">
+                                             class="table table-hover table-responsive-lg table-responsive-md table-responsive-sm table-responsive-xl" id="mytable">
                                              <thead class="thead-dark">
                                                  <tr>
                                                      <th scope="col">Index No#</th>
+                                                     <th scope="col">Academic year</th>
+                                                     <th scope="col">Semester</th>
                                                      <th scope="col">Name</th>
                                                      <th scope="col">Program</th>
                                                      <th scope="col">Level</th>
-                                                     <th scope="col">Registered Course</th>
-                                                     <th scope="col">Academic Year</th>
-                                                     <th scope="col">Semester</th>
+                                                     <th scope="col">Course</th>
                                                      <th scope="col">Signature</th>
-                                                     <th scope="col">Attendance Taken</th>
                                                  </tr>
                                              </thead>
                                              <tbody>
-                                                 <tr>
-                                                     <td>UE20013016</td>
-                                                     <td>Emmanuel Adiba</td>
-                                                     <td>BSc Computer Engineering</td>
-                                                     <td>400</td>
-                                                     <td>Robotics</td>
-                                                     <td>2020</td>
-                                                     <td>Second</td>
-                                                     <td>400</td>
-                                                     <td></i>
-                                                         <p class="btn btn-info"><i class="fas fa-check"></i></p>
-                                                     </td>
+                                                 <tr v-for="(student,key) of student_attendance" :key="key">
+                                                     <td>{{student.index_number}}</td>
+                                                     <td>{{student.exam_year}}</td>
+                                                     <td>{{student.semester}}</td>
+                                                     <td>{{student.student_name}}</td>
+                                                     <td>{{student.program_name}}</td>
+                                                     <td>{{student.level}}</td>
+                                                     <td>{{student.course_name}}</td>
+                                                     <td>{{student.student_signature}}</td>
                                                  </tr>
                                              </tbody>
                                          </table>
@@ -340,47 +328,12 @@
                              <div class="modal-footer">
                                  <button class="btn btn-primary" href="#" data-dismiss="modal"><i
                                      class="fas fa-times fa-fw"></i>Close Attendance</button>
-                                     <button type="button" class="btn btn-secondary mx-2">Save as PDF</button>
+                                     <button type="button" class="btn btn-secondary mx-2" onclick="javascript:demoFromHTML();">Save as PDF</button>
                                      </div>
                              </div>
                          </div>
                      </div>
              </div>
-
-
-
-            <!-- DataTables Example -->
-            <!-- <div class="table-responsive">
-              <table class="table table-hover table-responsive-lg table-responsive-md table-responsive-sm table-responsive-xl">
-                <thead class="thead-dark">
-                  <tr>
-                    <th scope="col">Index No#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Program</th>
-                    <th scope="col">Level</th>
-                    <th scope="col">Registered Courses</th>
-                    <th scope="col">Academic Year</th>
-                    <th scope="col">Semester</th>
-                    <th scope="col">Signature</th>
-                    <th scope="col">Attendance Taken</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>UE20013016</td>
-                    <td>Emmanuel Adiba</td>
-                    <td>BSc Computer Engineering</td>
-                    <td>400</td>
-                    <td>Robotics</td>
-                    <td>2020</td>
-                    <td>Second</td>
-                    <td>400</td>
-                    <td></i><p class="btn btn-info"><i class="fas fa-check"></i></p></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div> -->
-
           </div>
         </div>
       </div>
@@ -444,6 +397,8 @@
   </div>
   <!-- Bootstrap core JS-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
   <!-- Third party plugin JS-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
@@ -460,6 +415,15 @@
 
   </script>
   <script>
+
+function demoFromHTML() {
+       var pdf = new jsPDF();
+
+       pdf.autoTable({html: '#mytable'})
+
+
+       pdf.save('time_table.pdf');
+}
   const vm = new Vue({
     el: "#app",
     data: {
@@ -469,7 +433,15 @@
       all_courses: [],
       show_alert: false,
       alert_message: "",
-      alert_response: ""
+      alert_response: "",
+      programs: [],
+      error1: "",
+      error2: "",
+      selected_course_code: "",
+      selected_program: "",
+      loading: false,
+      level: "",
+      student_attendance: null
     },
     methods: {
       check_course(){
@@ -480,6 +452,39 @@
         if(vm.selected_course.length !== 0){
           let self = this
           self.qrCode()
+        }
+      },
+      view_time_table(){
+        console.log(vm.selected_course_code)
+        if(!vm.selected_course_code) vm.error1 = "select course code"
+        else vm.error1 = ""
+        if(!vm.selected_program) vm.error2 = "select program"
+        else vm.error2 = ""
+
+        if(vm.selected_course_code.length !== 0 && vm.selected_program.length !== 0){
+          vm.loading = true
+          setTimeout(async () => {
+              try {
+                let searched_attendance = await $.ajax({
+                url: "/student_attendance/search_attendance",
+                method: "POST",
+                data: {
+                  course_code: vm.selected_course_code,
+                  program_name: vm.selected_program,
+                  level: vm.level
+                },
+                dataType: "JSON"
+              })
+
+              let { res , data } = searched_attendance
+
+              if(res === "found"){
+                vm.student_attendance = data
+              }
+            } catch (e) {
+              consonoele.log(e)
+            }
+          },100);
         }
       },
       qrCode(){
@@ -539,7 +544,16 @@
         return this.all_courses.filter((course) => {
           return course.course_code.toLowerCase().includes(this.search_course.toLowerCase());
           })
-        }
+        },
+
+      courses(){
+        let index = vm.selected_program.key
+        vm.level = vm.selected_program.level
+        let prog = vm.programs[index]
+        if(prog === undefined) return null
+        else return vm.programs[index].courses_offered
+        
+      }
     },
     async created(){
       try {
@@ -548,10 +562,24 @@
           method: "GET"
         })
 
-        if(all_courses) vm.all_courses = all_courses.data
+        if(all_courses.data.length > 0) vm.all_courses = all_courses.data
       } catch (e) {
         console.log(e)
       }
+
+      try {
+          let courses = await $.ajax({
+            url: "/program/all_programs",
+            method: "GET"
+          })
+
+
+          if (courses.res === "found") {
+            vm.programs = [...(courses.data)]
+          }
+        } catch (error) {
+          console.log(error)
+        }
     }
   })
   </script>

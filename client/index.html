@@ -334,7 +334,7 @@
       },
       methods: {
         stafflogin () {
-          app.staff_signin_message = "";
+          vm.staff_signin_message = "";
           if(!(this.staff_username)) this.error1_msg = this.username_error;
           else this.error1_msg = "";
           if(!(this.staff_password)) this.error2_msg = this.pass_error;
@@ -343,7 +343,7 @@
           if(this.staff_username.length !==0  && this.staff_password.length !==0){
             this.show_staff= true
             setTimeout(function(){
-              app.ajax_staff_signin()
+              vm.ajax_staff_signin()
             }, 3000)
           }
         },
@@ -377,7 +377,7 @@
           if(this.admin_username.length !==0  && this.admin_password.length !==0){
               this.show_admin = true
               setTimeout(function(){
-                app.ajax_admin_sigin()
+                vm.ajax_admin_sigin()
               },3000)
           }
         },

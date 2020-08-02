@@ -4,7 +4,7 @@
   "description": "examination management system",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "test": "index.js"
   },
   "author": "mikel,liza,adiba",
   "license": "ISC",

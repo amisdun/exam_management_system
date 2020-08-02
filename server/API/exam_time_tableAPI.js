@@ -255,7 +255,7 @@ let fetch_student_time_table = async (req,res,next) => {
         level: level,
         program_name: program_name
       }).exec()
-      console.log(found_student_time_table)
+
       if(found_student_time_table.length > 0) return res.json({res: "found", data: found_student_time_table})
       else return res.status(404).json({res: "no data"})
   } catch (e) {

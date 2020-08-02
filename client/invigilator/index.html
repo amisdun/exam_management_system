@@ -217,18 +217,18 @@
                 <h4>To view attendance select level, program and course code</h4>
             <form>
                 <div class="row">
-                    <div class="col-sm-12 col-md-4 col-lg-4 form-group">
+                    <div class="col-sm-12 col-md-6 col-lg-6 form-group">
                          <select class="form-control" v-model="selected_program">
                              <option value="" selected disabled>select program</option>
                              <option v-for="(program,key) of programs" :key="key"
-                             :value="{key:key,program_id:program._id,level: program.level}"><span>{{programs.program_name}}</span><span>{{programs.level}}</span></option>
+                             :value="{key:key,program_id:program._id,level: program.level}"><span>{{program.program_name}}</span><span>   {{program.level}}</span></option>
                          </select>
                          <span class="text-danger">{{error2}}</span>
                     </div>
-                    <div class="col-sm-12 col-md-4 col-lg-4 form-group">
+                    <div class="col-sm-12 col-md-6 col-lg-6 form-group">
                          <select class="form-control" v-model="selected_course_code">
                              <option value="" selected disabled>select course code</option>
-                             <option v-for="(course,key) of courses" :key="key">{{course.course_code}}</option>
+                             <option v-for="(course,key) of courses" :key="key" :value="course.course_code">{{course.course_code}}</option>
                          </select>
                          <span class="text-danger">{{error1}}</span>
                     </div>
@@ -297,7 +297,7 @@
                                  <h5 class="modal-title text-dark text-center" id="ModalLabel">Attendance List</h5>
                                      <div class="table-responsive">
                                          <table
-                                             class="table table-hover table-responsive-lg table-responsive-md table-responsive-sm table-responsive-xl">
+                                             class="table table-hover table-responsive-lg table-responsive-md table-responsive-sm table-responsive-xl" id="mytable">
                                              <thead class="thead-dark">
                                                  <tr>
                                                      <th scope="col">Index No#</th>
@@ -326,8 +326,6 @@
                                  </div>
                              </div>
                              <div class="modal-footer">
-                              <td>{{student.student_signature}}</td>
-                          </tr>
                                  <button class="btn btn-primary" href="#" data-dismiss="modal"><i
                                      class="fas fa-times fa-fw"></i>Close Attendance</button>
                                      <button type="button" class="btn btn-secondary mx-2" onclick="javascript:demoFromHTML();">Save as PDF</button>
@@ -400,6 +398,7 @@
   <!-- Bootstrap core JS-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
   <!-- Third party plugin JS-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
@@ -418,43 +417,12 @@
   <script>
 
 function demoFromHTML() {
-    var pdf = new jsPDF('p', 'pt', 'letter');
-    // source can be HTML-formatted string, or a reference
-    // to an actual DOM element from which the text will be scraped.
-    source = $('#element-to-print')[0];
+       var pdf = new jsPDF();
 
-    // we support special element handlers. Register them with jQuery-style 
-    // ID selector for either ID or node name. ("#iAmID", "div", "span" etc.)
-    // There is no support for any other type of selectors 
-    // (class, of compound) at this time.
-    specialElementHandlers = {
-        // element with id of "bypass" - jQuery style selector
-        '#bypassme': function (element, renderer) {
-            // true = "handled elsewhere, bypass text extraction"
-            return true
-        }
-    };
-    margins = {
-        top: 80,
-        bottom: 60,
-        left: 40,
-        width: 522
-    };
-    // all coords and widths are in jsPDF instance's declared units
-    // 'inches' in this case
-    pdf.fromHTML(
-    source, // HTML string or DOM elem ref.
-    margins.left, // x coord
-    margins.top, { // y coord
-        'width': margins.width, // max width of content on PDF
-        'elementHandlers': specialElementHandlers
-    },
+       pdf.autoTable({html: '#mytable'})
 
-    function (dispose) {
-        // dispose: object with X, Y of the last line add to the PDF 
-        //          this allow the insertion of new lines after html
-        pdf.save('attendance.pdf');
-    }, margins);
+
+       pdf.save('time_table.pdf');
 }
   const vm = new Vue({
     el: "#app",
@@ -487,6 +455,7 @@ function demoFromHTML() {
         }
       },
       view_time_table(){
+        console.log(vm.selected_course_code)
         if(!vm.selected_course_code) vm.error1 = "select course code"
         else vm.error1 = ""
         if(!vm.selected_program) vm.error2 = "select program"
@@ -513,7 +482,7 @@ function demoFromHTML() {
                 vm.student_attendance = data
               }
             } catch (e) {
-              conosle.log(e)
+              console.log(e)
             }
           },100);
         }
@@ -580,8 +549,10 @@ function demoFromHTML() {
       courses(){
         let index = vm.selected_program.key
         vm.level = vm.selected_program.level
-        console.log(vm.programs[index])
-        return vm.programs[index]
+        let prog = vm.programs[index]
+        if(prog === undefined) return null
+        else return vm.programs[index].courses_offered
+        
       }
     },
     async created(){
@@ -591,7 +562,7 @@ function demoFromHTML() {
           method: "GET"
         })
 
-        if(all_courses) vm.all_courses = all_courses.data
+        if(all_courses.data.length > 0) vm.all_courses = all_courses.data
       } catch (e) {
         console.log(e)
       }

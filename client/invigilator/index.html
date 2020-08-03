@@ -202,7 +202,7 @@
                     <option v-for="(course,key) in search_all_courses" :key="key">{{course.course_code}}</option>
                   </select>
                 </div>
-                <div v-else>
+                <div class="text-center mt-2" v-else>
                   <span class="alert alert-danger">There are no courses at the moment, try again later</span>
                 </div>
                 <span class="text-center text-danger">
@@ -216,7 +216,7 @@
         <div class="text-center m-0">
                 <h4>To view attendance select level, program and course code</h4>
             <form>
-                <div class="row">
+                <div class="row" v-if="programs.length !== 0">
 
                     <div class="col-sm-12 col-md-6 col-lg-6 form-group">
                          <select class="form-control" v-model="selected_program">
@@ -230,21 +230,11 @@
                          <select class="form-control" v-model="selected_course_code">
                              <option value="" selected disabled>select course code</option>
                              <option v-for="(course,key) of courses" :key="key" :value="course.course_code">{{course.course_code}}</option>
-                    <div class="col-sm-12 col-md-4 col-lg-4 form-group">
-                         <select class="form-control" v-model="selected_program">
-                             <option value="" selected disabled>select program</option>
-                             <option v-for="(program,key) of programs" :key="key"
-                             :value="{key:key,program_id:program._id,level: program.level}"><span>{{programs.program_name}}</span><span>{{programs.level}}</span></option>
                          </select>
-                         <span class="text-danger">{{error2}}</span>
-                    </div>
-                    <div class="col-sm-12 col-md-4 col-lg-4 form-group">
-                         <select class="form-control" v-model="selected_course_code">
-                             <option value="" selected disabled>select course code</option>
-                             <option v-for="(course,key) of courses" :key="key">{{course.course_code}}</option>
-                         </select>
-                         <span class="text-danger">{{error1}}</span>
-                    </div>
+                </div>
+              </div>
+                <div class="text-center mt-3" v-else>
+                  <span class="alert alert-danger">There are no programs at the moment, try again later</span>
                 </div>
             </form>
         </div>
@@ -557,12 +547,12 @@
         },
 
       courses(){
-        let index = vm.selected_program.key
-        vm.level = vm.selected_program.level
+        let index = this.selected_program.key
+        this.level = this.selected_program.level
 
-        let prog = vm.programs[index]
+        let prog = this.programs[index]
         if(prog === undefined) return null
-        else return vm.programs[index].courses_offered
+        else return this.programs[index].courses_offered
         
 
         console.log(vm.programs[index])

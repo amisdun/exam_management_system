@@ -339,7 +339,7 @@
                                  </div>
                              </div>
                              <div class="modal-footer">
-                              <td>{{student.student_signature}}</td>
+                              
                           </tr>
                                  <button class="btn btn-primary" href="#" data-dismiss="modal"><i
                                      class="fas fa-times fa-fw"></i>Close Attendance</button>
@@ -493,7 +493,7 @@
           },100);
         }
       },
-      save_attendance(){
+     async save_attendance(){
         let html_form = document.querySelector("#element-to-print")
                 try {
                   let filename = "time_table.pdf"

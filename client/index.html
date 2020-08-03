@@ -369,6 +369,7 @@
               else{
                 this.show_staff = false
                 this.staff_signin_message = staff_login.message
+                localStorage.setItem("staff_token", staff_login.token)
                 window.location = "invigilator/index.html"
               };
             } catch (error) {
@@ -437,6 +438,7 @@
                 else {
                   this.show_admin = false
                   window.location = "admin/index.html"
+                  localStorage.setItem("admin_token", admin_signin.token)
                   this.admin_signin_message = admin_signin.message;
                 }
               } catch (error) {

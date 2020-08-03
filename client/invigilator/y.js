@@ -342,7 +342,7 @@
                           </tr>
                                  <button class="btn btn-primary" href="#" data-dismiss="modal"><i
                                      class="fas fa-times fa-fw"></i>Close Attendance</button>
-                                     <button type="button" class="btn btn-secondary mx-2" onclick="javascript:demoFromHTML();">Save as PDF</button>
+                                     <button type="button" class="btn btn-secondary mx-2" @click.prevent="save_attendance">Save as PDF</button>
                                      </div>
                              </div>
                          </div>
@@ -492,14 +492,11 @@
           },100);
         }
       },
-<<<<<<< HEAD
       save_attendance(){
         var doc = new jsPDF()
                   doc.autoTable({ html: '#element-to-print' })
                   doc.save('table.pdf')
       },
-=======
->>>>>>> 8b59367b19acd2487aa08da3c7c8f1188e4709cc
       qrCode(){
         vm.show_alert = false
         let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });

@@ -368,6 +368,7 @@
               if(staff_login.res === "failed"){this.show_staff= false; this.staff_signin_message = staff_login.message}
               else{
                 this.show_staff = false
+                localStorage.setItem("staff_token", staff_login.token)
                 this.staff_signin_message = staff_login.message
                 window.location = "invigilator/index.html"
               };
@@ -411,15 +412,11 @@
 
               if(res === "found"){
                 vm.all_fetched_time_table = data
-<<<<<<< HEAD
                 setTimeout(function(){
                   var doc = new jsPDF()
                   doc.autoTable({ html: '#element-to-print' })
                   doc.save('table.pdf')
                 })
-=======
-                
->>>>>>> 8b59367b19acd2487aa08da3c7c8f1188e4709cc
               }
             } catch (e) {
               console.log(e)
@@ -440,6 +437,7 @@
                 if(admin_signin.res === "failed") {this.show_admin = false; this.admin_signin_message = admin_signin.message;}
                 else {
                   this.show_admin = false
+                  localStorage.setItem("admin_token", admin_signin.token)
                   window.location = "admin/index.html"
                   this.admin_signin_message = admin_signin.message;
                 }

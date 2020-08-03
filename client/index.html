@@ -193,7 +193,7 @@
                 <div class="col-sm-12 col-md-6 col-lg-6 form-group">
                   <select class="form-control" v-model="selected_program">
                     <option value="" selected disabled>select program</option>
-                    <option v-for="(program,key) of all_programs" :key="key">{{program.program_name}}</option>
+                    <option>computer</option>
                   </select>
                   <span class="text-danger">{{program_error}}</span>
                 </div>
@@ -232,10 +232,10 @@
     </div>
 
     <!-- Table for displaying timetable -->
-    <div class="center" hidden="true" id="element-to-print">
+    <div class="center">
         <div class="table-responsive">
           <!-- Table  -->
-          <table class="table table-hover table-responsive table-sm w-100 m-0">
+          <table class="table table-bordered table-dark table-responsive-xl" id="element-to-print">
             <!-- Table head -->
             <thead class="thead-dark">
               <tr>
@@ -302,6 +302,15 @@
   <!--/ Footer-->
   <script src="js/vue.js"></script>
   <script src="js/jquery.min.js"></script>
+  <script src="https://unpkg.com/jspdf@1.5.3/dist/jspdf.min.js"></script>
+  <script src="https://unpkg.com/jspdf-autotable@3.5.6/dist/jspdf.plugin.autotable.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+  <script src="https://kendo.cdn.telerik.com/2017.2.621/js/jquery.min.js"></script> 
+  <script src="https://kendo.cdn.telerik.com/2017.2.621/js/jszip.min.js"></script>
+  <script src="https://kendo.cdn.telerik.com/2017.2.621/js/kendo.all.min.js"></script>
+  <!-- <script src="https://kendo.cdn.telerik.com/2017.2.621/js/jquery.min.js"></script> -->
+  <script src="https://kendo.cdn.telerik.com/2017.2.621/js/jszip.min.js"></script>
+  <script src="https://kendo.cdn.telerik.com/2017.2.621/js/kendo.all.min.js"></script>  
   <script src="js/jquery.easing.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <scrip src="js/custom.js"></script>
@@ -325,7 +334,7 @@
         staff_signin_message: "",
         show_admin: false,
         show_staff: false,
-        selected_program: null,
+        selected_program: "",
         all_programs: null,
         selected_level: "",
         level_error: "",
@@ -403,38 +412,17 @@
 
               if(res === "found"){
                 vm.all_fetched_time_table = data
-                try {
-                  let html_form = document.querySelector("#element-to-print")
-                  let filename = "time_table.pdf"
-                  let pageSize = "A4"
-                  let data = {
-                    html: html_form,
-                    inlinePdf: true,
-                    fileName: filename,
-                    options: {
-                      pageSize: pageSize
-                    }
-                  }
-                  setTimeout(async function(){
-                    let html_pdf = await $.ajax({
-                      url: "https://v2018.api2pdf.com/wkhtmltopdf/html",
-                      headers: {
-                        Authorization: "a35af926-3121-48c9-a7aa-559e3217ab0b"
-                      },
-                      contentType: "application/json",
-                      data: JSON.stringify(data)
-                    })
-                    let { pdf } = html_pdf
-                    if(html_pdf){
-                      window.open(pdf)
-                    }
-                  }, 100)
-                } catch (e) {
-                  console.log(e)
-                }
+                setTimeout(function(){
+                  var doc = new jsPDF()
+                  doc.autoTable({ html: '#element-to-print' })
+                  doc.save('table.pdf')
+                })
               }
             } catch (e) {
               console.log(e)
+              var doc = new jsPDF()
+                  doc.autoTable({ html: '#element-to-print' })
+                  doc.save('table.pdf')
             }
           }
         },

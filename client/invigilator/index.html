@@ -492,14 +492,11 @@
           },100);
         }
       },
-<<<<<<< HEAD
       save_attendance(){
         var doc = new jsPDF()
                   doc.autoTable({ html: '#element-to-print' })
                   doc.save('table.pdf')
       },
-=======
->>>>>>> 8b59367b19acd2487aa08da3c7c8f1188e4709cc
       qrCode(){
         vm.show_alert = false
         let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });

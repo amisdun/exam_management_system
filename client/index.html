@@ -411,15 +411,11 @@
 
               if(res === "found"){
                 vm.all_fetched_time_table = data
-<<<<<<< HEAD
                 setTimeout(function(){
                   var doc = new jsPDF()
                   doc.autoTable({ html: '#element-to-print' })
                   doc.save('table.pdf')
                 })
-=======
-                
->>>>>>> 8b59367b19acd2487aa08da3c7c8f1188e4709cc
               }
             } catch (e) {
               console.log(e)

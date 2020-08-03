@@ -43,7 +43,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#" data-toggle="modal" @click.prevent="logout" data-target="#logoutModal">Logout</a>
+              <a class="dropdown-item" href="#" data-toggle="modal" @click.prevent="logout">Logout</a>
             </div>
           </li>
         </ul>
@@ -233,6 +233,10 @@
             console.log(error)
           }
 
+        },
+        logout(){
+          localStorage.removeItem("admin_token")
+          window.location = "../index.html"
         }
       },
       computed: {
@@ -274,7 +278,7 @@
             }
 
       },
-      beforeCreated(){
+      beforeCreate(){
         if(!localStorage.getItem("admin_token")){
           window.location = '../index.html'
         }

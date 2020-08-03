@@ -62,17 +62,7 @@
             <span>QRcode Info</span></a>
         </li>
         <li class="nav-item">
-          <a class="nform class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search for..." aria-label="Search"
-                aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search"></i>
-                </button>
-              </div>
-            </div>
-          </form>av-link" href="QRcode_generator.html">
+          <a class="nav-link" href="QRcode_generator.html">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>QRcode Image</span></a>
         </li>
@@ -574,7 +564,7 @@
         }
       },
       mounted() {},
-      beforeCreated(){
+      beforeCreate(){
         if(!localStorage.getItem("admin_token")){
           window.location = '../index.html'
         }

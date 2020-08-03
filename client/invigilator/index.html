@@ -339,7 +339,6 @@
                                  </div>
                              </div>
                              <div class="modal-footer">
-                              
                           </tr>
                                  <button class="btn btn-primary" href="#" data-dismiss="modal"><i
                                      class="fas fa-times fa-fw"></i>Close Attendance</button>
@@ -493,35 +492,10 @@
           },100);
         }
       },
-     async save_attendance(){
-        let html_form = document.querySelector("#element-to-print")
-                try {
-                  let filename = "time_table.pdf"
-                  let pageSize = "A4"
-                  let data = {
-                    html: html_form,
-                    inlinePdf: true,
-                    fileName: filename,
-                    options: {
-                      pageSize: pageSize
-                    }
-                  }
-                  
-                    let html_pdf = await $.ajax({
-                      url: "https://v2018.api2pdf.com/wkhtmltopdf/html",
-                      headers: {
-                        Authorization: "a35af926-3121-48c9-a7aa-559e3217ab0b"
-                      },
-                      contentType: "application/json",
-                      data: JSON.stringify(data)
-                    })
-                    let { pdf } = html_pdf
-                    if(html_pdf){
-                      window.open(pdf)
-                    }
-                } catch (e) {
-                  console.log(e)
-                }
+      save_attendance(){
+        var doc = new jsPDF()
+                  doc.autoTable({ html: '#element-to-print' })
+                  doc.save('table.pdf')
       },
       qrCode(){
         vm.show_alert = false

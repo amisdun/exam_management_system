@@ -74,7 +74,7 @@
                     <input class="form-control" placeholder="Password" id="loginpsw" type="password" autocomplete="off"  v-model="staff_password"/>
                     <span style="display:none;font-weight:bold; position:absolute;color: grey;position: absolute;padding:4px;font-size: 11px;background-color:rgba(128, 128, 128, 0.26);z-index: 17;  right: 27px; top: 5px;" id="span_loginpsw"></span>
                     <span style="color: red">{{error2_msg}}</span>
-                    <!---Alredy exists  ! -->
+                    <!---Alredy exists  ! -->float-right
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                   </div>
                   <div class="row">
@@ -193,6 +193,7 @@
                 <div class="col-sm-12 col-md-6 col-lg-6 form-group">
                   <select class="form-control" v-model="selected_program">
                     <option value="" selected disabled>select program</option>
+                    <option v-for="(program,key) of all_programs">{{program.program_name}}</option>
                   </select>
                   <span class="text-danger">{{program_error}}</span>
                 </div>

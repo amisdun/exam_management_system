@@ -18,7 +18,7 @@
     "express-session": "^1.17.0",
     "html2pdf.js": "^0.9.2",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.7.5",
+    "mongoose": "^5.13.20",
     "nodemon": "^1.19.4",
     "path": "^0.12.7",
     "qr-code-scanner": "^1.0.7",
